@@ -1,0 +1,4 @@
+interface:
+  display_name: "BIDS App Builder"
+  short_description: "Build and validate containerized BIDS Apps"
+  default_prompt: "Use $bids-app-builder to build or adapt a BIDS App from a pipeline, including its CLI, container, tests, documentation, and release workflow."

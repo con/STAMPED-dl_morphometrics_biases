@@ -1,0 +1,4 @@
+interface:
+  display_name: "STAMPED Neuroimaging Analysis"
+  short_description: "Perform and assess STAMPED analyses"
+  default_prompt: "Use $stamped-neuroimaging-analysis to perform and assess this neuroimaging analysis against every STAMPED principle."
