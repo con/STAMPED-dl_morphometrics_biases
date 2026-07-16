@@ -1,0 +1,20 @@
+[workspace]
+name = "stamped-dl-morphometrics-biases"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64"]
+requires-pixi = "==0.66.0"
+
+[feature.datalad.dependencies]
+python = "3.12.*"
+datalad = "==1.6.0"
+datalad-container = "==1.2.5"
+
+[feature.datalad.target.linux-64.dependencies]
+git-annex = "==10.20260601"
+
+[feature.datalad.tasks]
+datalad-status = { cmd = "datalad status --annex all", description = "Report Git and annex state for the research object" }
+tool-versions = { cmd = "pixi --version && datalad --version && git-annex version", description = "Report the pinned DataLad environment and resolved git-annex" }
+
+[environments]
+datalad = ["datalad"]
