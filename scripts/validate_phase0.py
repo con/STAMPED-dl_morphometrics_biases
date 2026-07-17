@@ -6,6 +6,8 @@ from __future__ import annotations
 import csv
 import os
 import re
+import json
+import subprocess
 from collections import Counter
 from pathlib import Path
 
@@ -20,6 +22,8 @@ POSTER_KEY = (
 )
 POSTER_DOI = "doi:10.17605/OSF.IO/P3KNS"
 POSTER_DOWNLOAD = "https://osf.io/download/mn47a/"
+GIN_URL = "https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases"
+GIN_UUID = "99822df6-f62f-4161-925a-e444e68c8625"
 OLD_SOURCE_COMMIT = "448bf1a311c1ab8310cbab613a8123bb4a4f4a00"
 RUNTIME_IDS = {
     "reconall-fs741-repronim-bids",
@@ -148,8 +152,12 @@ def main() -> int:
     else:
         poster = poster_rows[0]
         references = poster["persistent_reference"].split(";")
-        if POSTER_DOI not in references or POSTER_DOWNLOAD not in references:
-            errors.append("evidence manifest omits the exact OSF DOI or download URL")
+        if (
+            POSTER_DOI not in references
+            or POSTER_DOWNLOAD not in references
+            or GIN_URL not in references
+        ):
+            errors.append("evidence manifest omits the exact OSF or GIN reference")
         poster_path = (
             ROOT / "docs" / "reference" / "recon_all_recon_any_poster_ohbm2025.pdf"
         )
@@ -157,6 +165,20 @@ def main() -> int:
             errors.append("poster is not an annex symlink at the declared path")
         elif POSTER_KEY not in os.readlink(poster_path):
             errors.append("poster annex symlink does not resolve to the expected key")
+        whereis = subprocess.run(
+            ["git", "annex", "whereis", "--json", str(poster_path.relative_to(ROOT))],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if whereis.returncode:
+            errors.append("git-annex could not report poster availability")
+        else:
+            record = json.loads(whereis.stdout)
+            uuids = {item["uuid"] for item in record["whereis"]}
+            if GIN_UUID not in uuids:
+                errors.append("poster availability does not include the recorded GIN UUID")
 
     _, runtimes = read_tsv(ROOT / "config" / "runtime-candidates.tsv")
     runtime_ids = {row["runtime_id"] for row in runtimes}
@@ -171,6 +193,8 @@ def main() -> int:
             "result instances absent from component inventory: "
             + ", ".join(sorted(missing_results))
         )
+    if "storage-gin" not in component_ids:
+        errors.append("GIN annex sibling is absent from the component inventory")
 
     if errors:
         for error in errors:

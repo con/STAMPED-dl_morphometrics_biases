@@ -12,7 +12,15 @@ This repository is now the top-level DataLad research object (dataset ID `baa2ec
 
 The assessment is deliberately gap-preserving: Phase 0 does not claim that the research object meets the STAMPED ideals or that any scientific result is reproducible yet. Follow [the conversion plan](docs/conversion-plan.md) in order; do not import historical scientific code before the repository, runtime, and toy-campaign guardrails have been proven.
 
-The Phase 0 evidence gate is complete locally. Publication still requires pushing the containing commits and annex metadata; GIN is intended as a redundant annex-content sibling in addition to the exact OSF web source.
+The Phase 0 evidence gate is complete. The public [GIN sibling](https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases) provides redundant Git and annex-content storage in addition to the exact OSF web source.
+
+Clone directly from GIN and retrieve the poster without credentials:
+
+```bash
+datalad clone https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases
+cd STAMPED-dl_morphometrics_biases
+datalad get docs/reference/recon_all_recon_any_poster_ohbm2025.pdf
+```
 
 Read [AGENTS.md](AGENTS.md) before making changes. The complete operating policy is in the repository-local [STAMPED neuroimaging skill](skills/stamped-neuroimaging-analysis/SKILL.md); use the [BIDS App builder skill](skills/bids-app-builder/SKILL.md) whenever a project-authored BIDS App is created or adapted.
 
