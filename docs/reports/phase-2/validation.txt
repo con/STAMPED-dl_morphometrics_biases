@@ -1,0 +1,20 @@
+Phase 2 local validation summary
+================================
+
+Environment foundation commit: ed9608ee0c7763c59813304da5f0994029987e4a
+Validation harness commit: 4370a4bd24f484a29a37d176f78c43ed6132bebf
+
+macOS development preflight:
+  pixi run --locked --environment dev validate-phase2  PASS
+  pixi run --locked --environment dev verify-toy-image PASS
+  pixi run --locked --environment dev docs-check       PASS
+  pixi run --locked --environment dev test             PASS (9 tests)
+  pixi run --locked --environment dev reuse-lint       PASS
+  pixi run --locked --environment dev validate-stamped PASS
+
+Pinned BABS preflight:
+  babs v0.5.5.dev26+g2cc536a51
+  parameterized babs-operation dry-run                 PASS
+
+The BABS dry-run does not create a campaign or perform a lifecycle operation;
+those actions remain Phase 3 work.

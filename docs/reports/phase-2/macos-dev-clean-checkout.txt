@@ -1,0 +1,23 @@
+Phase 2 macOS clean-checkout development gate
+===============================================
+
+Environment foundation commit: ed9608ee0c7763c59813304da5f0994029987e4a
+Validation harness commit: 4370a4bd24f484a29a37d176f78c43ed6132bebf
+Host: macOS arm64
+Checkout: fresh local Git clone with no realized Pixi prefix copied in
+
+Command:
+  pixi install --locked --environment dev
+  pixi run --locked --environment dev dev-tool-versions
+
+Result: pass
+
+Resolved toolchain:
+  pixi 0.66.0
+  Python 3.12.13
+  ruff 0.14.10
+  pytest 9.1.1
+  reuse 6.2.0
+
+The checkout realized the development environment from the tracked lock without
+rewriting it. This is tooling evidence only; it is not a runtime identity.

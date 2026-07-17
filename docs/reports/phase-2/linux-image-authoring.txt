@@ -1,0 +1,30 @@
+Phase 2 Linux image-authoring and retrieval gate
+=================================================
+
+Environment foundation commit: ed9608ee0c7763c59813304da5f0994029987e4a
+Validation harness commit: 4370a4bd24f484a29a37d176f78c43ed6132bebf
+Target: linux/amd64 in a disposable Ubuntu 24.04 Docker container
+Checkout: fresh recursive clone; no realized Pixi prefix was copied in
+
+Commands:
+  pixi install --locked --environment image-authoring
+  pixi run --locked --environment image-authoring image-authoring-report
+  pixi run --locked --environment image-authoring verify-toy-image
+  pixi run --locked --environment image-authoring validate-phase2
+
+Result: pass; the lock remained unchanged.
+
+Resolved identities:
+  pixi 0.66.0
+  Python 3.12.13
+  DataLad 1.6.0
+  git-annex 10.20260601
+  Apptainer / Singularity 1.5.2
+  Cosign 3.0.4
+  Syft 1.48.0
+
+The fresh clone initialized the registry and source subdatasets. A disposable
+Git identity was configured inside the container solely because git-annex writes
+local availability information while retrieving content. `verify-toy-image`
+retrieved the release-backed toy SIF and verified its accepted-dataset commit,
+annex key, and SHA-256. No scientific image or result was used.
