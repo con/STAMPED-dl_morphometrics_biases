@@ -8,5 +8,6 @@
 	url = https://github.com/ReproNim/containers.git
 [submodule "envs/containers/accepted"]
 	path = envs/containers/accepted
-	url = ./envs/containers/accepted
+	url = https://github.com/con/STAMPED-dl_morphometrics_biases-accepted-containers.git
 	datalad-id = 8320f911-d110-4c82-b95b-285244cbae13
+	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-accepted-containers.git

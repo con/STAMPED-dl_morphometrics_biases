@@ -1,0 +1,43 @@
+Phase 2 toy BIDS App SIF qualification
+=======================================
+
+Image ID: toy-bids-app
+Purpose: non-scientific, redistributable registry fixture only
+Architecture: x86_64 (Linux amd64 builder)
+Accepted dataset ID: 8320f911-d110-4c82-b95b-285244cbae13
+Accepted dataset commit: 6177eaa11e8776b98429098bcaca4a7f23938913
+SIF SHA-256: 04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59
+SIF annex key: SHA256E-s3559424--04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59.0.sif
+
+interface
+---------
+The SIF runscript exposes --help and --version, then accepts positional
+bids_dir, output_dir, and analysis_level=participant. It rejects an invalid
+analysis level and requires dataset_description.json at the BIDS input root.
+
+containment
+-----------
+The x86_64 Linux smoke test invoked the SIF with singularity run --cleanenv
+--containall --no-home --pwd /tmp. The accepted DataLad Containers registration
+uses the equivalent apptainer exec --cleanenv --containall --no-home --no-mount
+cwd command format. No host home or caller working directory is declared.
+
+fixture
+-------
+The containment smoke test passed the committed fixtures/bids input and a fresh
+/tmp output directory. The app created only output/dataset_description.json and
+output/toy-bids-app.txt. No scientific input, output, or result claim was used.
+
+architecture
+------------
+The SIF was built and smoke-tested in a Linux amd64 Docker container using
+singularity-container 4.1.1+ds2-1ubuntu0.3. The runtime image base is the
+pinned Alpine 3.20 digest in the tracked definition.
+
+persistent-retrieval
+--------------------
+The local annex copy was force-dropped, then git-annex retrieved the exact SIF
+from the public GitHub release URL registered as the web remote. The retrieved
+bytes recomputed to the recorded SHA-256. The accepted dataset main and
+git-annex branches were pushed to
+con/STAMPED-dl_morphometrics_biases-accepted-containers.

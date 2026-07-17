@@ -1,0 +1,10 @@
+schema_version: 1
+accepted_dataset:
+  id: 8320f911-d110-4c82-b95b-285244cbae13
+  commit: 6177eaa11e8776b98429098bcaca4a7f23938913
+images:
+  - image_id: toy-bids-app
+    accepted_dataset_id: 8320f911-d110-4c82-b95b-285244cbae13
+    accepted_dataset_commit: 6177eaa11e8776b98429098bcaca4a7f23938913
+    sif_annex_key: SHA256E-s3559424--04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59.0.sif
+    sif_sha256: 04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59

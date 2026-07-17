@@ -1,0 +1,66 @@
+schema_version: 1
+image_id: toy-bids-app
+state: accepted-registered
+source_kind: project-built
+architecture: x86_64
+interface:
+  kind: bids-app
+  name: toy-bids-app
+  version: 0.1.0
+licenses:
+  - component: toy-bids-app definition
+    identifier: MIT
+    redistribution: permitted
+  - component: Alpine Linux 3.20 base contents
+    identifier: GPL-2.0-only;MIT;BSD-3-Clause
+    redistribution: permitted
+retrieval_locations:
+  - https://github.com/con/STAMPED-dl_morphometrics_biases-accepted-containers/releases/download/phase-2-toy-v0.1.0/toy-bids-app-0.1.0.sif
+qualification:
+  interface:
+    status: pass
+    evidence: docs/reports/phase-2/toy-bids-app-qualification.txt#interface
+  containment:
+    status: pass
+    evidence: docs/reports/phase-2/toy-bids-app-qualification.txt#containment
+  fixture:
+    status: pass
+    evidence: docs/reports/phase-2/toy-bids-app-qualification.txt#fixture
+  target_architecture:
+    status: pass
+    evidence: docs/reports/phase-2/toy-bids-app-qualification.txt#architecture
+  persistent_retrieval:
+    status: pass
+    evidence: docs/reports/phase-2/toy-bids-app-qualification.txt#persistent-retrieval
+hardening:
+  sbom:
+    decision: defer
+    rationale: The toy fixture proves registry mechanics only; generate an SBOM for the first scientific candidate SIF.
+  signature:
+    decision: defer
+    rationale: The project signing trust policy is selected when the first scientific candidate SIF enters qualification.
+  attestation:
+    decision: defer
+    rationale: A build attestation is required for a scientific image, not this non-authoritative fixture.
+definition_path: envs/containers/custom/toy-bids-app/toy-bids-app.def
+definition_sha256: d2f20bd47a81759e59abe4142c79788a357039e55fe260302454da41417b64f2
+pixi_manifest_sha256: 331612d2d99536570769d3c1e40b2af623bdced0291d06441df509ad1bc70b6b
+pixi_lock_sha256: 62c294355211e1cd3f5229e3afa2709cfc0dd5437b2148c0cd3ab88f7d04c453
+builder_version: singularity-container 4.1.1+ds2-1ubuntu0.3 in ubuntu@sha256:4fbb8e6a8395de5a7550b33509421a2bafbc0aab6c06ba2cef9ebffbc7092d90 via Docker Engine 29.3.0
+build_command:
+  - docker
+  - run
+  - --rm
+  - --privileged
+  - --platform
+  - linux/amd64
+  - ubuntu@sha256:4fbb8e6a8395de5a7550b33509421a2bafbc0aab6c06ba2cef9ebffbc7092d90
+  - singularity
+  - build
+  - envs/containers/accepted/images/toy-bids-app-0.1.0.sif
+  - envs/containers/custom/toy-bids-app/toy-bids-app.def
+accepted_dataset_id: 8320f911-d110-4c82-b95b-285244cbae13
+accepted_dataset_commit: 6177eaa11e8776b98429098bcaca4a7f23938913
+accepted_image_path: images/toy-bids-app-0.1.0.sif
+sif_annex_key: SHA256E-s3559424--04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59.0.sif
+sif_sha256: 04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59

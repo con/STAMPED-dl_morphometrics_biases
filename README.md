@@ -19,6 +19,15 @@ access-control matrix, file-group licensing policy, and locked validation
 environment. No scientific pipeline, container, campaign, derivative, or
 claim-bearing result is created in this phase. The public [GIN sibling](https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases) provides redundant Git and annex-content storage in addition to the exact OSF web source.
 
+Phase 2 is also complete: the locked Pixi workspace now separates development,
+analysis, BABS, Linux image-analysis, and image-authoring environments. The
+pinned [ReproNim container source](envs/containers/repronim/) and independent
+[accepted container dataset](envs/containers/accepted/) establish the image
+registry foundation. Its redistributable toy BIDS App proves exact-SIF
+registration, persistent retrieval, and byte verification; it is explicitly
+not a scientific runtime. Read [Phase 2 notes](docs/phase-2-notes.md) and the
+[accepted image index](envs/images.lock.yaml) before selecting any runtime.
+
 Clone directly from GIN and retrieve the poster without credentials:
 
 ```bash
@@ -43,6 +52,11 @@ pixi run --locked --environment datalad validate-stamped
 pixi run --locked --environment datalad validate-stamped-ideal
 pixi install --locked --environment quality
 pixi run --locked --environment quality validate-phase1
+pixi install --locked --environment dev
+pixi run --locked --environment dev docs-check
+pixi run --locked --environment dev test
+pixi run --locked --environment dev validate-phase2
+pixi run --locked --environment dev verify-toy-image
 ```
 
 `validate-phase0` checks evidence inventories and complete pilot/claim target coverage. `validate-stamped` checks structural completeness, decisions, evidence, and root/component roll-ups. `validate-stamped-ideal` is expected to fail and enumerate ideal gaps until every applicable MUST is met and every SHOULD is adopted and met.

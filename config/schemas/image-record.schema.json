@@ -87,7 +87,8 @@
     "build_command": { "type": "array", "minItems": 1, "items": { "type": "string" } },
     "accepted_dataset_id": { "$ref": "#/$defs/uuid" },
     "accepted_dataset_commit": { "$ref": "#/$defs/git_commit" },
-    "sif_annex_key": { "type": "string", "pattern": "^SHA256E-s[0-9]+--[0-9a-f]{64}\\.sif$" },
+    "accepted_image_path": { "$ref": "#/$defs/relative_path" },
+    "sif_annex_key": { "type": "string", "pattern": "^SHA256E-s[0-9]+--[0-9a-f]{64}(?:\\.[A-Za-z0-9_-]+)*\\.sif$" },
     "sif_sha256": { "$ref": "#/$defs/sha256" }
   },
   "allOf": [
@@ -110,7 +111,7 @@
     {
       "if": { "properties": { "state": { "const": "accepted-registered" } } },
       "then": {
-        "required": ["accepted_dataset_id", "accepted_dataset_commit", "sif_annex_key", "sif_sha256"]
+        "required": ["accepted_dataset_id", "accepted_dataset_commit", "accepted_image_path", "sif_annex_key", "sif_sha256"]
       }
     }
   ],

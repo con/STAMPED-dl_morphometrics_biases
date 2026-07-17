@@ -1,7 +1,7 @@
 [workspace]
 name = "stamped-dl-morphometrics-biases"
 channels = ["conda-forge"]
-platforms = ["osx-arm64", "linux-64"]
+platforms = ["osx-arm64", "osx-64", "linux-64"]
 requires-pixi = "==0.66.0"
 
 [feature.datalad.dependencies]
@@ -40,6 +40,78 @@ validate-phase1 = { cmd = "python scripts/validate_phase1.py", description = "Ru
 generate-phase1-reports = { cmd = "python scripts/generate_phase1_reports.py", description = "Generate committed Phase 1 validation and clean-clone evidence" }
 quality-tool-versions = { cmd = "pixi --version && datalad --version && git-annex version && reuse --version && pytest --version && python -c \"from importlib.metadata import version; print('bids-validator-deno', version('bids-validator-deno'))\"", description = "Report the locked Phase 1 validation toolchain" }
 
+[feature.dev.dependencies]
+python = "3.12.*"
+ruff = "==0.14.10"
+
+[feature.dev.tasks]
+docs-check = { cmd = "python scripts/validate_docs.py", description = "Check Phase 2 operational documentation and repository-local links" }
+dev-tool-versions = { cmd = "pixi --version && python --version && ruff --version && pytest --version && reuse --version", description = "Report the locked development toolchain" }
+validate-phase2 = { cmd = "python scripts/validate_phase2.py", description = "Run the Phase 2 preflight gate on a development host" }
+verify-toy-image = { cmd = "python scripts/verify_image_registry.py --image toy-bids-app", description = "Retrieve and verify the registered toy BIDS App SIF identity" }
+
+[feature.analysis.dependencies]
+# pandas<2, required by freesurfer-stats 1.2.0, has no Python 3.12 build.
+python = "3.11.*"
+numpy = "<2"
+pandas = "<2"
+scipy = "==1.16.3"
+statsmodels = "==0.14.6"
+matplotlib = "==3.10.8"
+seaborn = "==0.13.2"
+nibabel = "==5.3.3"
+scikit-learn = "==1.7.2"
+
+[feature.analysis.pypi-dependencies]
+freesurfer-stats = "==1.2.0"
+
+[feature.analysis.tasks]
+analysis-environment-report = { cmd = "python scripts/report_environment.py --environment analysis", description = "Record the resolved analysis environment without treating it as a runtime identity" }
+
+[feature.babs.dependencies]
+python = "3.11.*"
+numpy = "<2"
+pandas = "<2"
+nibabel = "==5.3.3"
+
+[feature.babs.pypi-dependencies]
+babs = { git = "https://github.com/PennLINC/babs.git", rev = "2cc536a51282124f3811ffa971f82a7c34116af5" }
+
+[feature.babs-datalad.dependencies]
+python = "3.11.*"
+datalad = "==1.6.0"
+datalad-container = "==1.2.5"
+
+[feature.babs-datalad.target.linux-64.dependencies]
+git-annex = "==10.20260601"
+
+[feature.babs.tasks]
+babs-version = { cmd = "babs --version", description = "Report the pinned direct-layout BABS revision after realization on Linux" }
+babs-operation = { cmd = "python scripts/run_babs_operation.py {{ operation }} {{ campaign }}", args = [{ arg = "operation", choices = ["init", "check-setup", "submit", "status", "merge", "unzip"] }, "campaign"], description = "Run one declared BABS lifecycle operation for a Phase 3 campaign" }
+
+[feature.image-linux]
+platforms = ["linux-64"]
+
+[feature.image-linux.target.linux-64.dependencies]
+apptainer = "==1.5.2"
+
+[feature.image-authoring.dependencies]
+cosign = "==3.0.4"
+syft = "==1.48.0"
+pyyaml = "==6.0.3"
+jsonschema = "==4.26.0"
+
+[feature.image-authoring.tasks]
+image-authoring-report = { cmd = "python scripts/report_environment.py --environment image-authoring", description = "Record Pixi, Apptainer, Lima, signing, SBOM, and verification tooling identities" }
+validate-phase2 = { cmd = "python scripts/validate_phase2.py", description = "Validate the Phase 2 environment and exact-SIF registry foundation" }
+verify-toy-image = { cmd = "python scripts/verify_image_registry.py --image toy-bids-app", description = "Retrieve and verify the registered toy BIDS App SIF identity" }
+reproduce-toy-bids-app = { cmd = "cd envs/containers/accepted && datalad containers-run -d . -n toy-bids-app --explicit --input fixtures/bids --output fixtures/output -m 'Execute the registered toy BIDS App through DataLad Containers' -- fixtures/bids fixtures/output participant", description = "Record the complete toy BIDS App invocation with DataLad Containers; this is a provenance test, not scientific evidence" }
+
 [environments]
 datalad = ["datalad"]
 quality = ["datalad", "quality"]
+dev = ["datalad", "quality", "dev"]
+analysis = ["analysis"]
+babs = ["babs-datalad", "babs"]
+image-analysis = ["analysis", "image-linux"]
+image-authoring = ["datalad", "image-linux", "image-authoring"]

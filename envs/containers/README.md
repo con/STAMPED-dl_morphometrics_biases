@@ -1,9 +1,14 @@
 # Scientific container datasets
 
-- `repronim/` is reserved for the pinned ReproNim/containers source dataset.
-- `custom/` is reserved for tracked project image definitions.
-- `accepted/` is reserved for the independent dataset of qualified exact SIFs.
+- `repronim/` is the pinned ReproNim/containers source dataset. It is evidence
+  for candidate discovery, not an execution identity.
+- `custom/` stores tracked project image definitions and their declared build
+  inputs. Definitions do not become a runtime until their resulting SIF is
+  qualified and registered.
+- `accepted/` is an independent DataLad dataset of exact registered SIF bytes.
+  Its DataLad Containers registration, SIF annex key, and dataset commit are
+  authoritative for image identity.
 
-Phase 1 establishes these paths only. Phase 2 creates or installs the datasets
-and image registry. A path or Pixi lock never substitutes for a registered SIF
-identity.
+The derived [image index](../images.lock.yaml) is a convenience lookup. If it
+conflicts with the accepted dataset, a DataLad Containers run record, or a
+result-manifest entry, those provenance-bearing records prevail.
