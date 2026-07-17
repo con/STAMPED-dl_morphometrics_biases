@@ -2,7 +2,7 @@
   "annex_content_requested": false,
   "datasets": {
     ".": {
-      "commit": "dcf463473e7250ad1210560cee2ddd5352b15c97",
+      "commit": "ad483784fcb8ade7fecd8bdacdc799cc11639e79",
       "dataset_id": "baa2ec91-e618-4bac-b382-ac0daf9f779a"
     },
     "studies/toy": {
@@ -17,6 +17,6 @@
   "failures": [],
   "recursive_clone": true,
   "schema_version": 1,
-  "source_commit": "dcf463473e7250ad1210560cee2ddd5352b15c97",
+  "source_commit": "ad483784fcb8ade7fecd8bdacdc799cc11639e79",
   "status": "pass"
 }
