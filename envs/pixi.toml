@@ -76,6 +76,7 @@ nibabel = "==5.3.3"
 
 [feature.babs.pypi-dependencies]
 babs = { git = "https://github.com/PennLINC/babs.git", rev = "2cc536a51282124f3811ffa971f82a7c34116af5" }
+con-duct = "==0.21.0"
 
 [feature.babs-datalad.dependencies]
 python = "3.11.*"
@@ -87,7 +88,8 @@ git-annex = "==10.20260601"
 
 [feature.babs.tasks]
 babs-version = { cmd = "babs --version", description = "Report the pinned direct-layout BABS revision after realization on Linux" }
-babs-operation = { cmd = "python scripts/run_babs_operation.py {{ operation }} {{ campaign }}", args = [{ arg = "operation", choices = ["init", "check-setup", "submit", "status", "merge", "unzip"] }, "campaign"], description = "Run one declared BABS lifecycle operation for a Phase 3 campaign" }
+babs-tool-versions = { cmd = "babs --version && con-duct --version", description = "Report the pinned BABS and con-duct operations tooling" }
+babs-operation = { cmd = "python scripts/run_babs_operation.py {{ operation }} {{ campaign }}", args = [{ arg = "operation", choices = ["init", "check-setup", "submit", "status", "merge", "unzip"] }, "campaign"], description = "Run one declared BABS lifecycle operation and capture campaign-local con-duct logs" }
 
 [feature.image-linux]
 platforms = ["linux-64"]

@@ -29,6 +29,7 @@ pixi install --locked --environment analysis
 pixi run --locked --environment analysis analysis-environment-report
 pixi install --locked --environment babs
 pixi run --locked --environment babs babs-version
+pixi run --locked --environment babs babs-tool-versions
 pixi run --locked --environment babs babs-operation init toy-campaign -- --dry-run
 pixi run --locked --environment dev validate-phase2
 pixi run --locked --environment dev verify-toy-image
@@ -38,7 +39,8 @@ pixi run --locked --environment dev verify-toy-image
 1 validator interface. `dev` supplies tests, documentation checks, linting,
 and optional notebooks; `analysis` supplies extraction, assembly, models,
 figures, and validation dependencies; `babs` supplies the direct-layout BABS
-revision and orchestration tools; `image-analysis` is a Linux image-build
+revision and orchestration tools, including the pinned `con-duct` observer used
+by the BABS lifecycle launcher; `image-analysis` is a Linux image-build
 solution; and `image-authoring` supplies Apptainer plus signing, SBOM, and
 verification tools on Linux. Run image-authoring installation and image tasks
 only on a Linux x86-64 target; macOS performs the development preflight and
@@ -57,6 +59,15 @@ The `quality` environment composes the DataLad feature with exact REUSE, pytest,
 JSON Schema, PyYAML, and official BIDS validator dependencies. Its purpose is
 repository validation only. It is not a scientific runtime and does not replace
 the exact registered SIF required for a result.
+
+The `babs-operation` task invokes `scripts/run_babs_operation.py`. Normal
+operations are wrapped with `con-duct run --mode current-session`; stdout,
+stderr, wall time, and sampled process resource usage are written under the
+campaign's `logs/` directory. The wrapper does not replace the BABS command in
+the operations record: BABS remains the lifecycle authority, and DataLad/BABS
+remains the scientific provenance authority. The logs inherit the campaign's
+access class and must not be published outside that boundary. Dry runs do not
+create logs.
 
 Never bind `.venv/` or realized `envs/.pixi/` into an authoritative execution.
 The root ignores both paths. Do not use `pixi pack`: resulting prefixes are not

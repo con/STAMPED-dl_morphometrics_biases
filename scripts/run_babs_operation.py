@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Launch one declared BABS lifecycle command for a resolved campaign."""
+"""Launch one declared BABS lifecycle command for a resolved campaign.
+
+Normal executions are observed by con-duct. Its logs are written inside the
+campaign dataset so they remain alongside the BABS lifecycle evidence and can
+be assigned the campaign's access class. The BABS argv remains the inner
+command; con-duct is only an execution-observability wrapper.
+"""
 
 from __future__ import annotations
 
 import argparse
 import subprocess
-import sys
 from pathlib import Path
 
 
@@ -29,7 +34,7 @@ def main() -> int:
 
     argv = [OPERATIONS[args.operation], *babs_args]
     if args.dry_run:
-        print(" ".join(argv))
+        print(" ".join(["con-duct", "run", "--mode", "current-session", *argv]))
         return 0
     campaign = ROOT / "operations" / args.campaign
     if not campaign.is_dir():
@@ -37,7 +42,25 @@ def main() -> int:
             f"campaign dataset {campaign.relative_to(ROOT)} does not exist; "
             "Phase 3 must create and resolve it before a BABS operation runs"
         )
-    return subprocess.run(argv, cwd=campaign, check=False).returncode
+    output_prefix = campaign / "logs" / f"duct-{args.operation}-{{datetime}}-{{pid}}_"
+    observed_argv = [
+        "con-duct",
+        "run",
+        "--mode",
+        "current-session",
+        "--fail-time",
+        "0",
+        "--capture-outputs",
+        "all",
+        "--outputs",
+        "all",
+        "--output-prefix",
+        str(output_prefix),
+        "--message",
+        f"BABS {args.operation} lifecycle operation for {args.campaign}",
+        *argv,
+    ]
+    return subprocess.run(observed_argv, cwd=campaign, check=False).returncode
 
 
 if __name__ == "__main__":

@@ -22,7 +22,11 @@ of a result-producing runtime.
   `2cc536a51282124f3811ffa971f82a7c34116af5`, the reviewed direct-Study-layout
   minimum. It uses a dedicated Python 3.11 DataLad feature because BABS and
   the current validation environment have incompatible Python requirements.
-  BABS execution is deliberately deferred until Phase 3.
+  It also locks `con-duct` `0.21.0` for lifecycle observability. The
+  `babs-operation` launcher records stdout/stderr and sampled process-resource
+  data under each campaign's `logs/` directory while leaving BABS and
+  DataLad/BABS provenance authoritative. BABS execution is deliberately
+  deferred until Phase 3.
 - `image-analysis` is a Linux-only image-build dependency set. `image-authoring`
   locks Apptainer `1.5.2`, Cosign `3.0.4`, and Syft `1.48.0`; Lima is a declared
   macOS host interface rather than a Pixi package. The host used for this

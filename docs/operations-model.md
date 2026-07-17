@@ -36,6 +36,15 @@ Initialization, setup checks, pilot, submission, status, retry decisions, merge,
 finalization, validation, and acceptance are separate event types. Secrets,
 credentials, and prohibited participant metadata never belong in the ledger.
 
+The BABS lifecycle launcher supplements each normal operation with pinned
+[`con-duct`](https://github.com/con/duct) execution logs under the campaign's
+`logs/` directory. These logs capture stdout/stderr and sampled process-resource
+usage; they are supplemental evidence, inherit the campaign access class, and
+must not replace the literal BABS argv or the DataLad/BABS provenance record.
+Dry runs do not create logs. The process-session tracking limitation of
+`con-duct` must be checked against the cluster's BABS job template during the
+Phase 3 pilot.
+
 ## Inclusion accounting
 
 Requested inclusion is an immutable campaign input. BABS-realized inclusion,
