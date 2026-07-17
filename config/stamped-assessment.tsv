@@ -486,24 +486,24 @@ record-hardening	ro-root	decision-record	P.2	MUST	adopt	not-applicable	config/ha
 record-hardening	ro-root	decision-record	P.3	MUST	adopt	not-applicable	config/hardening-decisions.tsv	This component does not define a computational environment
 record-hardening	ro-root	decision-record	E.1	SHOULD	decline	not-applicable	config/hardening-decisions.tsv	This component does not produce a computational result
 record-hardening	ro-root	decision-record	D.2	SHOULD	decline	not-applicable	config/hardening-decisions.tsv	This component is not an environment specification or build
-license-project	ro-root	license-policy	S.1	MUST	adopt	unmet	LICENSES/ (absent)	Required licence component is absent
-license-project	ro-root	license-policy	S.2	MUST	adopt	unmet	LICENSES/ (absent)	No licence declarations exist
-license-project	ro-root	license-policy	T.1	MUST	adopt	unmet	none	No licence content exists to identify
-license-project	ro-root	license-policy	T.2	SHOULD	adopt	unmet	LICENSES/ (absent)	No component exists in version control
-license-project	ro-root	license-policy	T.3	MUST	adopt	unmet	LICENSES/ (absent)	No licence policy modification record exists
-license-project	ro-root	license-policy	M.1	SHOULD	adopt	unmet	LICENSES/ (absent)	No independent licence boundary exists
-license-project	ro-root	license-policy	M.3	SHOULD	adopt	unmet	LICENSES/ (absent)	Module licence declarations and compatibility checks are absent
-license-project	ro-root	license-policy	D.1	MUST	adopt	unmet	LICENSES/ (absent)	No licence component exists to retrieve
-license-project	ro-root	license-policy	D.3	SHOULD	adopt	unmet	LICENSES/ (absent)	No resolvable licence identifier exists
-license-project	ro-root	license-policy	T.4-programmatic	SHOULD	decline	not-applicable	LICENSES/ (absent)	This static component does not perform code-driven modifications or emit provenance records
-license-project	ro-root	license-policy	T.4-versions	MUST	adopt	not-applicable	LICENSES/ (absent)	This component is not a code-driven execution whose involved versions must be reported
-license-project	ro-root	license-policy	A.1	MUST	adopt	not-applicable	LICENSES/ (absent)	This component is not a procedure for reproducing a computational result
-license-project	ro-root	license-policy	A.2	SHOULD	decline	not-applicable	LICENSES/ (absent)	This component is not a procedure requiring an executable specification
-license-project	ro-root	license-policy	P.1	MUST	adopt	not-applicable	LICENSES/ (absent)	This static component does not execute against host state
-license-project	ro-root	license-policy	P.2	MUST	adopt	not-applicable	LICENSES/ (absent)	This component is not a computational environment or executing procedure
-license-project	ro-root	license-policy	P.3	MUST	adopt	not-applicable	LICENSES/ (absent)	This component does not define a computational environment
-license-project	ro-root	license-policy	E.1	SHOULD	decline	not-applicable	LICENSES/ (absent)	This component does not produce a computational result
-license-project	ro-root	license-policy	D.2	SHOULD	decline	not-applicable	LICENSES/ (absent)	This component is not an environment specification or build
+license-project	ro-root	license-policy	S.1	MUST	adopt	met	REUSE.toml;docs/licensing.md	Root-reachable file-group policy covers project-authored material
+license-project	ro-root	license-policy	S.2	MUST	adopt	met	REUSE.toml;LICENSES/MIT.txt	Machine-readable MIT declaration and text are retrievable
+license-project	ro-root	license-policy	T.1	MUST	adopt	met	git:containing-commit:REUSE.toml	Tracked policy and texts have Git identity
+license-project	ro-root	license-policy	T.2	SHOULD	adopt	met	REUSE.toml;LICENSES/	Policy is directly stored in the root DataLad dataset
+license-project	ro-root	license-policy	T.3	MUST	adopt	met	git:containing-commit:docs/licensing.md	Git records policy modifications
+license-project	ro-root	license-policy	M.1	SHOULD	adopt	met	REUSE.toml;LICENSES/;docs/licensing.md	Policy, texts, and scope record form a stable licensing boundary
+license-project	ro-root	license-policy	M.3	SHOULD	adopt	partial	docs/licensing.md	Project terms are explicit; external component compatibility remains intentionally component-specific
+license-project	ro-root	license-policy	D.1	MUST	adopt	partial	git:containing-commit:REUSE.toml	Policy is in the local root but Phase 1 commits are not yet published to a persistent sibling
+license-project	ro-root	license-policy	D.3	SHOULD	adopt	met	REUSE.toml;LICENSES/MIT.txt	MIT identifier and license text are resolvable
+license-project	ro-root	license-policy	T.4-programmatic	SHOULD	decline	not-applicable	REUSE.toml	This static policy does not perform code-driven modifications or emit provenance records
+license-project	ro-root	license-policy	T.4-versions	MUST	adopt	not-applicable	REUSE.toml	This component is not a code-driven execution whose involved versions must be reported
+license-project	ro-root	license-policy	A.1	MUST	adopt	not-applicable	REUSE.toml	This component is not a procedure for reproducing a computational result
+license-project	ro-root	license-policy	A.2	SHOULD	decline	not-applicable	REUSE.toml	This component is not a procedure requiring an executable specification
+license-project	ro-root	license-policy	P.1	MUST	adopt	not-applicable	REUSE.toml	This static component does not execute against host state
+license-project	ro-root	license-policy	P.2	MUST	adopt	not-applicable	REUSE.toml	This component is not a computational environment or executing procedure
+license-project	ro-root	license-policy	P.3	MUST	adopt	not-applicable	REUSE.toml	This component does not define a computational environment
+license-project	ro-root	license-policy	E.1	SHOULD	decline	not-applicable	REUSE.toml	This component does not produce a computational result
+license-project	ro-root	license-policy	D.2	SHOULD	decline	not-applicable	REUSE.toml	This component is not an environment specification or build
 source-old-repo	ro-root	historical-repository	S.1	MUST	adopt	partial	docs/source-inventory.tsv;git:448bf1a311c1ab8310cbab613a8123bb4a4f4a00;tree:a20dbdcf9aba57e3661c375a0e4225b37a01d6fb	Exact public reference is reachable through the root but not installed as a subdataset
 source-old-repo	ro-root	historical-repository	S.2	MUST	adopt	unmet	config/components.tsv#license_status	Historical repository has no retrievable licence declaration
 source-old-repo	ro-root	historical-repository	T.1	MUST	adopt	met	git:448bf1a311c1ab8310cbab613a8123bb4a4f4a00;tree:a20dbdcf9aba57e3661c375a0e4225b37a01d6fb	Exact Git commit, tree, or blob identity is recorded
@@ -739,14 +739,14 @@ source-old-nb-fs8	source-old-repo	historical-notebook	D.1	MUST	adopt	met	https:/
 source-old-nb-fs8	source-old-repo	historical-notebook	D.2	SHOULD	adopt	unmet	docs/source-inventory.tsv:SRC-GITIGNORE	No resolved lock or reproducible environment build
 source-old-nb-fs8	source-old-repo	historical-notebook	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable licence identifier
 evidence-poster	ro-root	reference-evidence	S.1	MUST	adopt	met	docs/reference/recon_all_recon_any_poster_ohbm2025.pdf;docs/evidence-manifest.tsv	Exact annexed bytes are reachable at a tracked root-relative path
-evidence-poster	ro-root	reference-evidence	S.2	MUST	adopt	unmet	docs/evidence-manifest.tsv#distribution_decision	Redistribution authorization is recorded, but no explicit licence declaration is retrievable from the OSF node
+evidence-poster	ro-root	reference-evidence	S.2	MUST	adopt	met	LICENSES/LicenseRef-OHBM2025-Poster-Evidence.txt;docs/reference/poster-license-notice.md	Repository-local evidence terms are retrievable; they do not grant broad reuse
 evidence-poster	ro-root	reference-evidence	T.1	MUST	adopt	met	annex:SHA256E-s943963--9031199b6da81817e157bb3e762cedf349a844444a707cbb6ff97a4acba901f6.pdf;doi:10.17605/OSF.IO/P3KNS	Exact annex key, SHA-256, size, OSF file version, and DOI identify the bytes
 evidence-poster	ro-root	reference-evidence	T.2	SHOULD	adopt	met	docs/reference/recon_all_recon_any_poster_ohbm2025.pdf;git-annex:web:https://osf.io/download/mn47a/;annex-uuid:99822df6-f62f-4161-925a-e444e68c8625	The PDF uses the root DataLad/git-annex dataset with exact OSF and GIN sources
 evidence-poster	ro-root	reference-evidence	T.3	MUST	adopt	partial	docs/evidence-manifest.tsv;git-annex:web:https://osf.io/download/mn47a/	Acquisition and annex registration are recorded, but historical scientific lineage to source, inputs, runtimes, and outputs is absent
 evidence-poster	ro-root	reference-evidence	M.1	SHOULD	adopt	partial	annex:SHA256E-s943963--9031199b6da81817e157bb3e762cedf349a844444a707cbb6ff97a4acba901f6.pdf;doi:10.17605/OSF.IO/P3KNS;annex-uuid:99822df6-f62f-4161-925a-e444e68c8625	The file is independently content-addressed with redundant retrieval but stored directly in the root dataset
-evidence-poster	ro-root	reference-evidence	M.3	SHOULD	adopt	unmet	docs/evidence-manifest.tsv#distribution_decision	Licence compatibility is unresolved
+evidence-poster	ro-root	reference-evidence	M.3	SHOULD	adopt	partial	LICENSES/LicenseRef-OHBM2025-Poster-Evidence.txt	Exact-byte evidence terms are explicit; broader compatibility remains unresolved
 evidence-poster	ro-root	reference-evidence	D.1	MUST	adopt	met	doi:10.17605/OSF.IO/P3KNS;https://osf.io/download/mn47a/;https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases;annex:SHA256E-s943963--9031199b6da81817e157bb3e762cedf349a844444a707cbb6ff97a4acba901f6.pdf	The public OSF DOI and redundant GIN annex sibling persistently retrieve the exact bytes
-evidence-poster	ro-root	reference-evidence	D.3	SHOULD	adopt	unmet	docs/evidence-manifest.tsv#distribution_decision	No resolvable licence identifier
+evidence-poster	ro-root	reference-evidence	D.3	SHOULD	adopt	met	LicenseRef-OHBM2025-Poster-Evidence;LICENSES/LicenseRef-OHBM2025-Poster-Evidence.txt	Repository-local evidence identifier and terms are resolvable
 evidence-poster	ro-root	reference-evidence	T.4-programmatic	SHOULD	decline	not-applicable	docs/reference/recon_all_recon_any_poster_ohbm2025.pdf	This static component does not perform code-driven modifications or emit provenance records
 evidence-poster	ro-root	reference-evidence	T.4-versions	MUST	adopt	not-applicable	docs/reference/recon_all_recon_any_poster_ohbm2025.pdf	This component is not a code-driven execution whose involved versions must be reported
 evidence-poster	ro-root	reference-evidence	A.1	MUST	adopt	not-applicable	docs/reference/recon_all_recon_any_poster_ohbm2025.pdf	This component is not a procedure for reproducing a computational result
@@ -2683,3 +2683,183 @@ storage-gin	ro-root	annex-sibling	E.1	SHOULD	decline	not-applicable	https://gin.
 storage-gin	ro-root	annex-sibling	D.1	MUST	adopt	met	https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases;annex-uuid:99822df6-f62f-4161-925a-e444e68c8625	Public Git and annex-content retrieval were verified
 storage-gin	ro-root	annex-sibling	D.2	SHOULD	decline	not-applicable	https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases	The storage sibling is not an environment specification or build
 storage-gin	ro-root	annex-sibling	D.3	SHOULD	decline	not-applicable	https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases	The storage service is not a project module requiring a module licence identifier
+phase1-layout	ro-root	repository-layout	S.1	MUST	adopt	met	src/README.md;apps/README.md;envs/containers/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-layout	ro-root	repository-layout	S.2	MUST	adopt	met	src/README.md;apps/README.md;envs/containers/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-layout	ro-root	repository-layout	T.1	MUST	adopt	met	src/README.md;apps/README.md;envs/containers/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-layout	ro-root	repository-layout	T.2	SHOULD	adopt	met	src/README.md;apps/README.md;envs/containers/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-layout	ro-root	repository-layout	T.3	MUST	adopt	met	src/README.md;apps/README.md;envs/containers/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-layout	ro-root	repository-layout	T.4-programmatic	SHOULD	decline	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	T.4-versions	MUST	adopt	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	A.1	MUST	adopt	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	A.2	SHOULD	decline	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	M.1	SHOULD	adopt	met	src/README.md;apps/README.md;envs/containers/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-layout	ro-root	repository-layout	M.3	SHOULD	adopt	met	src/README.md;apps/README.md;envs/containers/README.md	Project-controlled component is covered by the recorded MIT policy.
+phase1-layout	ro-root	repository-layout	P.1	MUST	adopt	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	P.2	MUST	adopt	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	P.3	MUST	adopt	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	E.1	SHOULD	decline	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	D.1	MUST	adopt	partial	src/README.md;apps/README.md;envs/containers/README.md	Current Phase 1 state is locally committed but not yet published to a persistent sibling.
+phase1-layout	ro-root	repository-layout	D.2	SHOULD	decline	not-applicable	src/README.md;apps/README.md;envs/containers/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-layout	ro-root	repository-layout	D.3	SHOULD	adopt	met	src/README.md;apps/README.md;envs/containers/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-quality	ro-root	quality-environment	S.1	MUST	adopt	met	envs/pixi.toml;envs/pixi.lock	Locked environment definition is reachable from the root.
+phase1-quality	ro-root	quality-environment	S.2	MUST	adopt	met	REUSE.toml;LICENSES/MIT.txt	Project-authored environment definition is MIT-covered.
+phase1-quality	ro-root	quality-environment	T.1	MUST	adopt	met	envs/pixi.toml;envs/pixi.lock	The lock and manifest provide persistent environment identity.
+phase1-quality	ro-root	quality-environment	T.2	SHOULD	adopt	met	envs/pixi.toml;envs/pixi.lock	The files are tracked in the root DataLad dataset.
+phase1-quality	ro-root	quality-environment	T.3	MUST	adopt	met	envs/pixi.toml;envs/pixi.lock	Git records environment changes.
+phase1-quality	ro-root	quality-environment	T.4-programmatic	SHOULD	decline	not-applicable	envs/pixi.toml;envs/pixi.lock	This environment definition does not itself reproduce or emit a scientific result.
+phase1-quality	ro-root	quality-environment	T.4-versions	MUST	adopt	met	envs/pixi.toml;envs/pixi.lock	The lock specifies tool and Python package versions.
+phase1-quality	ro-root	quality-environment	A.1	MUST	adopt	not-applicable	envs/pixi.toml;envs/pixi.lock	This environment definition does not itself reproduce or emit a scientific result.
+phase1-quality	ro-root	quality-environment	A.2	SHOULD	decline	not-applicable	envs/pixi.toml;envs/pixi.lock	This environment definition does not itself reproduce or emit a scientific result.
+phase1-quality	ro-root	quality-environment	M.1	SHOULD	adopt	met	envs/pixi.toml;envs/pixi.lock	The named Pixi environment is a stable boundary.
+phase1-quality	ro-root	quality-environment	M.3	SHOULD	adopt	partial	docs/licensing.md	Project code is MIT-covered; dependency compatibility is not yet evaluated component-by-component.
+phase1-quality	ro-root	quality-environment	P.1	MUST	adopt	partial	envs/README.md	The locked environment still relies on the documented host git-annex boundary on macOS.
+phase1-quality	ro-root	quality-environment	P.2	MUST	adopt	met	envs/pixi.toml;envs/pixi.lock	Pixi creates the declared environment from the lock.
+phase1-quality	ro-root	quality-environment	P.3	MUST	adopt	met	envs/pixi.toml;envs/pixi.lock	The lock gives a reproducible environment identity.
+phase1-quality	ro-root	quality-environment	E.1	SHOULD	decline	not-applicable	envs/pixi.toml;envs/pixi.lock	This environment definition does not itself reproduce or emit a scientific result.
+phase1-quality	ro-root	quality-environment	D.1	MUST	adopt	partial	envs/pixi.toml;envs/pixi.lock	The current Phase 1 lock is locally committed but not yet published to a persistent sibling.
+phase1-quality	ro-root	quality-environment	D.2	SHOULD	adopt	met	envs/pixi.toml;envs/pixi.lock	The locked solve can be installed by the documented command.
+phase1-quality	ro-root	quality-environment	D.3	SHOULD	adopt	met	REUSE.toml;LICENSES/MIT.txt	Project-authored environment files have resolvable MIT terms.
+phase1-contracts	ro-root	configuration	S.1	MUST	adopt	met	config/schemas/;config/bids-specification.json	Stable tracked boundary and concrete evidence are recorded.
+phase1-contracts	ro-root	configuration	S.2	MUST	adopt	met	config/schemas/;config/bids-specification.json	Stable tracked boundary and concrete evidence are recorded.
+phase1-contracts	ro-root	configuration	T.1	MUST	adopt	met	config/schemas/;config/bids-specification.json	Stable tracked boundary and concrete evidence are recorded.
+phase1-contracts	ro-root	configuration	T.2	SHOULD	adopt	met	config/schemas/;config/bids-specification.json	Stable tracked boundary and concrete evidence are recorded.
+phase1-contracts	ro-root	configuration	T.3	MUST	adopt	met	config/schemas/;config/bids-specification.json	Stable tracked boundary and concrete evidence are recorded.
+phase1-contracts	ro-root	configuration	T.4-programmatic	SHOULD	decline	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	T.4-versions	MUST	adopt	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	A.1	MUST	adopt	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	A.2	SHOULD	decline	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	M.1	SHOULD	adopt	met	config/schemas/;config/bids-specification.json	Stable tracked boundary and concrete evidence are recorded.
+phase1-contracts	ro-root	configuration	M.3	SHOULD	adopt	met	config/schemas/;config/bids-specification.json	Project-controlled component is covered by the recorded MIT policy.
+phase1-contracts	ro-root	configuration	P.1	MUST	adopt	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	P.2	MUST	adopt	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	P.3	MUST	adopt	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	E.1	SHOULD	decline	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	D.1	MUST	adopt	partial	config/schemas/;config/bids-specification.json	Current Phase 1 state is locally committed but not yet published to a persistent sibling.
+phase1-contracts	ro-root	configuration	D.2	SHOULD	decline	not-applicable	config/schemas/;config/bids-specification.json	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-contracts	ro-root	configuration	D.3	SHOULD	adopt	met	config/schemas/;config/bids-specification.json	Stable tracked boundary and concrete evidence are recorded.
+phase1-validation	ro-root	validation-tool	S.1	MUST	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Stable tracked boundary and concrete evidence are recorded.
+phase1-validation	ro-root	validation-tool	S.2	MUST	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Stable tracked boundary and concrete evidence are recorded.
+phase1-validation	ro-root	validation-tool	T.1	MUST	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Stable tracked boundary and concrete evidence are recorded.
+phase1-validation	ro-root	validation-tool	T.2	SHOULD	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Stable tracked boundary and concrete evidence are recorded.
+phase1-validation	ro-root	validation-tool	T.3	MUST	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Stable tracked boundary and concrete evidence are recorded.
+phase1-validation	ro-root	validation-tool	T.4-programmatic	SHOULD	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Locked Pixi tasks execute the validators programmatically and emit machine-readable reports.
+phase1-validation	ro-root	validation-tool	T.4-versions	MUST	adopt	met	envs/pixi.lock;scripts/validate_phase1.py;scripts/validate_bids.py	The locked environment reports validator versions.
+phase1-validation	ro-root	validation-tool	A.1	MUST	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Named validation tasks reproduce the documented checks.
+phase1-validation	ro-root	validation-tool	A.2	SHOULD	adopt	met	envs/pixi.toml;scripts/validate_phase1.py;scripts/validate_bids.py	Pixi task definitions provide an executable specification.
+phase1-validation	ro-root	validation-tool	M.1	SHOULD	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Stable tracked boundary and concrete evidence are recorded.
+phase1-validation	ro-root	validation-tool	M.3	SHOULD	adopt	partial	docs/licensing.md	Project code is MIT-covered; third-party dependency compatibility remains to be reviewed.
+phase1-validation	ro-root	validation-tool	P.1	MUST	adopt	partial	envs/README.md;scripts/validate_phase1.py;scripts/validate_bids.py	Validation remains subject to the documented macOS host git-annex boundary.
+phase1-validation	ro-root	validation-tool	P.2	MUST	adopt	met	envs/pixi.lock;scripts/validate_phase1.py;scripts/validate_bids.py	Tasks run in the locked quality environment.
+phase1-validation	ro-root	validation-tool	P.3	MUST	adopt	met	envs/pixi.lock;scripts/validate_phase1.py;scripts/validate_bids.py	The environment lock provides a reproducible identity.
+phase1-validation	ro-root	validation-tool	E.1	SHOULD	decline	not-applicable	scripts/validate_phase1.py;scripts/validate_bids.py	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-validation	ro-root	validation-tool	D.1	MUST	adopt	partial	scripts/validate_phase1.py;scripts/validate_bids.py	Current validation state is locally committed but not yet published to a persistent sibling.
+phase1-validation	ro-root	validation-tool	D.2	SHOULD	adopt	met	envs/pixi.lock;scripts/validate_phase1.py;scripts/validate_bids.py	The validation environment is buildable from its lock.
+phase1-validation	ro-root	validation-tool	D.3	SHOULD	adopt	met	scripts/validate_phase1.py;scripts/validate_bids.py	Stable tracked boundary and concrete evidence are recorded.
+phase1-access	ro-root	access-policy	S.1	MUST	adopt	met	config/access/sibling-matrix.tsv;docs/access-control.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-access	ro-root	access-policy	S.2	MUST	adopt	met	config/access/sibling-matrix.tsv;docs/access-control.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-access	ro-root	access-policy	T.1	MUST	adopt	met	config/access/sibling-matrix.tsv;docs/access-control.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-access	ro-root	access-policy	T.2	SHOULD	adopt	met	config/access/sibling-matrix.tsv;docs/access-control.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-access	ro-root	access-policy	T.3	MUST	adopt	met	config/access/sibling-matrix.tsv;docs/access-control.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-access	ro-root	access-policy	T.4-programmatic	SHOULD	decline	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	T.4-versions	MUST	adopt	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	A.1	MUST	adopt	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	A.2	SHOULD	decline	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	M.1	SHOULD	adopt	met	config/access/sibling-matrix.tsv;docs/access-control.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-access	ro-root	access-policy	M.3	SHOULD	adopt	met	config/access/sibling-matrix.tsv;docs/access-control.md	Project-controlled component is covered by the recorded MIT policy.
+phase1-access	ro-root	access-policy	P.1	MUST	adopt	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	P.2	MUST	adopt	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	P.3	MUST	adopt	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	E.1	SHOULD	decline	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	D.1	MUST	adopt	partial	config/access/sibling-matrix.tsv;docs/access-control.md	Current Phase 1 state is locally committed but not yet published to a persistent sibling.
+phase1-access	ro-root	access-policy	D.2	SHOULD	decline	not-applicable	config/access/sibling-matrix.tsv;docs/access-control.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-access	ro-root	access-policy	D.3	SHOULD	adopt	met	config/access/sibling-matrix.tsv;docs/access-control.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-design-review	ro-root	design-review	S.1	MUST	adopt	met	docs/design-reference-review.md;docs/operations-model.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-design-review	ro-root	design-review	S.2	MUST	adopt	met	docs/design-reference-review.md;docs/operations-model.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-design-review	ro-root	design-review	T.1	MUST	adopt	met	docs/design-reference-review.md;docs/operations-model.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-design-review	ro-root	design-review	T.2	SHOULD	adopt	met	docs/design-reference-review.md;docs/operations-model.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-design-review	ro-root	design-review	T.3	MUST	adopt	met	docs/design-reference-review.md;docs/operations-model.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-design-review	ro-root	design-review	T.4-programmatic	SHOULD	decline	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	T.4-versions	MUST	adopt	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	A.1	MUST	adopt	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	A.2	SHOULD	decline	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	M.1	SHOULD	adopt	met	docs/design-reference-review.md;docs/operations-model.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-design-review	ro-root	design-review	M.3	SHOULD	adopt	met	docs/design-reference-review.md;docs/operations-model.md	Project-controlled component is covered by the recorded MIT policy.
+phase1-design-review	ro-root	design-review	P.1	MUST	adopt	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	P.2	MUST	adopt	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	P.3	MUST	adopt	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	E.1	SHOULD	decline	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	D.1	MUST	adopt	partial	docs/design-reference-review.md;docs/operations-model.md	Current Phase 1 state is locally committed but not yet published to a persistent sibling.
+phase1-design-review	ro-root	design-review	D.2	SHOULD	decline	not-applicable	docs/design-reference-review.md;docs/operations-model.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-design-review	ro-root	design-review	D.3	SHOULD	adopt	met	docs/design-reference-review.md;docs/operations-model.md	Stable tracked boundary and concrete evidence are recorded.
+study-toy	ro-root	bids-study-dataset	S.1	MUST	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+study-toy	ro-root	bids-study-dataset	S.2	MUST	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+study-toy	ro-root	bids-study-dataset	T.1	MUST	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+study-toy	ro-root	bids-study-dataset	T.2	SHOULD	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+study-toy	ro-root	bids-study-dataset	T.3	MUST	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+study-toy	ro-root	bids-study-dataset	T.4-programmatic	SHOULD	decline	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	T.4-versions	MUST	adopt	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	A.1	MUST	adopt	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	A.2	SHOULD	decline	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	M.1	SHOULD	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+study-toy	ro-root	bids-study-dataset	M.3	SHOULD	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Project-controlled component is covered by the recorded MIT policy.
+study-toy	ro-root	bids-study-dataset	P.1	MUST	adopt	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	P.2	MUST	adopt	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	P.3	MUST	adopt	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	E.1	SHOULD	decline	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	D.1	MUST	adopt	partial	studies/toy/dataset_description.json;studies/toy/.datalad/config	Current Phase 1 state is locally committed but not yet published to a persistent sibling.
+study-toy	ro-root	bids-study-dataset	D.2	SHOULD	decline	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+study-toy	ro-root	bids-study-dataset	D.3	SHOULD	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+input-toy-raw	study-toy	bids-raw-dataset	S.1	MUST	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+input-toy-raw	study-toy	bids-raw-dataset	S.2	MUST	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+input-toy-raw	study-toy	bids-raw-dataset	T.1	MUST	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+input-toy-raw	study-toy	bids-raw-dataset	T.2	SHOULD	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+input-toy-raw	study-toy	bids-raw-dataset	T.3	MUST	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+input-toy-raw	study-toy	bids-raw-dataset	T.4-programmatic	SHOULD	decline	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	T.4-versions	MUST	adopt	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	A.1	MUST	adopt	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	A.2	SHOULD	decline	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	M.1	SHOULD	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+input-toy-raw	study-toy	bids-raw-dataset	M.3	SHOULD	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Project-controlled component is covered by the recorded MIT policy.
+input-toy-raw	study-toy	bids-raw-dataset	P.1	MUST	adopt	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	P.2	MUST	adopt	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	P.3	MUST	adopt	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	E.1	SHOULD	decline	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	D.1	MUST	adopt	partial	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Current Phase 1 state is locally committed but not yet published to a persistent sibling.
+input-toy-raw	study-toy	bids-raw-dataset	D.2	SHOULD	decline	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
+input-toy-raw	study-toy	bids-raw-dataset	D.3	SHOULD	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
+phase1-reports	ro-root	validation-evidence	S.1	MUST	adopt	met	docs/reports/phase-1/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-reports	ro-root	validation-evidence	S.2	MUST	adopt	met	docs/reports/phase-1/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-reports	ro-root	validation-evidence	T.1	MUST	adopt	met	docs/reports/phase-1/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-reports	ro-root	validation-evidence	T.2	SHOULD	adopt	met	docs/reports/phase-1/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-reports	ro-root	validation-evidence	T.3	MUST	adopt	met	docs/reports/phase-1/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-reports	ro-root	validation-evidence	T.4-programmatic	SHOULD	decline	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	T.4-versions	MUST	adopt	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	A.1	MUST	adopt	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	A.2	SHOULD	decline	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	M.1	SHOULD	adopt	met	docs/reports/phase-1/README.md	Stable tracked boundary and concrete evidence are recorded.
+phase1-reports	ro-root	validation-evidence	M.3	SHOULD	adopt	met	docs/reports/phase-1/README.md	Project-controlled component is covered by the recorded MIT policy.
+phase1-reports	ro-root	validation-evidence	P.1	MUST	adopt	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	P.2	MUST	adopt	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	P.3	MUST	adopt	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	E.1	SHOULD	decline	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	D.1	MUST	adopt	partial	docs/reports/phase-1/README.md	Current Phase 1 state is locally committed but not yet published to a persistent sibling.
+phase1-reports	ro-root	validation-evidence	D.2	SHOULD	decline	not-applicable	docs/reports/phase-1/README.md	This static component neither executes a computational procedure nor defines an execution environment.
+phase1-reports	ro-root	validation-evidence	D.3	SHOULD	adopt	met	docs/reports/phase-1/README.md	Stable tracked boundary and concrete evidence are recorded.
+storage-github	ro-root	git-sibling	S.1	MUST	adopt	met	git-remote:origin;docs/access-control.md	The registered Git remote provides the applicable storage boundary.
+storage-github	ro-root	git-sibling	S.2	MUST	adopt	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	T.1	MUST	adopt	met	git-remote:origin;docs/access-control.md	The registered Git remote provides the applicable storage boundary.
+storage-github	ro-root	git-sibling	T.2	SHOULD	adopt	met	git-remote:origin;docs/access-control.md	The registered Git remote provides the applicable storage boundary.
+storage-github	ro-root	git-sibling	T.3	MUST	adopt	met	git-remote:origin;docs/access-control.md	The registered Git remote provides the applicable storage boundary.
+storage-github	ro-root	git-sibling	T.4-programmatic	SHOULD	decline	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	T.4-versions	MUST	adopt	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	A.1	MUST	adopt	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	A.2	SHOULD	decline	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	M.1	SHOULD	decline	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	M.3	SHOULD	decline	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	P.1	MUST	adopt	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	P.2	MUST	adopt	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	P.3	MUST	adopt	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	E.1	SHOULD	decline	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	D.1	MUST	adopt	partial	git-remote:origin;docs/access-control.md	The remote exists but has not received the current Phase 1 commit.
+storage-github	ro-root	git-sibling	D.2	SHOULD	decline	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.
+storage-github	ro-root	git-sibling	D.3	SHOULD	decline	not-applicable	git-remote:origin;docs/access-control.md	This storage remote is not a project-authored module or computational environment.

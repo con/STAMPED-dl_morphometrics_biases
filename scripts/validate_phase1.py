@@ -89,8 +89,17 @@ def validate() -> list[str]:
         errors.append("toy Study DataLad identity changed")
     if dataset_id(ROOT / "studies" / "toy" / "sourcedata" / "raw") != RAW_ID:
         errors.append("toy raw DataLad identity changed")
-    if output(["git", "config", "--get", "annex.backend"]) != "SHA256E":
-        errors.append("root annex.backend is not SHA256E")
+    backend_attribute = output(
+        [
+            "git",
+            "check-attr",
+            "annex.backend",
+            "--",
+            "docs/reference/recon_all_recon_any_poster_ohbm2025.pdf",
+        ]
+    )
+    if not backend_attribute.endswith(": SHA256E"):
+        errors.append("root annex backend attribute is not SHA256E")
     if output(["git", "config", "--get", "annex.version"]) != "10":
         errors.append("root annex repository version is not 10")
 

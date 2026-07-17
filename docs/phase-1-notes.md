@@ -56,8 +56,10 @@ reports will supersede this prose as machine-readable evidence.
 - **BIDS validator identity:** use the locked `bids-validator-deno` distribution
   metadata (`3.0.0`) as the tool version. Its compiled CLI incorrectly renders
   the current working repository commit for `--version`, so that banner is not
-  accepted as tool identity. Every invocation explicitly requests schema tag
-  `v1.11.1`.
+  accepted as tool identity. Every invocation sets the official BIDS 1.11.1
+  schema URL (`https://bids-specification.readthedocs.io/en/v1.11.1/schema.json`)
+  because the compiled CLI normalizes an explicit schema tag before its loader
+  receives it.
 - **Toy boundary:** `studies/toy/` is an independent Study dataset and
   `studies/toy/sourcedata/raw/` is an independent raw BIDS dataset. No derivative
   dataset is created until a producing operation exists.
@@ -92,3 +94,19 @@ reports will supersede this prose as machine-readable evidence.
 - A real BABS attempt and operations dataset (Phase 3).
 - Scientific app boundaries and imported historical code (Phase 4).
 - ABCD release, DUC, cohort, and derivative-distribution policy (Phase 7).
+
+## Phase 1 checkpoint and assessment
+
+The first Phase 1 foundation checkpoint is root commit
+`1b81cde8de1ff18b64efcd7a122e1c357cb0444b`; it registers the Study dataset
+without rewriting Phase 0 history. The child Study and raw datasets retain
+separate DataLad identities and histories. The final Phase 1 evidence reports
+are generated from a committed root state and then committed as evidence, so a
+clean recursive clone can independently inspect the registered hierarchy.
+
+The assessment now distinguishes project-controlled MIT material from the
+historical repository and poster evidence. The poster has a repository-local
+`LicenseRef` describing the limited recorded redistribution authorization; this
+does not convert it to MIT, CC0, or a broad public-domain grant. The original
+federal-work notice remains intentionally out of scope until it exists with a
+specific source commit and scope.
