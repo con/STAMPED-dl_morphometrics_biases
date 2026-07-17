@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://con.github.io/STAMPED-dl_morphometrics_biases/schemas/operations-event.schema.json",
+  "title": "Append-only campaign operations event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "campaign_id",
+    "attempt_id",
+    "sequence",
+    "timestamp",
+    "event_type",
+    "actor",
+    "argv",
+    "tool_versions",
+    "desired_state",
+    "observed_state",
+    "evidence",
+    "access_class",
+    "previous_event_sha256"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "campaign_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$" },
+    "attempt_id": { "type": "string", "pattern": "^attempt-[0-9]{3}$" },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "event_type": {
+      "enum": [
+        "initialize",
+        "setup-check",
+        "pilot",
+        "submit",
+        "status",
+        "retry-decision",
+        "merge",
+        "finalize",
+        "validate",
+        "accept"
+      ]
+    },
+    "actor": { "type": "string", "minLength": 1 },
+    "argv": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "tool_versions": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "desired_state": { "type": "string", "minLength": 1 },
+    "observed_state": { "type": "string", "minLength": 1 },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "access_class": {
+      "enum": ["public", "controlled", "private", "disclosure-reviewed-public"]
+    },
+    "previous_event_sha256": {
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      ]
+    }
+  }
+}

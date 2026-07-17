@@ -1,6 +1,6 @@
 # Bootstrap DataLad environment
 
-This workspace provides the minimal locked tooling needed to initialize and inspect the research object during Phase 0. Later phases may add the named development, analysis, BABS, testing, and image-authoring environments required by the conversion plan.
+This workspace provides the minimal locked DataLad tooling used to initialize and inspect the research object during Phase 0, plus a narrowly scoped `quality` environment for the Phase 1 repository guardrails. Later phases add the broader development, analysis, BABS, and image-authoring environments required by the conversion plan.
 
 ## Pixi identity and bootstrap
 
@@ -22,8 +22,16 @@ pixi run --locked --environment datalad tool-versions
 pixi run --locked --environment datalad datalad-status
 pixi run --locked --environment datalad validate-phase0
 pixi run --locked --environment datalad validate-stamped
+pixi install --locked --environment quality
+pixi run --locked --environment quality quality-tool-versions
+pixi run --locked --environment quality validate-phase1
 ```
 
 DataLad `1.6.0` and `datalad-container` `1.2.5` are exact dependencies on both supported platforms. Linux x86-64 also resolves `git-annex` `10.20260601` inside the lock.
 
 Conda-forge does not publish a macOS `git-annex` package. On macOS, commands therefore verify and use an explicitly installed host `git-annex`; Phase 0 used Homebrew `git-annex` `10.20260420`. This is a declared host-tool dependency, not part of the Pixi environment. A macOS checkout must install that exact version or record and review an intentional update before DataLad operations. Authoritative scientific runtime isolation remains a separate SIF requirement.
+
+The Phase 1 `quality` environment composes the DataLad feature with exact REUSE,
+pytest, JSON Schema, PyYAML, and official BIDS validator dependencies. Its purpose
+is repository validation only. It is not a scientific runtime and does not
+replace the exact registered SIF required for a result.

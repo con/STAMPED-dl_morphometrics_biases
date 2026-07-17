@@ -1,0 +1,4 @@
+[submodule "studies/toy"]
+	path = studies/toy
+	url = ./studies/toy
+	datalad-id = 2d982b94-44a2-49ba-bfcd-97966084b025

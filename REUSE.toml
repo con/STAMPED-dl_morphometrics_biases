@@ -1,0 +1,19 @@
+version = 1
+
+[[annotations]]
+path = "**"
+precedence = "closest"
+SPDX-FileCopyrightText = "2026 STAMPED-dl_morphometrics_biases contributors"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/reference/recon_all_recon_any_poster_ohbm2025.pdf"
+precedence = "override"
+SPDX-FileCopyrightText = "2025 Authors of 'Age dependent volume estimation biases in recon-all clinical and recon-any'"
+SPDX-License-Identifier = "LicenseRef-OHBM2025-Poster-Evidence"
+
+[[annotations]]
+path = "docs/reference/recon_all_recon_any_poster_ohbm2025.pdf.license"
+precedence = "override"
+SPDX-FileCopyrightText = "2025 Authors of 'Age dependent volume estimation biases in recon-all clinical and recon-any'"
+SPDX-License-Identifier = "LicenseRef-OHBM2025-Poster-Evidence"

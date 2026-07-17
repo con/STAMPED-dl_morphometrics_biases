@@ -1,0 +1,52 @@
+schema_version: 1
+campaign_id: toy-example-campaign
+created_at: "2026-07-17T12:00:00-04:00"
+access_class: public
+dataset:
+  study_id: toy
+  study_dataset_id: 11111111-1111-4111-8111-111111111111
+  study_commit: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  raw_dataset_id: 22222222-2222-4222-8222-222222222222
+  raw_commit: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+  requested_inclusion:
+    path: config/campaigns/toy-inclusion.tsv
+    sha256: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+pipeline:
+  pipeline_id: toy-bids-app
+  pipeline_version: "1.0.0"
+  config_path: config/pipelines/toy.yaml
+  config_sha256: dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+  container_id: toy-bids-app-1.0.0
+  accepted_container_dataset_id: 33333333-3333-4333-8333-333333333333
+  accepted_container_commit: eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+  sif_annex_key: SHA256E-s1--ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.sif
+  sif_sha256: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  input_condition: metadata-only
+cluster:
+  profile_id: local-slurm-simulation
+  profile_path: config/clusters/local-slurm-simulation.yaml
+  profile_sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  scheduler: slurm
+  host_interfaces:
+    - kernel
+    - filesystem
+attempt:
+  attempt_id: attempt-001
+  derivative_path: studies/toy/derivatives/toy-bids-app-attempt-001/
+  derivative_dataset_id: 44444444-4444-4444-8444-444444444444
+  operations_dataset_id: 55555555-5555-4555-8555-555555555555
+resources:
+  cpus_per_task: 1
+  memory_mb: 512
+  walltime_minutes: 5
+  scratch_mb: 128
+  gpus: 0
+outputs:
+  - path: studies/toy/derivatives/toy-bids-app-attempt-001/
+    kind: derivative
+    access_class: public
+retry_policy:
+  max_retries: 1
+  retryable_reasons:
+    - transient-scheduler-failure
+  scientific_change_requires_new_campaign: true

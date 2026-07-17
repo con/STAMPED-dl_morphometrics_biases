@@ -61,26 +61,37 @@ STATUSES = {"met", "partial", "unmet", "restricted", "not-applicable"}
 STATUS_RANK = {"unmet": 0, "restricted": 0, "partial": 1, "met": 2}
 
 
+def display_path(path: Path) -> Path:
+    try:
+        return path.relative_to(ROOT)
+    except ValueError:
+        return path
+
+
 def read_tsv(path: Path, fields: tuple[str, ...]) -> list[dict[str, str]]:
     if not path.is_file():
-        raise ValueError(f"missing required file: {path.relative_to(ROOT)}")
+        raise ValueError(f"missing required file: {display_path(path)}")
     with path.open(encoding="utf-8", newline="") as stream:
         reader = csv.DictReader(stream, delimiter="\t")
         if tuple(reader.fieldnames or ()) != fields:
             raise ValueError(
-                f"{path.relative_to(ROOT)} has fields {reader.fieldnames}; expected {fields}"
+                f"{display_path(path)} has fields {reader.fieldnames}; expected {fields}"
             )
         rows = list(reader)
     if not rows:
-        raise ValueError(f"{path.relative_to(ROOT)} has no records")
+        raise ValueError(f"{display_path(path)} has no records")
     return rows
 
 
-def validate(ideal: bool) -> list[str]:
+def validate(
+    ideal: bool,
+    assessment_path: Path = ASSESSMENT,
+    components_path: Path = COMPONENTS,
+) -> list[str]:
     errors: list[str] = []
     try:
-        components = read_tsv(COMPONENTS, COMPONENT_FIELDS)
-        assessment = read_tsv(ASSESSMENT, ASSESSMENT_FIELDS)
+        components = read_tsv(components_path, COMPONENT_FIELDS)
+        assessment = read_tsv(assessment_path, ASSESSMENT_FIELDS)
     except ValueError as error:
         return [str(error)]
 
@@ -231,8 +242,10 @@ def validate(ideal: bool) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--ideal", action="store_true")
+    parser.add_argument("--assessment", type=Path, default=ASSESSMENT)
+    parser.add_argument("--components", type=Path, default=COMPONENTS)
     args = parser.parse_args()
-    errors = validate(args.ideal)
+    errors = validate(args.ideal, args.assessment, args.components)
     if errors:
         for error in errors:
             print(error, file=sys.stderr)

@@ -1,0 +1,10 @@
+access_class	examples	public_git	public_annex	required_boundary	distribution_gate
+public-policy	code;documentation;non-sensitive-configuration;schemas	allowed	allowed	top-level-public-research-object	REUSE-and-publication-scan
+public-input	redistributable-open-BIDS-input	allowed	allowed	public-Study-and-public-storage	license-and-retrieval-review
+controlled-input	ABCD-inputs;protected-cohort-metadata	prohibited	prohibited	private-Study-and-private-storage	current-DUC-and-authorized-retrieval
+protected-identifier	participant-labels;linkage-keys	prohibited	prohibited	private-input-or-operations-dataset	never-publish-without-explicit-policy
+protected-log	participant-level-job-logs;failure-details	prohibited	prohibited	private-attempt-or-operations-storage	disclosure-review
+protected-derivative	participant-level-reconstructions;morphometric-tables	prohibited	prohibited	private-derivative-and-private-storage	independent-derivative-distribution-review
+disclosure-reviewed-aggregate	approved-figures;approved-aggregate-tables	conditional	conditional	separate-aggregate-release-dataset	documented-disclosure-approval
+credential	passwords;tokens;private-keys	prohibited	prohibited	credential-provider-outside-all-datasets	never-track
+restricted-license-file	non-redistributable-application-license	prohibited	prohibited	declared-read-only-runtime-bind	terms-and-secret-content-review

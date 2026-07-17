@@ -1,0 +1,11 @@
+OHBM 2025 poster evidence terms
+
+The file governed by LicenseRef-OHBM2025-Poster-Evidence is retained as exact
+historical reference evidence. Redistribution of the registered bytes was
+authorized and recorded on 2026-07-17 in docs/evidence-manifest.tsv. The public
+source is DOI 10.17605/OSF.IO/P3KNS, whose OSF node does not declare an explicit
+license.
+
+This project grants no additional permission to reuse, modify, or redistribute
+the poster beyond the recorded authorization. Copyright remains with the poster
+authors. Obtain any additional permission from the rights holders.

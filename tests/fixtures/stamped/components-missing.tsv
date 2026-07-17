@@ -1,0 +1,2 @@
+subject_id	parent_id	subject_kind	location	identity	access_class	license_status	lifecycle_status	notes
+fixture-root		research-object	.	git:fixture	public	MIT	negative-fixture	Intentionally incomplete STAMPED assessment fixture

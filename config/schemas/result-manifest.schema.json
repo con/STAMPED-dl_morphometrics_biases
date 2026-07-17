@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://con.github.io/STAMPED-dl_morphometrics_biases/schemas/result-manifest.schema.json",
+  "title": "Root result-manifest row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "result_id",
+    "target_id",
+    "evidence_class",
+    "study_id",
+    "artifact_type",
+    "path",
+    "dataset_commit",
+    "run_record",
+    "container_id",
+    "sif_annex_key",
+    "sif_sha256",
+    "input_ids",
+    "code_commit",
+    "config_path_and_hash",
+    "reproduce_task",
+    "validation_status",
+    "limitation"
+  ],
+  "properties": {
+    "result_id": { "type": "string", "pattern": "^(pilot-ds007116|claim-abcd)--[a-z0-9-]+$" },
+    "target_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$" },
+    "evidence_class": { "enum": ["pilot-only", "claim-bearing"] },
+    "study_id": { "enum": ["ds007116", "abcd"] },
+    "artifact_type": { "enum": ["figure", "statistic", "table", "derivative"] },
+    "path": { "$ref": "#/$defs/nonempty" },
+    "dataset_commit": { "$ref": "#/$defs/nonempty" },
+    "run_record": { "$ref": "#/$defs/nonempty" },
+    "container_id": { "$ref": "#/$defs/nonempty" },
+    "sif_annex_key": { "$ref": "#/$defs/nonempty" },
+    "sif_sha256": { "$ref": "#/$defs/nonempty" },
+    "input_ids": { "$ref": "#/$defs/nonempty" },
+    "code_commit": { "$ref": "#/$defs/nonempty" },
+    "config_path_and_hash": { "$ref": "#/$defs/nonempty" },
+    "reproduce_task": { "$ref": "#/$defs/nonempty" },
+    "validation_status": {
+      "enum": ["planned", "blocked-input-identity", "provisional", "validated", "accepted"]
+    },
+    "limitation": { "$ref": "#/$defs/nonempty" }
+  },
+  "$defs": {
+    "nonempty": { "type": "string", "minLength": 1 }
+  }
+}

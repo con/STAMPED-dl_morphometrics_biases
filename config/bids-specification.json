@@ -1,0 +1,15 @@
+{
+  "name": "Brain Imaging Data Structure",
+  "version": "1.11.1",
+  "git_tag": "v1.11.1",
+  "tag_object": "1bbff804548b5bec6694cc758800996722c5a2cb",
+  "commit": "f7a04bc28cbd0b4f0f0bd9f9409f4762f2459cec",
+  "repository": "https://github.com/bids-standard/bids-specification",
+  "documentation": "https://bids-specification.readthedocs.io/en/v1.11.1/",
+  "study_dataset_documentation": "https://bids-specification.readthedocs.io/en/v1.11.1/common-principles.html#study-dataset",
+  "dataset_types": [
+    "study",
+    "raw",
+    "derivative"
+  ]
+}

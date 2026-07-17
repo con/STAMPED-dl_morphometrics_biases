@@ -1,3 +1,12 @@
 * annex.backend=SHA256E
 **/.git* annex.largefiles=nothing
 * annex.largefiles=((mimeencoding=binary)and(largerthan=0))
+*.sif annex.largefiles=anything
+*.nii annex.largefiles=anything
+*.nii.gz annex.largefiles=anything
+*.mgh annex.largefiles=anything
+*.mgz annex.largefiles=anything
+*.gii annex.largefiles=anything
+*.h5 annex.largefiles=anything
+*.pkl annex.largefiles=anything
+*.zip annex.largefiles=anything

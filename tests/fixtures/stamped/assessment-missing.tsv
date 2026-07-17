@@ -1,0 +1,2 @@
+subject_id	parent_id	subject_kind	requirement_id	level	decision	status	evidence	limitation
+fixture-root		research-object	S.1	MUST	adopt	unmet	tests/fixtures/stamped/components-missing.tsv	Intentional negative fixture omits the remaining MUST and SHOULD decisions

@@ -1,0 +1,29 @@
+schema_version: 1
+image_id: toy-bids-app-1.0.0
+state: candidate
+source_kind: external-datalad
+architecture: x86_64
+interface:
+  kind: bids-app
+  name: toy-bids-app
+  version: "1.0.0"
+licenses:
+  - component: wrapper
+    identifier: MIT
+    redistribution: permitted
+retrieval_locations:
+  - https://example.invalid/toy-container-dataset
+qualification:
+  interface: {status: pending, evidence: "test fixture only"}
+  containment: {status: pending, evidence: "test fixture only"}
+  fixture: {status: pending, evidence: "test fixture only"}
+  target_architecture: {status: pending, evidence: "test fixture only"}
+  persistent_retrieval: {status: pending, evidence: "test fixture only"}
+hardening:
+  sbom: {decision: defer, rationale: "reopen when candidate bytes exist"}
+  signature: {decision: defer, rationale: "reopen when candidate bytes exist"}
+  attestation: {decision: defer, rationale: "reopen when build inputs exist"}
+source_dataset_id: 66666666-6666-4666-8666-666666666666
+source_dataset_commit: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+source_annex_key: SHA256E-s1--bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.sif
+source_reference: https://example.invalid/toy-container-dataset/image.sif
