@@ -1,0 +1,47 @@
+## .
+# SUMMARY
+
+* Bad licenses: 0
+* Deprecated licenses: 0
+* Licenses without file extension: 0
+* Missing licenses: 0
+* Unused licenses: 0
+* Used licenses: LicenseRef-OHBM2025-Poster-Evidence, MIT
+* Read errors: 0
+* Invalid SPDX License Expressions: 0
+* Files with copyright information: 88 / 88
+* Files with license information: 88 / 88
+
+Congratulations! Your project is compliant with version 3.3 of the REUSE Specification :-)
+
+## studies/toy
+# SUMMARY
+
+* Bad licenses: 0
+* Deprecated licenses: 0
+* Licenses without file extension: 0
+* Missing licenses: 0
+* Unused licenses: 0
+* Used licenses: MIT
+* Read errors: 0
+* Invalid SPDX License Expressions: 0
+* Files with copyright information: 7 / 7
+* Files with license information: 7 / 7
+
+Congratulations! Your project is compliant with version 3.3 of the REUSE Specification :-)
+
+## studies/toy/sourcedata/raw
+# SUMMARY
+
+* Bad licenses: 0
+* Deprecated licenses: 0
+* Licenses without file extension: 0
+* Missing licenses: 0
+* Unused licenses: 0
+* Used licenses: MIT
+* Read errors: 0
+* Invalid SPDX License Expressions: 0
+* Files with copyright information: 6 / 6
+* Files with license information: 6 / 6
+
+Congratulations! Your project is compliant with version 3.3 of the REUSE Specification :-)

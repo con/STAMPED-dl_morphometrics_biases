@@ -1,0 +1,6 @@
+pixi 0.66.0
+datalad 1.6.0
+git-annex version: 10.20260420
+reuse, version 6.2.0
+pytest 9.1.1
+bids-validator-deno 3.0.0

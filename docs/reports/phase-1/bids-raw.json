@@ -1,0 +1,48 @@
+{
+  "dataset_commit": "52b448c6a9277f4f0cc7356a12d091e8741b1acc",
+  "dataset_id": "787b9dfe-8399-46a2-bdb9-5230a949e88a",
+  "dataset_kind": "raw",
+  "dataset_path": "studies/toy/sourcedata/raw",
+  "declared_bids_version": "1.11.1",
+  "declared_dataset_type": "raw",
+  "errors": [],
+  "requested_bids_schema": "v1.11.1",
+  "requested_bids_schema_url": "https://bids-specification.readthedocs.io/en/v1.11.1/schema.json",
+  "reviewed_warnings": [
+    {
+      "code": "SUBJECT_FOLDERS",
+      "location": "/dataset_description.json",
+      "review": "expected metadata-only fixture warning",
+      "sub_code": null
+    },
+    {
+      "code": "TOO_FEW_AUTHORS",
+      "location": "/dataset_description.json",
+      "review": "expected metadata-only fixture warning",
+      "sub_code": null
+    },
+    {
+      "code": "JSON_KEY_RECOMMENDED",
+      "location": "/dataset_description.json",
+      "review": "recommended field does not apply to the empty non-produced fixture",
+      "sub_code": "HEDVersion"
+    },
+    {
+      "code": "JSON_KEY_RECOMMENDED",
+      "location": "/dataset_description.json",
+      "review": "recommended field does not apply to the empty non-produced fixture",
+      "sub_code": "GeneratedBy"
+    },
+    {
+      "code": "JSON_KEY_RECOMMENDED",
+      "location": "/dataset_description.json",
+      "review": "recommended field does not apply to the empty non-produced fixture",
+      "sub_code": "SourceDatasets"
+    }
+  ],
+  "schema_version": 1,
+  "status": "pass",
+  "validator_distribution": "bids-validator-deno",
+  "validator_internal_schema_version": "1.2.1",
+  "validator_version": "3.0.0"
+}

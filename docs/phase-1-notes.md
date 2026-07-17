@@ -110,3 +110,10 @@ historical repository and poster evidence. The poster has a repository-local
 does not convert it to MIT, CC0, or a broad public-domain grant. The original
 federal-work notice remains intentionally out of scope until it exists with a
 specific source commit and scope.
+
+The final evidence generator was exercised from assessment checkpoint
+`dcf463473e7250ad1210560cee2ddd5352b15c97`. Its clean recursive clone report
+records the root, Study, and raw DataLad IDs and commits without requesting
+annex content; the separate annex report captures the existing local annex
+state. The expected non-zero ideal-assessment report is retained as a gap
+ledger, not treated as a Phase 1 failure.

@@ -121,6 +121,7 @@ def validate_dataset(kind: str) -> tuple[dict[str, Any], list[str]]:
         "declared_bids_version": description["BIDSVersion"],
         "declared_dataset_type": description["DatasetType"],
         "requested_bids_schema": BIDS_SCHEMA,
+        "requested_bids_schema_url": BIDS_SCHEMA_URL,
         "validator_distribution": VALIDATOR_DISTRIBUTION,
         "validator_version": version(VALIDATOR_DISTRIBUTION),
         "validator_internal_schema_version": output.get("summary", {}).get("schemaVersion"),

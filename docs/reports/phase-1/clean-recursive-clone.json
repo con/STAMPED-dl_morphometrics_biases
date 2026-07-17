@@ -1,0 +1,22 @@
+{
+  "annex_content_requested": false,
+  "datasets": {
+    ".": {
+      "commit": "dcf463473e7250ad1210560cee2ddd5352b15c97",
+      "dataset_id": "baa2ec91-e618-4bac-b382-ac0daf9f779a"
+    },
+    "studies/toy": {
+      "commit": "bac8a0c17a1fcb12d67c570868f7b86cfab9528d",
+      "dataset_id": "2d982b94-44a2-49ba-bfcd-97966084b025"
+    },
+    "studies/toy/sourcedata/raw": {
+      "commit": "52b448c6a9277f4f0cc7356a12d091e8741b1acc",
+      "dataset_id": "787b9dfe-8399-46a2-bdb9-5230a949e88a"
+    }
+  },
+  "failures": [],
+  "recursive_clone": true,
+  "schema_version": 1,
+  "source_commit": "dcf463473e7250ad1210560cee2ddd5352b15c97",
+  "status": "pass"
+}

@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import json
-import shutil
 import subprocess
 import tempfile
 from importlib.metadata import version
@@ -32,10 +31,23 @@ def clean_clone_report() -> dict[str, object]:
     source_commit = run(["git", "rev-parse", "HEAD"]).stdout.strip()
     with tempfile.TemporaryDirectory(prefix="stamped-phase1-clone-") as temp:
         clone = Path(temp) / "clone"
-        result = run(["datalad", "clone", "-r", str(ROOT), str(clone)], check=False)
+        result = run(["datalad", "clone", str(ROOT), str(clone)], check=False)
         failures: list[str] = []
         if result.returncode:
             failures.append(f"recursive clone failed: {result.stderr.strip()}")
+            return {
+                "schema_version": 1,
+                "source_commit": source_commit,
+                "status": "fail",
+                "failures": failures,
+            }
+        install = run(
+            ["datalad", "get", "-n", "-r", "studies/toy"],
+            cwd=clone,
+            check=False,
+        )
+        if install.returncode:
+            failures.append(f"recursive subdataset installation failed: {install.stderr.strip()}")
             return {
                 "schema_version": 1,
                 "source_commit": source_commit,
@@ -59,7 +71,7 @@ def clean_clone_report() -> dict[str, object]:
             if dataset_id != expected_id:
                 failures.append(f"{relative}: unexpected DataLad ID {dataset_id}")
         status = run(["datalad", "status", "-r"], cwd=clone, check=False)
-        if status.returncode or "nothing to save" not in status.stdout:
+        if status.returncode or "nothing to save, working tree clean" not in status.stdout:
             failures.append("recursive clone is not clean")
         if not (clone / "docs" / "reference" / "recon_all_recon_any_poster_ohbm2025.pdf").is_symlink():
             failures.append("annexed poster identity is absent from clean clone")
@@ -95,8 +107,20 @@ def main() -> int:
     if clone["status"] != "pass":
         raise SystemExit("clean recursive clone failed")
 
-    subdatasets = run(["datalad", "subdatasets", "-r", "--json"]).stdout
-    write("datalad-subdatasets.jsonl", subdatasets)
+    subdatasets = run(["datalad", "-f", "json", "subdatasets", "-r"]).stdout
+    portable_subdatasets = []
+    for line in subdatasets.splitlines():
+        record = json.loads(line)
+        for field in ("path", "parentds", "refds"):
+            value = record.get(field)
+            if value:
+                try:
+                    relative = Path(value).relative_to(ROOT)
+                    record[field] = str(relative) if str(relative) != "." else "."
+                except ValueError:
+                    record[field] = "outside-root"
+        portable_subdatasets.append(json.dumps(record, sort_keys=True))
+    write("datalad-subdatasets.jsonl", "\n".join(portable_subdatasets))
     write("git-annex-info.json", run(["git", "annex", "info", "--json"]).stdout)
 
     reuse_reports = []

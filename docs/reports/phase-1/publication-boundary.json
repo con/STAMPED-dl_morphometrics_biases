@@ -1,0 +1,18 @@
+{
+  "failures": [],
+  "protected_annex_keys_absent": true,
+  "protected_classes_tested": [
+    "controlled-input",
+    "protected-identifier",
+    "protected-log",
+    "protected-derivative"
+  ],
+  "protected_paths_absent": true,
+  "protected_remote_absent": true,
+  "public_annex_payload_present": true,
+  "public_clone_succeeded": true,
+  "public_git_push_dry_run": true,
+  "schema_version": 1,
+  "simulation": "credential-free-local-git-annex-publication",
+  "status": "pass"
+}
