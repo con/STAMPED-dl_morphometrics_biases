@@ -2,3 +2,7 @@
 	path = studies/toy
 	url = ./studies/toy
 	datalad-id = 2d982b94-44a2-49ba-bfcd-97966084b025
+[submodule "envs/containers/repronim"]
+	datalad-url = https://github.com/ReproNim/containers.git
+	path = envs/containers/repronim
+	url = https://github.com/ReproNim/containers.git
