@@ -69,6 +69,11 @@ remains the scientific provenance authority. The logs inherit the campaign's
 access class and must not be published outside that boundary. Dry runs do not
 create logs.
 
+For a new cluster checkout, follow the recursive clone and sibling setup in the
+root [README](../README.md) before realizing Pixi. In particular, keep GitHub
+as the Git `origin`, configure GIN as the common annex data source, and retrieve
+only the declared campaign inputs and accepted SIF content with `datalad get`.
+
 Never bind `.venv/` or realized `envs/.pixi/` into an authoritative execution.
 The root ignores both paths. Do not use `pixi pack`: resulting prefixes are not
 project runtime artifacts. Use `--locked` for all routine work; edit the

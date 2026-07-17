@@ -28,13 +28,32 @@ registration, persistent retrieval, and byte verification; it is explicitly
 not a scientific runtime. Read [Phase 2 notes](docs/phase-2-notes.md) and the
 [accepted image index](envs/images.lock.yaml) before selecting any runtime.
 
-Clone directly from GIN and retrieve the poster without credentials:
+On a new host, clone the complete research object recursively from GitHub,
+then configure the public GIN sibling as the annex/content source. Keeping
+GitHub as `origin` preserves the repository's publication boundary; GitHub is
+Git-only for this dataset, while GIN provides the root annex content.
 
 ```bash
-datalad clone https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases
+datalad clone --recursive \
+  https://github.com/con/STAMPED-dl_morphometrics_biases.git \
+  STAMPED-dl_morphometrics_biases
 cd STAMPED-dl_morphometrics_biases
+
+datalad siblings add --name gin \
+  --url https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases \
+  --as-common-datasrc gin --fetch
+git config remote.origin.annex-ignore true
+git config remote.gin.annex-ignore false
+datalad siblings
+
 datalad get docs/reference/recon_all_recon_any_poster_ohbm2025.pdf
 ```
+
+The recursive clone installs the tracked Study and container subdatasets but
+does not download annex content indiscriminately. Retrieve the exact SIF or
+input files needed by the current campaign with `datalad get` after resolving
+the campaign's identities. The GIN sibling is a public read source; do not
+configure cluster credentials or publish controlled campaign content there.
 
 Read [AGENTS.md](AGENTS.md) before making changes. The complete operating policy is in the repository-local [STAMPED neuroimaging skill](skills/stamped-neuroimaging-analysis/SKILL.md); use the [BIDS App builder skill](skills/bids-app-builder/SKILL.md) whenever a project-authored BIDS App is created or adapted.
 
