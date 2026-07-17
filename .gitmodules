@@ -6,3 +6,7 @@
 	datalad-url = https://github.com/ReproNim/containers.git
 	path = envs/containers/repronim
 	url = https://github.com/ReproNim/containers.git
+[submodule "envs/containers/accepted"]
+	path = envs/containers/accepted
+	url = ./envs/containers/accepted
+	datalad-id = 8320f911-d110-4c82-b95b-285244cbae13
