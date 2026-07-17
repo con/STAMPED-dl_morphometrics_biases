@@ -27,7 +27,10 @@ def validate() -> list[str]:
             if target.startswith(("#", "http://", "https://", "mailto:")):
                 continue
             target_path = target.split("#", maxsplit=1)[0]
-            if target_path and not (path.parent / target_path).exists():
+            candidate = path.parent / target_path
+            # git-annex represents unavailable content as a tracked symlink;
+            # the route remains valid in a content-light clean clone.
+            if target_path and not (candidate.exists() or candidate.is_symlink()):
                 errors.append(
                     f"broken local link in {path.relative_to(ROOT)}: {target}"
                 )

@@ -20,7 +20,9 @@ def command_version(command: tuple[str, ...]) -> str | None:
         return None
     result = subprocess.run(command, check=False, capture_output=True, text=True)
     output = (result.stdout or result.stderr).strip().splitlines()
-    return output[0] if output else f"{' '.join(command)} returned {result.returncode}"
+    if not output:
+        return f"{' '.join(command)} returned {result.returncode}"
+    return next((line for line in output if "version" in line.lower()), output[0])
 
 
 def main() -> int:
@@ -43,7 +45,7 @@ def main() -> int:
                 "apptainer": ("apptainer", "--version"),
                 "singularity": ("singularity", "--version"),
                 "limactl": ("limactl", "--version"),
-                "cosign": ("cosign", "--version"),
+                "cosign": ("cosign", "version"),
                 "syft": ("syft", "--version"),
             }.items()
         },
