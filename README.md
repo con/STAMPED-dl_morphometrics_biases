@@ -28,7 +28,36 @@ registration, persistent retrieval, and byte verification; it is explicitly
 not a scientific runtime. Read [Phase 2 notes](docs/phase-2-notes.md) and the
 [accepted image index](envs/images.lock.yaml) before selecting any runtime.
 
-On a new host, clone the complete research object recursively from GitHub,
+## Quick start
+
+Pixi can install DataLad and git-annex into a global, user-level environment;
+this does not require a project directory. On Linux, install the versions used
+by this repository with:
+
+```bash
+pixi global install \
+  --environment datalad \
+  datalad==1.6.0 \
+  git-annex==10.20260601
+```
+
+Verify the tools before cloning:
+
+```bash
+datalad --version
+git-annex version
+```
+
+On macOS, install DataLad globally with the same Pixi command but install
+git-annex with Homebrew because conda-forge does not provide the required
+macOS build:
+
+```bash
+pixi global install --environment datalad datalad==1.6.0
+brew install git-annex
+```
+
+On a new host, clone the root research object from GitHub,
 then configure the public GIN sibling as the annex/content source. Keeping
 GitHub as `origin` preserves the repository's publication boundary; GitHub is
 Git-only for this dataset, while GIN provides the root annex content.
@@ -41,7 +70,7 @@ cd STAMPED-dl_morphometrics_biases
 
 datalad siblings add --name gin \
   --url https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases \
-  --as-common-datasrc gin --fetch
+  --as-common-datasrc gin-content --fetch
 git config remote.origin.annex-ignore true
 git config remote.gin.annex-ignore false
 datalad siblings

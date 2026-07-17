@@ -69,11 +69,13 @@ remains the scientific provenance authority. The logs inherit the campaign's
 access class and must not be published outside that boundary. Dry runs do not
 create logs.
 
-For a new cluster checkout, follow the clone, recursive subdataset installation,
-and sibling setup in the root [README](../README.md) before realizing Pixi. In
-particular, keep GitHub as the Git `origin`, configure GIN as the common annex
-data source, and retrieve only the declared campaign inputs and accepted SIF
-content with `datalad get`.
+For a new cluster checkout, follow the clone and sibling setup in the root
+[README](../README.md) before realizing Pixi. The README's quick start uses
+`pixi global install` for a user-level DataLad/git-annex environment; the
+locked project environment below remains the reproducible repository toolchain.
+Keep GitHub as the Git `origin`, configure GIN as the common annex data source,
+and retrieve only the declared campaign inputs and accepted SIF content with
+`datalad get`.
 
 Never bind `.venv/` or realized `envs/.pixi/` into an authoritative execution.
 The root ignores both paths. Do not use `pixi pack`: resulting prefixes are not
