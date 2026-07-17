@@ -14,6 +14,9 @@ git-annex = "==10.20260601"
 
 [feature.datalad.tasks]
 datalad-status = { cmd = "datalad status --annex all", description = "Report Git and annex state for the research object" }
+validate-phase0 = { cmd = "python scripts/validate_phase0.py", description = "Validate Phase 0 inventories, target coverage, and manifest placeholders" }
+validate-stamped = { cmd = "python scripts/validate_stamped.py", description = "Validate assessment structure, decisions, evidence, and roll-ups" }
+validate-stamped-ideal = { cmd = "python scripts/validate_stamped.py --ideal", description = "Report every unmet MUST and unachieved SHOULD ideal" }
 tool-versions = { cmd = "pixi --version && datalad --version && git-annex version", description = "Report the pinned DataLad environment and resolved git-annex" }
 
 [environments]

@@ -20,6 +20,8 @@ The real manifest and lock live in this directory. Root symlinks support normal 
 pixi install --locked --environment datalad
 pixi run --locked --environment datalad tool-versions
 pixi run --locked --environment datalad datalad-status
+pixi run --locked --environment datalad validate-phase0
+pixi run --locked --environment datalad validate-stamped
 ```
 
 DataLad `1.6.0` and `datalad-container` `1.2.5` are exact dependencies on both supported platforms. Linux x86-64 also resolves `git-annex` `10.20260601` inside the lock.

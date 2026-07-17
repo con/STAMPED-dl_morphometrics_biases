@@ -35,6 +35,8 @@ Include the complete repository-local [STAMPED neuroimaging skill](../skills/sta
 
 Use gated phases. A phase is complete only when its evidence is committed to the new DataLad research object. Do not import historical scientific code until the empty repository, environments, image registry, and toy BABS campaign have proved the intended organization and guardrails.
 
+Before Phase 0 evidence was saved, the existing non-empty Git repository was initialized in place as the top-level DataLad research object. A minimal checksummed, locked Pixi environment was created first and used for the initialization. This preserves the original Git history and remote; it does not require a repository wipe or force push. The broader named environments and image registry remain Phase 2 work.
+
 ## Phase 0 — preserve evidence and declare targets
 
 ### Work
@@ -66,7 +68,7 @@ Every intended poster panel has an ID, expected inputs and outputs, a reproducti
 
 ### Work
 
-1. Create the top-level DataLad superdataset with a text-friendly configuration. It is the research-object root, not a BIDS dataset or “super-study,” and its commits compose exact component/subdataset commits.
+1. Verify and extend the initialized top-level DataLad superdataset with its text-friendly, SHA256E configuration. It is the research-object root, not a BIDS dataset or “super-study,” and its commits compose exact component/subdataset commits.
 2. Verify and commit both complete repository-local skill bundles and the `AGENTS.md` pointer requiring them in the appropriate work.
 3. Establish the complete directory pattern from the copied [STAMPED skill](../skills/stamped-neuroimaging-analysis/SKILL.md), including repository-local `skills/`, canonical `src/` and `apps/`, `envs/containers/{repronim,custom,accepted}/`, `config/`, `operations/`, `studies/`, multi-study `results/`, tests, documentation, licenses, root `result-manifest.tsv`, and access-control metadata.
 4. Record BIDS 1.11.1 as the pinned specification. Create an empty toy Study dataset immediately so the organization is executable rather than aspirational.
@@ -98,7 +100,7 @@ A collaborator can understand and validate the research object's root/component 
 ### Pixi workspace
 
 1. Keep `pyproject.toml` focused on package metadata and importable code where packaging is useful. Keep BIDS App entrypoints under `apps/` and project launchers in Pixi tasks rather than treating either as package metadata.
-2. Create `envs/pixi.toml`, `envs/pixi.lock`, and tracked root discovery symlinks.
+2. Extend the bootstrap `envs/pixi.toml`, `envs/pixi.lock`, and tracked root discovery symlinks with the complete named environment set.
 3. Declare `linux-64` for runtime-dependency environments and the relevant macOS platforms for development.
 4. Define at least:
    - `dev` for tests, documentation, linting, and optional notebooks;
