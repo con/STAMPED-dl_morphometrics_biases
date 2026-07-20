@@ -1,7 +1,8 @@
 [submodule "studies/toy"]
 	path = studies/toy
-	url = ./studies/toy
+	url = https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy.git
 	datalad-id = 2d982b94-44a2-49ba-bfcd-97966084b025
+	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy.git
 [submodule "envs/containers/repronim"]
 	datalad-url = https://github.com/ReproNim/containers.git
 	path = envs/containers/repronim
