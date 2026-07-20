@@ -100,6 +100,8 @@ Make the root commit compose the exact commits of all code, configuration, Study
 
 Put every component under Git, git-annex, and DataLad as appropriate. Record each modification as a human-authored commit or provenance-captured run with authorship and time; never leave an authoritative change represented only by mutable filesystem state.
 
+Before registering any nested dataset commit in the root, publish that dataset and every descendant to persistent, reachable siblings. Configure explicit canonical `url`/`datalad-url` entries in `.gitmodules` (and avoid a parent URL ending in `.git` when DataLad must infer descendant sibling names), push Git and annex content, and verify from a fresh root clone with `datalad get -n -r .` and `datalad subdatasets -r`. Do not leave a root commit pointing at a locally reachable-only subdataset or call the research object releasable until this recursive retrieval test passes; if a component is controlled, record exact authorized retrieval instructions and its D.1 limitation instead.
+
 Assign one authority to each concern:
 
 | Concern | Authority |
