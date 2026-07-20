@@ -80,8 +80,11 @@ def validate() -> list[str]:
     for relative in REQUIRED_PATHS:
         if not (ROOT / relative).exists():
             errors.append(f"missing Phase 1 path: {relative}")
-    if (ROOT / "studies" / "toy" / "derivatives").exists():
-        errors.append("toy Study must not contain a placeholder derivatives directory")
+    derivatives = ROOT / "studies" / "toy" / "derivatives"
+    if derivatives.exists():
+        children = [path for path in derivatives.iterdir() if path.is_dir()]
+        if not children or any(not (path / ".datalad/config").is_file() for path in children):
+            errors.append("toy derivatives must be realized DataLad datasets, not placeholders")
 
     if dataset_id(ROOT) != ROOT_ID:
         errors.append("top-level DataLad identity changed")
@@ -119,7 +122,10 @@ def validate() -> list[str]:
         "origin": output(["git", "remote", "get-url", "origin"]),
         "gin": output(["git", "remote", "get-url", "gin"]),
     }
-    if remotes["origin"] != "git@github.com:con/STAMPED-dl_morphometrics_biases.git":
+    if remotes["origin"] not in {
+        "git@github.com:con/STAMPED-dl_morphometrics_biases.git",
+        "https://github.com/con/STAMPED-dl_morphometrics_biases.git",
+    }:
         errors.append("GitHub origin changed")
     if remotes["gin"] != "https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases":
         errors.append("GIN fetch sibling changed")

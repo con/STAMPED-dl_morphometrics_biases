@@ -1,0 +1,39 @@
+analysis_path: "."
+input_ria_path: .babs/input_ria
+output_ria_path: .babs/output_ria
+input_datasets:
+  raw:
+    origin_url: https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy-sourcedata-raw
+    path_in_babs: sourcedata/raw
+    is_zipped: false
+    required_files:
+      - dataset_description.json
+      - sub-01/anat/sub-01_T1w.nii.gz
+cluster_resources:
+  interpreting_shell: /bin/bash
+  customized_text: "#SBATCH --partition=cpu"
+  number_of_cpus: 1
+  hard_memory_limit: 2048M
+  hard_runtime_limit: "00:15:00"
+script_preamble: |
+  export PATH=/home/f008q9c_dartmouth_edu/STAMPED-dl_morphometrics_biases/envs/.pixi/envs/babs/bin:/usr/bin:/bin
+  export HOME="${SLURM_TMPDIR:-/tmp}/stamped-home-${SLURM_JOB_ID:-manual}-${SLURM_ARRAY_TASK_ID:-0}"
+  export XDG_CACHE_HOME="${SLURM_TMPDIR:-/tmp}/stamped-cache-${SLURM_JOB_ID:-manual}-${SLURM_ARRAY_TASK_ID:-0}"
+  mkdir -p "$HOME" "$XDG_CACHE_HOME"
+job_compute_space: /scratch4/workspace/f008q9c_dartmouth_edu-stamped-phase3/jobs
+singularity_args:
+  - --cleanenv
+  - --containall
+  - --no-home
+  - --no-mount
+  - home,cwd
+  - --net
+  - --network
+  - none
+  - --pwd
+  - /
+bids_app_args:
+  $SUBJECT_SELECTION_FLAG: --participant_label
+all_results_in_one_zip: true
+zip_foldernames:
+  toy-bids-app: 0-1-0

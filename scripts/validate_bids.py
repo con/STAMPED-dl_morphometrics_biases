@@ -21,17 +21,39 @@ BIDS_SCHEMA_URL = "https://bids-specification.readthedocs.io/en/v1.11.1/schema.j
 VALIDATOR_DISTRIBUTION = "bids-validator-deno"
 EXPECTED = {
     "raw": {
-        ("SUBJECT_FOLDERS", None),
         ("TOO_FEW_AUTHORS", None),
         ("JSON_KEY_RECOMMENDED", "HEDVersion"),
-        ("JSON_KEY_RECOMMENDED", "GeneratedBy"),
         ("JSON_KEY_RECOMMENDED", "SourceDatasets"),
+        *(("SIDECAR_KEY_RECOMMENDED", field) for field in (
+            "CoilCombinationMethod",
+            "DeviceSerialNumber",
+            "DwellTime",
+            "EchoTime",
+            "FlipAngle",
+            "InstitutionAddress",
+            "InstitutionName",
+            "InstitutionalDepartmentName",
+            "MRAcquisitionType",
+            "MagneticFieldStrength",
+            "Manufacturer",
+            "ManufacturersModelName",
+            "MatrixCoilMode",
+            "NonlinearGradientCorrection",
+            "PulseSequenceDetails",
+            "PulseSequenceType",
+            "ReceiveCoilActiveElements",
+            "ReceiveCoilName",
+            "ScanningSequence",
+            "SequenceName",
+            "SequenceVariant",
+            "SoftwareVersions",
+            "StationName",
+        )),
     },
     "study": {
         ("TOO_FEW_AUTHORS", None),
         ("JSON_KEY_RECOMMENDED", "HEDVersion"),
         ("JSON_KEY_RECOMMENDED", "GeneratedBy"),
-        ("JSON_KEY_RECOMMENDED", "SourceDatasets"),
     },
 }
 DATASETS = {
@@ -132,9 +154,13 @@ def validate_dataset(kind: str) -> tuple[dict[str, Any], list[str]]:
                 "sub_code": item.get("subCode"),
                 "location": item.get("location"),
                 "review": (
-                    "expected metadata-only fixture warning"
-                    if item.get("code") in {"SUBJECT_FOLDERS", "TOO_FEW_AUTHORS"}
-                    else "recommended field does not apply to the empty non-produced fixture"
+                    "single project-author entry is sufficient for this synthetic fixture"
+                    if item.get("code") == "TOO_FEW_AUTHORS"
+                    else (
+                        "scanner-acquisition metadata does not apply to a generated image"
+                        if item.get("code") == "SIDECAR_KEY_RECOMMENDED"
+                        else "recommended field does not apply to this synthetic fixture"
+                    )
                 ),
             }
             for item in warnings
@@ -175,7 +201,7 @@ def main() -> int:
         return 1
     print(
         "BIDS 1.11.1 toy validation passed: raw and Study datasets have no "
-        "errors and only the reviewed metadata-only warnings"
+        "errors and only reviewed synthetic-fixture warnings"
     )
     return 0
 

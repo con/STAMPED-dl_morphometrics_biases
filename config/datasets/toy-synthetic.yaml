@@ -1,0 +1,16 @@
+schema_version: 1
+dataset_id: toy-synthetic
+description: Deterministic one-subject synthetic BIDS fixture; contains no human data.
+access_class: public
+study:
+  path: studies/toy/
+  datalad_id: 2d982b94-44a2-49ba-bfcd-97966084b025
+  commit: 278fdb7856803bded7e79cc88def2f739d22663c
+raw:
+  path: studies/toy/sourcedata/raw/
+  origin_url: https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy-sourcedata-raw
+  datalad_id: 787b9dfe-8399-46a2-bdb9-5230a949e88a
+  commit: 97ed4a843219fd8c30ec149b8c43fc13ec0c23da
+cohort_policy: Include the sole generated participant, sub-01.
+governing_terms: Repository MIT license; synthetic fixture has no participant restrictions.
+distribution_decision: Public redistribution is permitted.

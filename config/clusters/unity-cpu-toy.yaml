@@ -1,0 +1,26 @@
+schema_version: 1
+profile_id: unity-cpu-toy
+scheduler: slurm
+partition: cpu
+resources:
+  cpus_per_task: 1
+  memory_mb: 2048
+  walltime_minutes: 15
+  scratch_mb: 1024
+job_compute_space: /scratch4/workspace/f008q9c_dartmouth_edu-stamped-phase3/jobs
+isolation:
+  network: none
+  home_mount: false
+  cwd_default_mount: false
+  clean_environment: true
+  disposable_home_and_cache: true
+declared_binds:
+  - purpose: BABS job clone and output worktree
+    host_path: "${PWD}"
+    container_path: "${PWD}"
+    mode: read-write
+host_interfaces:
+  - Linux kernel
+  - Slurm scheduler
+  - Unity scratch filesystem
+  - Apptainer 1.5.2

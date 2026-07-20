@@ -31,12 +31,13 @@ pyyaml = "==6.0.3"
 bids-validator-deno = "==3.0.0"
 
 [feature.quality.tasks]
-test = { cmd = "pytest", description = "Run Phase 1 schema, access-boundary, and validator tests" }
+test = { cmd = "pytest", description = "Run repository schema, access-boundary, BIDS, and phase-gate tests" }
 reuse-lint = { cmd = "reuse lint", description = "Check complete machine-readable license coverage" }
 validate-schemas = { cmd = "python scripts/validate_schemas.py", description = "Validate tracked campaign, image, result, and operations records" }
 validate-bids-toy = { cmd = "python scripts/validate_bids.py", description = "Validate the toy Study and raw child against BIDS 1.11.1" }
 validate-publication-boundary = { cmd = "python scripts/validate_publication_boundary.py", description = "Prove protected fixture classes cannot reach a public sibling" }
 validate-phase1 = { cmd = "python scripts/validate_phase1.py", description = "Run the complete Phase 1 structural exit gate" }
+validate-phase3 = { cmd = "python scripts/validate_phase3.py", description = "Validate the accepted direct-layout toy BABS campaign" }
 generate-phase1-reports = { cmd = "python scripts/generate_phase1_reports.py", description = "Generate committed Phase 1 validation and clean-clone evidence" }
 quality-tool-versions = { cmd = "pixi --version && datalad --version && git-annex version && reuse --version && pytest --version && python -c \"from importlib.metadata import version; print('bids-validator-deno', version('bids-validator-deno'))\"", description = "Report the locked Phase 1 validation toolchain" }
 
@@ -89,7 +90,7 @@ git-annex = "==10.20260601"
 [feature.babs.tasks]
 babs-version = { cmd = "babs --version", description = "Report the pinned direct-layout BABS revision after realization on Linux" }
 babs-tool-versions = { cmd = "babs --version && con-duct --version", description = "Report the pinned BABS and con-duct operations tooling" }
-babs-operation = { cmd = "python scripts/run_babs_operation.py {{ operation }} {{ campaign }}", args = [{ arg = "operation", choices = ["init", "check-setup", "submit", "status", "merge", "unzip"] }, "campaign"], description = "Run one declared BABS lifecycle operation and capture campaign-local con-duct logs" }
+babs-operation = { cmd = "python scripts/run_babs_operation.py {{ operation }} {{ campaign }}", args = [{ arg = "operation", choices = ["init", "check-setup", "pilot", "submit", "status", "merge", "unzip", "finalize"] }, "campaign"], description = "Run one declared BABS lifecycle operation and append exact campaign-local evidence" }
 
 [feature.image-linux]
 platforms = ["linux-64"]

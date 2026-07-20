@@ -1,0 +1,21 @@
+schema_version: 1
+pipeline_id: toy-bids-app
+pipeline_version: 0.1.0
+description: Copy each selected participant through the accepted toy BIDS App.
+processing_level: subject
+container:
+  container_id: toy-bids-app
+  accepted_dataset_id: 8320f911-d110-4c82-b95b-285244cbae13
+  accepted_commit: 66c059753b6aa90646147ade6aa394b195f9f609
+  image_path: images/toy-bids-app-0.1.0.sif
+  annex_key: SHA256E-s3559424--04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59.sif
+  sha256: 04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59
+arguments:
+  participant_selection_flag: --participant_label
+  analysis_level: participant
+input_condition: One unzipped BIDS participant directory plus dataset_description.json.
+outputs:
+  archive_pattern: sub-*_toy-bids-app-0-1-0.zip
+  finalized_payload: sub-*/
+failure_behavior: Exit nonzero; retain logs and retry only as a recorded new attempt.
+randomness: No random operation is performed and no seed is accepted by the app.

@@ -60,7 +60,7 @@ build_command:
   - envs/containers/accepted/images/toy-bids-app-0.1.0.sif
   - envs/containers/custom/toy-bids-app/toy-bids-app.def
 accepted_dataset_id: 8320f911-d110-4c82-b95b-285244cbae13
-accepted_dataset_commit: 6177eaa11e8776b98429098bcaca4a7f23938913
+accepted_dataset_commit: 66c059753b6aa90646147ade6aa394b195f9f609
 accepted_image_path: images/toy-bids-app-0.1.0.sif
 sif_annex_key: SHA256E-s3559424--04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59.0.sif
 sif_sha256: 04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59

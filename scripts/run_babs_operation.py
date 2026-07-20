@@ -10,7 +10,12 @@ command; con-duct is only an execution-observability wrapper.
 from __future__ import annotations
 
 import argparse
+import datetime as dt
+import getpass
+import hashlib
+import json
 import subprocess
+import uuid
 from pathlib import Path
 
 
@@ -18,17 +23,85 @@ ROOT = Path(__file__).resolve().parents[1]
 OPERATIONS = {
     "init": "babs-init",
     "check-setup": "babs-check-setup",
+    "pilot": "babs-submit",
     "submit": "babs-submit",
     "status": "babs-status",
     "merge": "babs-merge",
     "unzip": "babs-unzip",
+    "finalize": "babs-unzip",
 }
+EVENT_TYPES = {
+    "init": "initialize",
+    "check-setup": "setup-check",
+    "pilot": "pilot",
+    "submit": "submit",
+    "status": "status",
+    "merge": "merge",
+    "unzip": "finalize",
+    "finalize": "finalize",
+}
+
+
+def tool_versions() -> dict[str, str]:
+    commands = {
+        "babs": ["babs", "--version"],
+        "con-duct": ["con-duct", "--version"],
+        "datalad": ["datalad", "--version"],
+        "git-annex": ["git-annex", "version", "--raw"],
+        "singularity": ["singularity", "--version"],
+    }
+    versions = {}
+    for name, command in commands.items():
+        result = subprocess.run(command, text=True, capture_output=True, check=False)
+        versions[name] = (result.stdout or result.stderr).strip().splitlines()[0]
+    return versions
+
+
+def append_event(
+    campaign: Path,
+    campaign_id: str,
+    attempt_id: str,
+    operation: str,
+    argv: list[str],
+    rc: int,
+) -> None:
+    ledger = campaign / "commands.jsonl"
+    prior = [line for line in ledger.read_bytes().splitlines() if line.strip()] if ledger.exists() else []
+    evidence = sorted(
+        str(path.relative_to(campaign)) for path in (campaign / "logs").glob("*") if path.is_file()
+    )
+    event = {
+        "schema_version": 1,
+        "event_id": str(uuid.uuid4()),
+        "campaign_id": campaign_id,
+        "attempt_id": attempt_id,
+        "sequence": len(prior) + 1,
+        "timestamp": dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z"),
+        "event_type": EVENT_TYPES[operation],
+        "actor": getpass.getuser(),
+        "argv": argv,
+        "tool_versions": tool_versions(),
+        "desired_state": f"{operation} completes successfully for {attempt_id}",
+        "observed_state": f"command exited with status {rc}",
+        "evidence": evidence,
+        "access_class": "public",
+        "previous_event_sha256": hashlib.sha256(prior[-1]).hexdigest() if prior else None,
+    }
+    with ledger.open("a", encoding="utf-8") as stream:
+        stream.write(json.dumps(event, sort_keys=True, separators=(",", ":")) + "\n")
+    message = (
+        f"Record BABS {operation} operation\n\n"
+        "Co-Authored-By: codex-cli 0.144.6 / gpt-5.6-sol <codex@openai.com>"
+    )
+    subprocess.run(["git", "add", "commands.jsonl", "logs"], cwd=campaign, check=True)
+    subprocess.run(["git", "commit", "-m", message], cwd=campaign, check=True)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("operation", choices=sorted(OPERATIONS))
     parser.add_argument("campaign", help="Phase 3 operations/<campaign> dataset name")
+    parser.add_argument("--attempt-id", default="attempt-001")
     parser.add_argument("--dry-run", action="store_true")
     args, babs_args = parser.parse_known_args()
 
@@ -60,7 +133,9 @@ def main() -> int:
         f"BABS {args.operation} lifecycle operation for {args.campaign}",
         *argv,
     ]
-    return subprocess.run(observed_argv, cwd=campaign, check=False).returncode
+    rc = subprocess.run(observed_argv, cwd=campaign, check=False).returncode
+    append_event(campaign, args.campaign, args.attempt_id, args.operation, argv, rc)
+    return rc
 
 
 if __name__ == "__main__":
