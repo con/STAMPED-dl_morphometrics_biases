@@ -2,215 +2,170 @@
 
 Date: 2026-07-21
 
-## Scope
+## Purpose
 
-This is a process retrospective based only on the working conversation and the
-decisions made during the Phase 3 retry. It does not inspect or judge the final
-datasets, reports, validation records, or scientific contents. Its purpose is
-to capture where the work became fragile, surprising, or unnecessarily costly
-so that the next campaign can be designed more deliberately.
+This reviews the Phase 3 retry approach from the working conversation, not by
+reassessing its outputs. It is intended to inform a later revision of the
+STAMPED neuroimaging skill.
 
-The retry was useful because it exposed problems at four distinct boundaries:
+The earlier review was too much of an incident catalog. Copying such a catalog
+into a skill would increase context while encouraging agents to test every
+primitive. The useful lessons are a few constraints that prevent frequent
+mistakes or protect operations with slow feedback.
 
-1. shell and cluster-session reliability;
-2. our project interfaces and operating procedure;
-3. Unity-specific integration;
-4. behavior or defects in the pinned BABS revision.
+## Revised conclusion
 
-Keeping those categories separate matters. A cluster discovery should not be
-described as a BABS defect, and a project invocation mistake should not be
-worked around as though it were an environmental limitation.
+The retry needed stronger high-level interfaces, not more gates.
 
-## Preliminary assessment
+Pixi, DataLad, BABS, Singularity, and Slurm should each own the work they are
+designed to do. The project should expose a small set of Pixi tasks that compose
+them. Agents should use those tasks normally and reach for lower-level commands
+only when diagnosing a broken abstraction.
 
-The largest avoidable cost came from discovering interface assumptions during
-campaign execution instead of in small preflight fixtures. The retry crossed
-several independently stateful systems—Pixi, Bash startup, DataLad
-superdatasets, the accepted-container registry, BABS projects, two RIAs, Slurm,
-git-annex, archive extraction, and BIDS validation. A late correction in one
-layer often required synchronization or provenance updates in several others.
+The most serious process failure was executing while environment definitions,
+launchers, configuration, and nested dataset pointers were still uncommitted.
+A phase-sized commit made later cannot identify the mutable state used by
+earlier commands.
 
-The next campaign should therefore be treated as a sequence of explicit gates,
-not as one long command sequence. Each gate should establish a small invariant
-and stop before allocating a campaign identity or submitting work.
+The central rule is:
 
-## Issue register
+> **Commit before execute; checkpoint retained state before the next dependent
+> action.** Finish and commit environment or configuration authoring before a
+> campaign starts. When execution creates retained state, commit children first
+> and then the root composition before another action relies on it.
 
-| Area | What occurred | Preliminary ownership | Better approach |
-|---|---|---|---|
-| Browser shell lifetime | The browser shell was believed to disconnect after approximately 15 minutes of inactivity, and a compute allocation was later killed while work was in progress. | Unity/session integration | Use `tmux` for interactive continuity, but rely on `sbatch`, recorded job IDs, and durable logs for work that must survive a browser disconnect. Do not assume a running agent counts as browser activity or that `tmux` preserves a scheduler allocation. |
-| Remote sibling access | The execution context could not initially reach remote sibling state that was accessible from the original source repository. Permission and sandbox changes interrupted diagnosis. | Environment/access setup | Run one read/write/credential/sibling preflight at the beginning, from the intended authoritative clone. Resolve remote configuration there before campaign work begins. |
-| Pixi discovery | Commands repeatedly named `$HOME/.pixi/bin/pixi` or directly prefixed a private Pixi environment's `bin` directory. | Ours | Put `$HOME/.pixi/bin` on `PATH` before `.bashrc`'s noninteractive early return. Invoke plain `pixi`; let `pixi run --locked -e <environment> <task>` select tools. |
-| Pixi task working directory | Tasks in `envs/pixi.toml` initially resolved paths relative to `envs/`, while commands assumed the repository root. The direct environment-bin workaround concealed this. | Ours | Give repository tasks an explicit root `cwd`, retain root manifest/lock discovery links, and test every operator-facing task from a fresh noninteractive shell. |
-| CLI verbosity and layering | Lifecycle operations were launched with long ad hoc commands, and there was uncertainty over whether every command should be wrapped in `datalad run`. | Ours/interface design | Use short Pixi tasks for BABS lifecycle operations and keep expanded argv in machine logs. Use `datalad run` only for transformations of tracked dataset content, not for scheduler state changes such as submit or status. |
-| BABS CLI selection | Deprecated compatibility executables and the unified `babs <subcommand>` interface were mixed. | Ours | Expose only the unified CLI through project tasks. Reject unsupported lifecycle operations before invoking BABS. |
-| Container registration | The first accepted-container state had a DataLad configuration entry but not BABS's conventional `.datalad/environments/<name>/image` registration. | Ours | Register accepted images with `datalad containers-add` and verify both DataLad Containers and BABS resolution before initialization. Do not manually synthesize only part of the convention. |
-| Failed initialization cleanup | A failed BABS initialization attempted cleanup, but read-only annex object permissions left a remnant and raised concern about accidentally reusing a briefly assigned UUID. A later initialization also failed because the derivative parent did not yet exist. | Mixed: our preflight plus BABS cleanup behavior | Create and verify destination parents before init. Initialize in a disposable path first when qualifying a new integration. Retain failures explicitly and never reuse a partial project's identity silently. |
-| Direct-layout checker | Initialization correctly used `analysis_path: "."` and `sourcedata/raw`, while `check-setup` still asserted the historical `inputs/data` layout. | BABS | Report with a self-contained reproducer. Until fixed, isolate any temporary compatibility alias to the checker step, record it, remove it before submission, and verify that it is absent afterward. |
-| BABS version assumptions | The broken behavior was initially discussed as though the project might simply be pinned too far behind, but the selected commit was also current upstream `main` at review time. | Review discipline | Compare the pin to upstream before attributing a defect to age. Update a pin only for a demonstrated fix, not as a speculative remedy. |
-| Unity Slurm profile | BABS's generic temporary-disk directive was not accepted by Unity. This was learned through a campaign attempt rather than a tiny scheduler test. | Unity qualification | Qualify generated `#SBATCH` directives with a minimal job before campaign initialization. Keep the Unity profile limited to options actually supported at the site. |
-| Batch preamble | An absolute environment `PATH` and temporary `HOME`/cache overrides were added to the participant preamble to make host tools available and isolate state. They were hard-coded and not justified by a demonstrated need. | Ours | Source the account startup file and activate the locked Pixi environment normally. Add host `HOME` or cache redirection only if a reproducible failure requires it and verified job-local storage and cleanup are available. |
-| `.env` behavior | `con-duct` warned that `python-dotenv` was absent even though `.env` files were expected. The intended loader and lookup boundary were initially unclear. | Ours/dependency contract | Lock `python-dotenv`, load exactly the repository-root `.env`, supply a non-secret `.env.example`, and ignore the real file. Treat it as operational configuration, not a credential store, because process-observability tooling may record environment values. |
-| Output ZIP semantics | `all_results_in_one_zip` was initially surprising and risked being conflated with a proposed zipless BABS workflow. | Explanation and interface review | Decide the application-to-BABS output-directory contract before submission. Treat `all_results_in_one_zip` as an archive-layout option, not as a way to disable archives. Handle zipless BABS as a separate upstream feature decision. |
-| Broken finalization entry point | The installed `babs-unzip` entry point imported a function that no longer exists. | BABS | Do not invoke or hide the failure. Select a project-owned finalization policy in advance: `datalad add-archive-content`, the tracked unzip script plus one DataLad save, or a tested upstream replacement. |
-| Annex backend | BABS initialized the analysis dataset with MD5E despite the root project's SHA256E policy. This was noticed only after merged archives existed and required migration. | Integration policy | Check and, if necessary, configure the annex backend immediately after initialization and before any result branches are produced. Add a pre-submit gate rejecting MD5-family keys. |
-| Archive extraction performance | `datalad add-archive-content` was semantically appropriate but very slow for thousands of small files on the shared filesystem. An interrupted partial extraction then had to be cleaned carefully. | Workload/site interaction | Benchmark finalization on one fixture archive before the campaign. For tiny-file trees, use plain unzip followed by one DataLad save when provenance requirements permit it. Avoid generating unnecessary FreeSurfer-shaped trees, for example with `--fs-no-reconall`, when they are not part of the qualification objective. |
-| BIDS and operational layout | A BABS direct-layout project combines operational paths with derivative payload. Earlier `.bidsignore` handling risked hiding operational directories merely to make validation pass. | Integration design | Validate a structurally defined derivative payload view. Reserve `.bidsignore` for reviewed payload extensions that are genuinely outside the selected BIDS schema; do not use it to conceal BABS, container, log, or source-data directories. |
-| Three-task qualification | Moving from a one-subject toy to three SimBIDS participants increased confidence but also amplified every shared-filesystem and synchronization problem. | Test design | Keep the three-task concurrency check, but make its input and output trees intentionally small. First prove the exact image and wrapper contract with one local fixture, then submit the bounded array. |
-| Persistent publication | The exact converted SIF was usable locally, but an OCI tag or digest is not a persistent location for the exact SIF bytes. | Publication planning | Establish annex publication and clean-clone retrieval before calling an image independently reusable. Keep local qualification and persistent publication as separate recorded gates. |
+This is the actionable core of
+`neuroimaging-policy-execution-transaction-gap.md`. It should be prominent and
+enforced, not distributed through a long checklist.
 
-## Themes that made the retry harder than necessary
+## Four operating constraints
 
-### 1. Preflight happened too late
+### 1. Plain Pixi must work first
 
-Several failures could have been discovered without a campaign attempt:
+Finding tools should not be a recurring problem. One setup script should
+install the pinned Pixi release when needed, place it in an ignored local or
+user location, and make plain `pixi` available in login, noninteractive, Slurm,
+and agent shells through minimal startup configuration.
 
-- missing destination parents;
-- unsupported Slurm directives;
-- incomplete container registration;
-- Pixi tasks starting from the wrong directory;
-- whether the generated participant script could find host tools;
-- the app/BABS output-directory contract;
-- the selected annex backend;
-- the stale unzip entry point.
+If `pixi` is missing, diagnose and fix shell setup before proceeding, requesting
+user help when persistence requires it. Do not continue with an absolute Pixi
+path or by prepending a private environment `bin` directory. Those workarounds
+bypass the project interface and inflate every command and log afterward.
 
-The recurring pattern was to let a high-level command discover a low-level
-invariant. The next procedure should test those invariants directly first.
+For project-authored runtimes, Singularity should be a thin isolation wrapper
+around the locked Pixi environment rather than a second hand-maintained
+dependency specification. External BIDS App images still retain their exact
+container identity.
 
-### 2. Recovery commands became part of the apparent interface
+### 2. Use tools at their native boundaries
 
-Long absolute paths, manual `PATH` construction, temporary environment
-variables, and narrow repair scripts were sometimes necessary to diagnose or
-recover. The problem was not their temporary use; it was allowing them to look
-like the intended steady-state workflow.
+| Tool | Responsibility |
+|---|---|
+| Pixi | Install/select tools and provide concise typed entry points. Ordinary use is `pixi run --locked ...`. |
+| DataLad | Version and compose datasets. Use `datalad run` for tracked content transformations and `datalad save` for structural or metadata changes. |
+| BABS | Own participant fan-out, Slurm submission, RIAs, status, merge, and generated execution provenance. |
+| Singularity/Apptainer | Execute the declared image with the required isolation and binds. |
+| Slurm | Own durable compute independently of the browser or interactive shell. |
 
-Recovery commands should be labeled as such in the ledger or review. Once the
-cause is understood, the normal interface should be repaired and re-exercised
-through its concise Pixi task.
+Pixi tasks may compose these tools but should not obscure them. BABS lifecycle
+state is not a scientific transformation merely because it is wrapped in
+`datalad run`; conversely, a content transformation should record the actual
+command rather than only a Pixi task name.
 
-### 3. Configuration, execution, and evidence were easy to conflate
+### 3. Inspect interfaces with expensive feedback
 
-The retry involved three different command classes:
+The proposal to test every low-level invariant first is rejected. Routine work
+should trust the project abstractions. Advance inspection is worthwhile when a
+mistake is costly or repeatedly encountered:
 
-- environment and registry preparation;
-- BABS lifecycle management and scheduler interaction;
-- transformations of tracked content.
+- inspect Unity's supported Slurm options and the BABS-rendered batch script
+  before submission;
+- inspect the rendered BABS input, image, output, resource, and isolation
+  arguments because scheduler feedback is slow;
+- establish the accepted-container registration and storage pattern once for
+  all campaigns;
+- establish Pixi discovery once for each shell class because every command
+  depends on it.
 
-Pixi should select the environment for all three. The BABS operations ledger
-should record the second class. `datalad run` should capture the third class.
-Forcing all commands into one provenance mechanism makes the logs noisier
-without making scheduler side effects reproducible.
+Use a tiny scheduler job only when documentation and rendered-script inspection
+cannot settle compatibility. Do not bypass BABS to test every primitive as a
+matter of course.
 
-### 4. Compatibility workarounds need an expiration condition
+### 4. Separate authoring and execution transactions
 
-The direct-layout checker alias and project-owned archive finalizer are bounded
-compatibility measures. Each should record:
+Environment, code, task, image, pipeline, cluster, and campaign changes are
+authoring. They may be developed together only as a coherent change that is
+validated and committed before execution uses it.
 
-- the exact upstream defect it addresses;
-- where it is introduced;
-- how its absence from accepted state is checked, when applicable;
-- what upstream change allows its removal.
+Use this commit cadence:
 
-Without those conditions, a narrow workaround can quietly become permanent
-project architecture.
+1. Commit the Pixi release/bootstrap, manifest, lock, tasks, and focused tests
+   before using the environment for a campaign.
+2. Commit selected inputs and container pointers with pipeline, cluster, and
+   campaign configuration before BABS initialization.
+3. After initialization creates an attempt and operations state, commit the
+   child datasets and root composition before submission.
+4. After submission, merge, finalization, validation, acceptance, or a retained
+   failure changes durable state, checkpoint it before the next dependent
+   action.
 
-### 5. Interactive continuity and computational durability are different
+Read-only inspection needs no commit. Disposable debugging needs no commit when
+its state is quarantined and cannot become evidence. Status polling should be
+read-only or summarized at a meaningful transition, not produce a root commit
+for every poll.
 
-`tmux` can preserve an interactive shell or agent process when the browser
-connection drops, provided the host session itself remains alive. It does not
-guarantee that an interactive compute allocation survives, nor does a running
-process necessarily count as activity to a browser gateway.
+Each execution record should name the pre-execution root commit. That one
+identity composes the committed setup, Pixi manifest and lock, launchers,
+configuration, and nested datasets without repeating them in every log. A
+locked environment used from a dirty checkout is not an adequate environment
+identity.
 
-Long-running scientific work should therefore be represented by scheduler jobs
-whose identifiers and logs are durable. Interactive sessions should only
-prepare, submit, inspect, and resume them. A continuation note should state the
-last completed gate, active job IDs, authoritative dataset paths, and the exact
-next command.
+## Decisions from this review
 
-## Proposed gate sequence for the next campaign
+1. Carry the small BABS direct-layout checker workaround as known technical
+   debt until upstream removes the need for it. Do not turn it into a large
+   recurring procedure.
+2. Keep post-merge extraction and derivative finalization under project
+   control. Expose one concise Pixi entry point and provenance-capture the
+   actual content transformation with DataLad.
+3. Adopt BABS's MD5E annex backend project-wide. Stop migrating campaign
+   content to SHA256E. OCI digests or upstream checksums may remain source
+   metadata without creating a second annex-backend policy.
+4. Use one accepted-container DataLad dataset with a GitHub Git sibling backed
+   by a GIN annex-storage sibling. Do not create a storage arrangement per
+   image or campaign.
+5. An ignored local `.env` may provide a token for GIN setup or publication.
+   The publication task must load only the needed variables and must not pass
+   the token into BABS, Slurm, containers, con-duct logs, or provenance.
+6. Retain FreeSurfer when it is part of the intended fMRIPrep campaign. Do not
+   simplify scientifically relevant work to optimize archive extraction;
+   improve extraction at its own boundary.
+7. The earlier `.bidsignore` question was about preventing operational
+   provenance directories from being hidden merely to satisfy BIDS validation.
+   That is a validator implementation detail, not a skill-level question. The
+   concise rule is that `.bidsignore` describes payload exceptions and must not
+   conceal provenance.
 
-### Gate 1: shell and Pixi bootstrap
+## Implications for the skill
 
-- A clean noninteractive Bash shell resolves plain `pixi`.
-- The exact required Pixi version is reported.
-- `pixi lock --check` passes.
-- The BABS and quality environments run through short locked tasks.
-- No operator command names a private `.pixi/envs/.../bin` directory.
+Do not add the Phase 3 failure catalog to the skill. Add a short set of
+operating invariants instead:
 
-### Gate 2: input and image identities
+- plain Pixi works before project operations begin;
+- tools are used at the native boundaries above;
+- rendered interfaces are inspected before slow scheduler feedback;
+- campaign execution never crosses uncommitted environment or configuration
+  changes;
+- retained child state and root composition are checkpointed before the next
+  dependent action;
+- containers use one declared registry and publication pattern;
+- known BABS compatibility debt remains bounded and removable.
 
-- Study, raw input, and accepted-container dataset IDs and commits are fixed.
-- The requested inclusion file has the expected bounded row count.
-- `datalad containers-list` resolves the intended name.
-- `.datalad/environments/<name>/image` resolves the expected SHA256E key.
-- Exact SIF content is locally available; persistent retrieval status is stated
-  separately and honestly.
+One compact pre-execution check should enforce the transaction rule by rejecting
+a dirty environment/configuration or a root that does not compose the selected
+children. It should report the root commit and a short reason, not emit a large
+identity inventory on every command.
 
-### Gate 3: disposable BABS initialization
-
-- Destination parents exist and are writable.
-- Direct-layout paths resolve to `sourcedata/raw` and `.babs/*_ria`.
-- The generated scheduler directives are accepted by a tiny Unity test.
-- The generated app command has the expected image, input, output, isolation,
-  and wrapper arguments.
-- The analysis dataset's annex backend is SHA256E before work is submitted.
-
-### Gate 4: official setup check
-
-- Run the official checker and its Unity job test.
-- If the upstream direct-layout defect still exists, introduce only the
-  documented compatibility alias, synchronize it, run the check, remove it,
-  synchronize again, and assert its absence.
-- A checker failure stops the campaign; it is not waived informally.
-
-### Gate 5: bounded execution
-
-- Exercise the exact SIF and wrapper contract on one minimal fixture first.
-- Submit the three-task array only after that contract passes.
-- Record the job ID immediately and make status collection resumable from a new
-  shell.
-- Keep scratch cleanup in the generated job and avoid dependence on the browser
-  session or interactive allocation.
-
-### Gate 6: merge and finalization
-
-- Select the archive policy before submission.
-- Retrieve and merge through normal BABS lifecycle tasks.
-- Confirm archive annex keys use SHA256E.
-- Apply the chosen extractor once, followed by a bounded DataLad save or
-  `datalad run` transformation as appropriate.
-- Do not call a known-broken compatibility entry point.
-
-### Gate 7: independent validation and publication readiness
-
-- Validate only the declared derivative payload with the Deno validator.
-- Review warnings explicitly; do not suppress operational paths with
-  `.bidsignore`.
-- Confirm exact dataset ID and commit, content availability, and RIA state.
-- Test persistent image and derivative retrieval independently before making a
-  clean-clone or publication claim.
-
-## Questions to resolve before another scientific campaign
-
-1. Will BABS fix the configured-input checker, or will the project carry a
-   narrow tested patch instead of repeating the alias procedure?
-2. Is project-owned post-merge finalization the intended long-term policy, or
-   should BABS regain a supported finalization command?
-3. Should SHA256E be configured by a BABS project template, a post-init task,
-   or an upstream BABS option?
-4. Which exact SIF storage sibling will provide independent persistent
-   retrieval, and who owns publication?
-5. Which SimBIDS outputs are necessary for qualification? Can expensive
-   FreeSurfer-shaped output be omitted from future fixtures?
-6. What is the minimal Unity bootstrap that works from login, noninteractive,
-   and Slurm shells without embedding checkout-specific binary paths?
-7. What automated test will prevent BABS operational paths from being hidden by
-   future `.bidsignore` changes?
-
-## Non-conclusions
-
-This preliminary review does not establish that the resulting derivative is
-scientifically valid, publication-ready, or independently reproducible. It also
-does not reassess the final validation evidence. Those judgments require an
-explicit review of the outputs and their recorded identities, which is outside
-the scope requested here.
+This review does not judge the Phase 3 outputs. Work executed across the dirty
+authoring state cannot acquire a missing pre-execution root identity through a
+later consolidated commit.
