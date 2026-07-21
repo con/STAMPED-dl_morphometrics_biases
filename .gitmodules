@@ -16,11 +16,14 @@
 	path = operations/toy-bids-app-synthetic
 	url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-toy-bids-app-synthetic.git
 	datalad-id = e329577a-ae6b-454c-8a76-50ab1530c0a3
+	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-toy-bids-app-synthetic.git
 [submodule "studies/simbids"]
 	path = studies/simbids
-	url = ./studies/simbids
+	url = https://github.com/con/STAMPED-dl_morphometrics_biases-studies-simbids.git
 	datalad-id = a1ee9cb7-5792-45ae-b0ad-6dffa6ccf114
+	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-studies-simbids.git
 [submodule "operations/simbids-fmriprep-three-subject"]
 	path = operations/simbids-fmriprep-three-subject
-	url = ./operations/simbids-fmriprep-three-subject
+	url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-simbids-fmriprep-three-subject.git
 	datalad-id = dbe5af58-7254-4f4e-a19a-fff32e1911a0
+	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-simbids-fmriprep-three-subject.git
