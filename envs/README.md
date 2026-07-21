@@ -8,13 +8,17 @@ accepted container dataset.
 
 ## Pixi identity and bootstrap
 
-The workspace requires Pixi `0.66.0`. The checked bootstrap script downloads an exact upstream release asset for macOS arm64 or Linux x86-64, verifies its SHA-256, and installs it in `${PIXI_INSTALL_DIR:-$HOME/.local/bin}`:
+The workspace requires Pixi `0.73.0`. The checked bootstrap script downloads an exact upstream release asset for macOS arm64 or Linux x86-64, verifies its SHA-256, and installs it in `${PIXI_INSTALL_DIR:-$HOME/.local/bin}`:
 
 ```bash
 ./envs/bootstrap-pixi.sh
 ```
 
-The Phase 0 initialization used Homebrew Pixi `0.66.0` at `/opt/homebrew/bin/pixi`. Its installed executable had SHA-256 `edfcb61d2367451c6650220c694db8688e06fc0ccdc417d991104400a8ed338b` on 2026-07-16. This records the tool actually used; future installations should use the checked bootstrap script or otherwise verify the same release identity.
+The Unity installation used for the Phase 3 requalification is Pixi `0.73.0`
+at `$HOME/.pixi/bin/pixi`; its Linux x86-64 executable has SHA-256
+`7127a393da11ff7c76b1fbc458731e24ab8105c3ddb415459cd85fd84a75e715`.
+The Phase 0 initialization used Pixi `0.66.0`; that older identity remains in
+the historical Phase 1 report rather than being rewritten.
 
 ## Locked environments
 
@@ -30,7 +34,9 @@ pixi run --locked --environment analysis analysis-environment-report
 pixi install --locked --environment babs
 pixi run --locked --environment babs babs-version
 pixi run --locked --environment babs babs-tool-versions
-pixi run --locked --environment babs babs-operation init toy-campaign -- --dry-run
+pixi run --locked --environment babs babs-init toy-campaign -- --dry-run
+pixi run --locked --environment babs babs-check toy-campaign -- /absolute/babs/project
+pixi run --locked --environment babs babs-pilot toy-campaign -- --count 3 /absolute/babs/project
 pixi run --locked --environment dev validate-phase2
 pixi run --locked --environment dev verify-toy-image
 ```
@@ -60,14 +66,24 @@ JSON Schema, PyYAML, and official BIDS validator dependencies. Its purpose is
 repository validation only. It is not a scientific runtime and does not replace
 the exact registered SIF required for a result.
 
-The `babs-operation` task invokes `scripts/run_babs_operation.py`. Normal
-operations are wrapped with `con-duct run --mode current-session`; stdout,
+The operation-specific `babs-*` tasks invoke `scripts/run_babs_operation.py`
+and the unified `babs <subcommand>` interface. Normal operations are wrapped
+with `con-duct run --mode current-session`; stdout,
 stderr, wall time, and sampled process resource usage are written under the
 campaign's `logs/` directory. The wrapper does not replace the BABS command in
 the operations record: BABS remains the lifecycle authority, and DataLad/BABS
 remains the scientific provenance authority. The logs inherit the campaign's
 access class and must not be published outside that boundary. Dry runs do not
 create logs.
+
+The launcher explicitly loads an optional repository-root `.env` before
+starting con-duct and BABS. `python-dotenv` is locked in the `babs` environment,
+`.env.example` documents the non-secret interface, and the real `.env` is
+ignored. Do not put credentials there: con-duct may record the child process
+environment. BABS archive extraction is separate from its lifecycle CLI:
+`extract-derivatives` uses `datalad add-archive-content`, while
+`extract-derivatives-plain` uses plain unzip followed by one DataLad save for
+large tiny-file trees. No stale `babs-unzip` entry point is invoked.
 
 For a new cluster checkout, follow the clone and sibling setup in the root
 [README](../README.md) before realizing Pixi. The README's quick start uses

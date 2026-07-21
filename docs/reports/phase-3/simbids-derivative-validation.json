@@ -1,0 +1,68 @@
+{
+  "dataset_commit": "7f5ea5f8b9784a121c67bc508ecba89b344fe629",
+  "dataset_id": "fcdddd73-613b-4ebd-b316-bcbce388099b",
+  "dataset_kind": "derivative",
+  "dataset_path": "studies/simbids/derivatives/simbids-fmriprep-three-subject-attempt-001",
+  "errors": [],
+  "operational_paths_excluded_from_payload_view": [
+    ".babs/",
+    "code/",
+    "containers/",
+    "logs/",
+    "sourcedata/",
+    "*.zip"
+  ],
+  "payload_view": [
+    ".bidsignore",
+    "dataset_description.json",
+    "README.md",
+    "sub-01/",
+    "sub-02/",
+    "sub-03/"
+  ],
+  "requested_bids_schema": "v1.11.1",
+  "requested_bids_schema_url": "https://bids-specification.readthedocs.io/en/v1.11.1/schema.json",
+  "reviewed_warnings": [
+    {
+      "code": "NIFTI_UNIT",
+      "location": "/sub-02/func/sub-02_task-rest_space-MNI152NLin6Asym_desc-brain_mask.nii.gz",
+      "review": "SimBIDS qualification NIfTI has unspecified spatial units; filenames, dimensions, and headers remain validator-readable."
+    },
+    {
+      "code": "NIFTI_UNIT",
+      "location": "/sub-02/func/sub-02_task-rest_space-T1w_desc-brain_mask.nii.gz",
+      "review": "SimBIDS qualification NIfTI has unspecified spatial units; filenames, dimensions, and headers remain validator-readable."
+    },
+    {
+      "code": "NIFTI_UNIT",
+      "location": "/sub-01/func/sub-01_task-rest_space-T1w_desc-brain_mask.nii.gz",
+      "review": "SimBIDS qualification NIfTI has unspecified spatial units; filenames, dimensions, and headers remain validator-readable."
+    },
+    {
+      "code": "NIFTI_UNIT",
+      "location": "/sub-01/func/sub-01_task-rest_space-MNI152NLin6Asym_desc-brain_mask.nii.gz",
+      "review": "SimBIDS qualification NIfTI has unspecified spatial units; filenames, dimensions, and headers remain validator-readable."
+    },
+    {
+      "code": "NIFTI_UNIT",
+      "location": "/sub-03/func/sub-03_task-rest_space-T1w_desc-brain_mask.nii.gz",
+      "review": "SimBIDS qualification NIfTI has unspecified spatial units; filenames, dimensions, and headers remain validator-readable."
+    },
+    {
+      "code": "NIFTI_UNIT",
+      "location": "/sub-03/func/sub-03_task-rest_space-MNI152NLin6Asym_desc-brain_mask.nii.gz",
+      "review": "SimBIDS qualification NIfTI has unspecified spatial units; filenames, dimensions, and headers remain validator-readable."
+    }
+  ],
+  "schema_version": 1,
+  "status": "pass",
+  "subjects": [
+    "01",
+    "02",
+    "03"
+  ],
+  "validated_files": 86,
+  "validator_distribution": "bids-validator-deno",
+  "validator_internal_schema_version": "1.2.1",
+  "validator_version": "3.0.0"
+}

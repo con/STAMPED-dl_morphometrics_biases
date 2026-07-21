@@ -2,7 +2,7 @@
 name = "stamped-dl-morphometrics-biases"
 channels = ["conda-forge"]
 platforms = ["osx-arm64", "osx-64", "linux-64"]
-requires-pixi = "==0.66.0"
+requires-pixi = "==0.73.0"
 
 [feature.datalad.dependencies]
 python = "3.12.*"
@@ -13,11 +13,11 @@ datalad-container = "==1.2.5"
 git-annex = "==10.20260601"
 
 [feature.datalad.tasks]
-datalad-status = { cmd = "datalad status --annex all", description = "Report Git and annex state for the research object" }
-validate-phase0 = { cmd = "python scripts/validate_phase0.py", description = "Validate Phase 0 inventories, target coverage, and manifest placeholders" }
-validate-stamped = { cmd = "python scripts/validate_stamped.py", description = "Validate assessment structure, decisions, evidence, and roll-ups" }
-validate-stamped-ideal = { cmd = "python scripts/validate_stamped.py --ideal", description = "Report every unmet MUST and unachieved SHOULD ideal" }
-validate-stamped-negative-fixture = { cmd = "python scripts/validate_stamped_negative.py", description = "Prove the STAMPED validator rejects an omitted-decision fixture" }
+datalad-status = { cmd = "datalad status --annex all", cwd = ".", description = "Report Git and annex state for the research object" }
+validate-phase0 = { cmd = "python scripts/validate_phase0.py", cwd = ".", description = "Validate Phase 0 inventories, target coverage, and manifest placeholders" }
+validate-stamped = { cmd = "python scripts/validate_stamped.py", cwd = ".", description = "Validate assessment structure, decisions, evidence, and roll-ups" }
+validate-stamped-ideal = { cmd = "python scripts/validate_stamped.py --ideal", cwd = ".", description = "Report every unmet MUST and unachieved SHOULD ideal" }
+validate-stamped-negative-fixture = { cmd = "python scripts/validate_stamped_negative.py", cwd = ".", description = "Prove the STAMPED validator rejects an omitted-decision fixture" }
 tool-versions = { cmd = "pixi --version && datalad --version && git-annex version", description = "Report the pinned DataLad environment and resolved git-annex" }
 
 [feature.quality.dependencies]
@@ -31,14 +31,15 @@ pyyaml = "==6.0.3"
 bids-validator-deno = "==3.0.0"
 
 [feature.quality.tasks]
-test = { cmd = "pytest", description = "Run repository schema, access-boundary, BIDS, and phase-gate tests" }
-reuse-lint = { cmd = "reuse lint", description = "Check complete machine-readable license coverage" }
-validate-schemas = { cmd = "python scripts/validate_schemas.py", description = "Validate tracked campaign, image, result, and operations records" }
-validate-bids-toy = { cmd = "python scripts/validate_bids.py", description = "Validate the toy Study and raw child against BIDS 1.11.1" }
-validate-publication-boundary = { cmd = "python scripts/validate_publication_boundary.py", description = "Prove protected fixture classes cannot reach a public sibling" }
-validate-phase1 = { cmd = "python scripts/validate_phase1.py", description = "Run the complete Phase 1 structural exit gate" }
-validate-phase3 = { cmd = "python scripts/validate_phase3.py", description = "Validate the accepted direct-layout toy BABS campaign" }
-generate-phase1-reports = { cmd = "python scripts/generate_phase1_reports.py", description = "Generate committed Phase 1 validation and clean-clone evidence" }
+test = { cmd = "pytest", cwd = ".", description = "Run repository schema, access-boundary, BIDS, and phase-gate tests" }
+reuse-lint = { cmd = "reuse lint", cwd = ".", description = "Check complete machine-readable license coverage" }
+validate-schemas = { cmd = "python scripts/validate_schemas.py", cwd = ".", description = "Validate tracked campaign, image, result, and operations records" }
+validate-bids-toy = { cmd = "python scripts/validate_bids.py", cwd = ".", description = "Validate the toy Study and raw child against BIDS 1.11.1" }
+validate-bids-simbids-derivative = { cmd = "python scripts/validate_simbids_derivative.py", cwd = ".", description = "Validate the three-subject SimBIDS derivative payload with Deno" }
+validate-publication-boundary = { cmd = "python scripts/validate_publication_boundary.py", cwd = ".", description = "Prove protected fixture classes cannot reach a public sibling" }
+validate-phase1 = { cmd = "python scripts/validate_phase1.py", cwd = ".", description = "Run the complete Phase 1 structural exit gate" }
+validate-phase3 = { cmd = "python scripts/validate_phase3.py", cwd = ".", description = "Validate the accepted direct-layout BABS campaign" }
+generate-phase1-reports = { cmd = "python scripts/generate_phase1_reports.py", cwd = ".", description = "Generate committed Phase 1 validation and clean-clone evidence" }
 quality-tool-versions = { cmd = "pixi --version && datalad --version && git-annex version && reuse --version && pytest --version && python -c \"from importlib.metadata import version; print('bids-validator-deno', version('bids-validator-deno'))\"", description = "Report the locked Phase 1 validation toolchain" }
 
 [feature.dev.dependencies]
@@ -46,10 +47,11 @@ python = "3.12.*"
 ruff = "==0.14.10"
 
 [feature.dev.tasks]
-docs-check = { cmd = "python scripts/validate_docs.py", description = "Check Phase 2 operational documentation and repository-local links" }
+docs-check = { cmd = "python scripts/validate_docs.py", cwd = ".", description = "Check Phase 2 operational documentation and repository-local links" }
 dev-tool-versions = { cmd = "pixi --version && python --version && ruff --version && pytest --version && reuse --version", description = "Report the locked development toolchain" }
-validate-phase2 = { cmd = "python scripts/validate_phase2.py", description = "Run the Phase 2 preflight gate on a development host" }
-verify-toy-image = { cmd = "python scripts/verify_image_registry.py --image toy-bids-app", description = "Retrieve and verify the registered toy BIDS App SIF identity" }
+validate-phase2 = { cmd = "python scripts/validate_phase2.py", cwd = ".", description = "Run the Phase 2 preflight gate on a development host" }
+verify-toy-image = { cmd = "python scripts/verify_image_registry.py --image toy-bids-app", cwd = ".", description = "Retrieve and verify the registered toy BIDS App SIF identity" }
+verify-simbids-image = { cmd = "python scripts/verify_image_registry.py --image simbids-0-0-3", cwd = ".", description = "Verify the registered SimBIDS qualification SIF identity" }
 
 [feature.analysis.dependencies]
 # pandas<2, required by freesurfer-stats 1.2.0, has no Python 3.12 build.
@@ -67,7 +69,7 @@ scikit-learn = "==1.7.2"
 freesurfer-stats = "==1.2.0"
 
 [feature.analysis.tasks]
-analysis-environment-report = { cmd = "python scripts/report_environment.py --environment analysis", description = "Record the resolved analysis environment without treating it as a runtime identity" }
+analysis-environment-report = { cmd = "python scripts/report_environment.py --environment analysis", cwd = ".", description = "Record the resolved analysis environment without treating it as a runtime identity" }
 
 [feature.babs.dependencies]
 python = "3.11.*"
@@ -78,6 +80,7 @@ nibabel = "==5.3.3"
 [feature.babs.pypi-dependencies]
 babs = { git = "https://github.com/PennLINC/babs.git", rev = "2cc536a51282124f3811ffa971f82a7c34116af5" }
 con-duct = "==0.21.0"
+python-dotenv = "==1.2.2"
 
 [feature.babs-datalad.dependencies]
 python = "3.11.*"
@@ -90,7 +93,16 @@ git-annex = "==10.20260601"
 [feature.babs.tasks]
 babs-version = { cmd = "babs --version", description = "Report the pinned direct-layout BABS revision after realization on Linux" }
 babs-tool-versions = { cmd = "babs --version && con-duct --version", description = "Report the pinned BABS and con-duct operations tooling" }
-babs-operation = { cmd = "python scripts/run_babs_operation.py {{ operation }} {{ campaign }}", args = [{ arg = "operation", choices = ["init", "check-setup", "pilot", "submit", "status", "merge", "unzip", "finalize"] }, "campaign"], description = "Run one declared BABS lifecycle operation and append exact campaign-local evidence" }
+babs-init = { cmd = "python scripts/run_babs_operation.py init {{ campaign }}", args = ["campaign"], cwd = ".", description = "Initialize one declared BABS campaign" }
+babs-check = { cmd = "python scripts/run_babs_operation.py check-setup {{ campaign }}", args = ["campaign"], cwd = ".", description = "Run BABS setup checks for one campaign" }
+babs-sync = { cmd = "python scripts/run_babs_operation.py sync-code {{ campaign }}", args = ["campaign"], cwd = ".", description = "Save and push reviewed BABS project changes" }
+babs-pilot = { cmd = "python scripts/run_babs_operation.py pilot {{ campaign }}", args = ["campaign"], cwd = ".", description = "Submit a bounded BABS pilot for one campaign" }
+babs-submit = { cmd = "python scripts/run_babs_operation.py submit {{ campaign }}", args = ["campaign"], cwd = ".", description = "Submit a reviewed BABS batch" }
+babs-status = { cmd = "python scripts/run_babs_operation.py status {{ campaign }}", args = ["campaign"], cwd = ".", description = "Record BABS campaign status" }
+babs-merge = { cmd = "python scripts/run_babs_operation.py merge {{ campaign }}", args = ["campaign"], cwd = ".", description = "Merge completed BABS result branches" }
+extract-derivatives = { cmd = "scripts/unzip-derivatives.sh {{ target }}", args = ["target"], cwd = ".", description = "Extract BABS archives with DataLad add-archive-content" }
+extract-derivatives-plain = { cmd = "scripts/unzip-derivatives.sh --plain {{ target }}", args = ["target"], cwd = ".", description = "Extract BABS archives with plain unzip and one DataLad save" }
+materialize-simbids = { cmd = "python scripts/materialize_simbids_niftis.py {{ dataset }}", args = ["dataset"], cwd = ".", description = "Replace SimBIDS skeleton placeholders with deterministic valid NIfTI files" }
 
 [feature.image-linux]
 platforms = ["linux-64"]
@@ -105,16 +117,17 @@ pyyaml = "==6.0.3"
 jsonschema = "==4.26.0"
 
 [feature.image-authoring.tasks]
-image-authoring-report = { cmd = "python scripts/report_environment.py --environment image-authoring", description = "Record Pixi, Apptainer, Lima, signing, SBOM, and verification tooling identities" }
-validate-phase2 = { cmd = "python scripts/validate_phase2.py", description = "Validate the Phase 2 environment and exact-SIF registry foundation" }
-verify-toy-image = { cmd = "python scripts/verify_image_registry.py --image toy-bids-app", description = "Retrieve and verify the registered toy BIDS App SIF identity" }
-reproduce-toy-bids-app = { cmd = "cd envs/containers/accepted && datalad containers-run -d . -n toy-bids-app --explicit --input fixtures/bids --output fixtures/output -m 'Execute the registered toy BIDS App through DataLad Containers' -- fixtures/bids fixtures/output participant", description = "Record the complete toy BIDS App invocation with DataLad Containers; this is a provenance test, not scientific evidence" }
+image-authoring-report = { cmd = "python scripts/report_environment.py --environment image-authoring", cwd = ".", description = "Record Pixi, Apptainer, Lima, signing, SBOM, and verification tooling identities" }
+validate-phase2 = { cmd = "python scripts/validate_phase2.py", cwd = ".", description = "Validate the Phase 2 environment and exact-SIF registry foundation" }
+verify-toy-image = { cmd = "python scripts/verify_image_registry.py --image toy-bids-app", cwd = ".", description = "Retrieve and verify the registered toy BIDS App SIF identity" }
+verify-simbids-image = { cmd = "python scripts/verify_image_registry.py --image simbids-0-0-3", cwd = ".", description = "Verify the registered SimBIDS qualification SIF identity" }
+reproduce-toy-bids-app = { cmd = "datalad containers-run -d . -n toy-bids-app --explicit --input fixtures/bids --output fixtures/output -m 'Execute the registered toy BIDS App through DataLad Containers' -- fixtures/bids fixtures/output participant", cwd = "envs/containers/accepted", description = "Record the complete toy BIDS App invocation with DataLad Containers; this is a provenance test, not scientific evidence" }
 
 [environments]
 datalad = ["datalad"]
 quality = ["datalad", "quality"]
 dev = ["datalad", "quality", "dev"]
 analysis = ["analysis"]
-babs = ["babs-datalad", "babs"]
+babs = ["babs-datalad", "babs", "image-linux"]
 image-analysis = ["analysis", "image-linux"]
 image-authoring = ["datalad", "image-linux", "image-authoring"]

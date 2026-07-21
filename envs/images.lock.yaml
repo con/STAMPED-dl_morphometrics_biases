@@ -1,10 +1,15 @@
 schema_version: 1
 accepted_dataset:
   id: 8320f911-d110-4c82-b95b-285244cbae13
-  commit: 66c059753b6aa90646147ade6aa394b195f9f609
+  commit: eef3a2edf20c2d3a6ad0cb350aab72fbb5a0725d
 images:
   - image_id: toy-bids-app
     accepted_dataset_id: 8320f911-d110-4c82-b95b-285244cbae13
     accepted_dataset_commit: 66c059753b6aa90646147ade6aa394b195f9f609
     sif_annex_key: SHA256E-s3559424--04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59.0.sif
     sif_sha256: 04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59
+  - image_id: simbids-0-0-3
+    accepted_dataset_id: 8320f911-d110-4c82-b95b-285244cbae13
+    accepted_dataset_commit: eef3a2edf20c2d3a6ad0cb350aab72fbb5a0725d
+    sif_annex_key: SHA256E-s344264704--244af4c6e1708dc10dd1f89f28951c9efa1c01571de778449ed4593ef8e9bbea
+    sif_sha256: 244af4c6e1708dc10dd1f89f28951c9efa1c01571de778449ed4593ef8e9bbea

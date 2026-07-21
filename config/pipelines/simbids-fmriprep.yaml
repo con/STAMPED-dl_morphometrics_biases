@@ -1,0 +1,26 @@
+schema_version: 1
+pipeline_id: simbids-fmriprep
+pipeline_version: 0.1.dev27+g1a8efa3
+description: Simulate fMRIPrep anatomical derivatives for each selected participant.
+processing_level: subject
+container:
+  container_id: simbids-0-0-3
+  accepted_dataset_id: 8320f911-d110-4c82-b95b-285244cbae13
+  accepted_commit: eef3a2edf20c2d3a6ad0cb350aab72fbb5a0725d
+  image_path: .datalad/environments/simbids-0-0-3/image
+  annex_key: SHA256E-s344264704--244af4c6e1708dc10dd1f89f28951c9efa1c01571de778449ed4593ef8e9bbea
+  sha256: 244af4c6e1708dc10dd1f89f28951c9efa1c01571de778449ed4593ef8e9bbea
+arguments:
+  bids_app: fmriprep
+  participant_selection_flag: --participant-label
+  analysis_level: participant
+  anat_only: true
+  n_cpus: 1
+  omp_nthreads: 1
+  memory_mb: 3072
+input_condition: One unzipped synthetic BIDS participant plus dataset_description.json.
+outputs:
+  archive_pattern: sub-*_fmriprep_anat-simbids-0-1-dev27.zip
+  finalized_payload: sub-*/
+failure_behavior: Exit nonzero; retain logs and retry only as a recorded new attempt.
+randomness: SimBIDS selects per-run seeds; this qualification checks structure and provenance, not byte identity or scientific values.

@@ -1,0 +1,29 @@
+schema_version: 1
+profile_id: unity-cpu-simbids
+scheduler: slurm
+partition: cpu
+resources:
+  cpus_per_task: 1
+  memory_mb: 4096
+  walltime_minutes: 15
+  scratch_mb: 4096
+  scratch_resource: allocated-workspace
+job_compute_space: /scratch4/workspace/f008q9c_dartmouth_edu-stamped-phase3/jobs
+isolation:
+  network: none
+  home_mount: false
+  cwd_default_mount: false
+  clean_environment: true
+  disposable_home_and_cache: true
+declared_binds:
+  - purpose: BABS job clone and output worktree
+    host_path: "${PWD}"
+    container_path: "${PWD}"
+    mode: read-write
+host_interfaces:
+  - Linux kernel
+  - Slurm scheduler
+  - Unity allocated workspace scratch
+  - Apptainer 1.5.2
+site_activation: Source the account bashrc, then activate the locked babs environment with pixi shell-hook.
+reviewed_difference_from_toy_attempts: No manual PATH construction, HOME/cache overrides, or unsupported Slurm temporary-disk request.

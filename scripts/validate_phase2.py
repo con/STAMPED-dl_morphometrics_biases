@@ -42,20 +42,32 @@ def validate() -> list[str]:
     errors: list[str] = []
     manifest = PIXIMANIFEST.read_text(encoding="utf-8")
     lock = PIXILOCK.read_text(encoding="utf-8")
-    if 'requires-pixi = "==0.66.0"' not in manifest:
-        errors.append("Pixi 0.66.0 is not pinned")
+    if 'requires-pixi = "==0.73.0"' not in manifest:
+        errors.append("Pixi 0.73.0 is not pinned")
+    if not lock.startswith("version: 7\n"):
+        errors.append("Pixi lock is not at format version 7")
     if 'platforms = ["osx-arm64", "osx-64", "linux-64"]' not in manifest:
         errors.append("development and Linux target platforms are incomplete")
     for environment in REQUIRED_ENVIRONMENTS:
-        if not re.search(rf"^{re.escape(environment)}\s*=", manifest, flags=re.MULTILINE):
+        if not re.search(
+            rf"^{re.escape(environment)}\s*=", manifest, flags=re.MULTILINE
+        ):
             errors.append(f"missing named Pixi environment: {environment}")
     for token in (
-        "pandas = \"<2\"",
-        "freesurfer-stats = \"==1.2.0\"",
+        'pandas = "<2"',
+        'freesurfer-stats = "==1.2.0"',
         "2cc536a51282124f3811ffa971f82a7c34116af5",
-        "apptainer = \"==1.5.2\"",
-        "cosign = \"==3.0.4\"",
-        "syft = \"==1.48.0\"",
+        'apptainer = "==1.5.2"',
+        'cosign = "==3.0.4"',
+        'syft = "==1.48.0"',
+        'python-dotenv = "==1.2.2"',
+        "babs-init =",
+        "babs-check =",
+        "babs-pilot =",
+        "babs-sync =",
+        "extract-derivatives =",
+        "extract-derivatives-plain =",
+        "verify-simbids-image =",
     ):
         if token not in manifest:
             errors.append(f"missing required Phase 2 dependency declaration: {token}")
@@ -63,7 +75,11 @@ def validate() -> list[str]:
         errors.append("image execution dependencies must be restricted to linux-64")
     if "PennLINC/babs.git?rev=2cc536a51282124f3811ffa971f82a7c34116af5" not in lock:
         errors.append("Pixi lock does not resolve the pinned BABS revision")
-    for link, target in {"pixi.toml": "envs/pixi.toml", "pixi.lock": "envs/pixi.lock", ".pixi": "envs/.pixi"}.items():
+    for link, target in {
+        "pixi.toml": "envs/pixi.toml",
+        "pixi.lock": "envs/pixi.lock",
+        ".pixi": "envs/.pixi",
+    }.items():
         path = ROOT / link
         if not path.is_symlink() or path.readlink().as_posix() != target:
             errors.append(f"missing tracked discovery link: {link} -> {target}")

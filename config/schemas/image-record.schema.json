@@ -22,7 +22,7 @@
     "state": {
       "enum": ["discovered", "candidate", "qualified", "accepted-registered", "superseded", "rejected"]
     },
-    "source_kind": { "enum": ["external-datalad", "project-built"] },
+    "source_kind": { "enum": ["external-datalad", "external-oci", "project-built"] },
     "architecture": { "enum": ["x86_64", "aarch64"] },
     "interface": {
       "type": "object",
@@ -79,6 +79,7 @@
     "source_dataset_commit": { "$ref": "#/$defs/git_commit" },
     "source_annex_key": { "type": "string", "minLength": 1 },
     "source_reference": { "type": "string", "format": "uri" },
+    "source_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
     "definition_path": { "$ref": "#/$defs/relative_path" },
     "definition_sha256": { "$ref": "#/$defs/sha256" },
     "pixi_manifest_sha256": { "$ref": "#/$defs/sha256" },
@@ -88,7 +89,10 @@
     "accepted_dataset_id": { "$ref": "#/$defs/uuid" },
     "accepted_dataset_commit": { "$ref": "#/$defs/git_commit" },
     "accepted_image_path": { "$ref": "#/$defs/relative_path" },
-    "sif_annex_key": { "type": "string", "pattern": "^SHA256E-s[0-9]+--[0-9a-f]{64}(?:\\.[A-Za-z0-9_-]+)*\\.sif$" },
+    "sif_annex_key": {
+      "type": "string",
+      "pattern": "^SHA256E-s[0-9]+--[0-9a-f]{64}(?:(?:\\.[A-Za-z0-9_-]+)*\\.sif)?$"
+    },
     "sif_sha256": { "$ref": "#/$defs/sha256" }
   },
   "allOf": [
@@ -96,8 +100,17 @@
       "if": { "properties": { "source_kind": { "const": "external-datalad" } } },
       "then": {
         "required": ["source_dataset_id", "source_dataset_commit", "source_annex_key", "source_reference"]
-      },
-      "else": {
+      }
+    },
+    {
+      "if": { "properties": { "source_kind": { "const": "external-oci" } } },
+      "then": {
+        "required": ["source_reference", "source_digest", "builder_version", "build_command"]
+      }
+    },
+    {
+      "if": { "properties": { "source_kind": { "const": "project-built" } } },
+      "then": {
         "required": [
           "definition_path",
           "definition_sha256",

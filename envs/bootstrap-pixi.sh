@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-version="0.66.0"
+version="0.73.0"
 release_url="https://github.com/prefix-dev/pixi/releases/download/v${version}"
 
 case "$(uname -s):$(uname -m)" in
   Darwin:arm64)
     asset="pixi-aarch64-apple-darwin"
-    expected_sha256="6bce870c2126cc4ad0c8ba8d58f22a8031cd7c9e875e5f6659a06410d1c755e5"
+    expected_sha256="63f335060d0bda2bc67ca487afbe460fc20ffd28e8e8b4878845a206ab972c86"
     ;;
   Linux:x86_64)
     asset="pixi-x86_64-unknown-linux-musl"
-    expected_sha256="4d8124d3fbe6c201482437873bc67e735e35f3506568e706136c4e079c26929e"
+    expected_sha256="7127a393da11ff7c76b1fbc458731e24ab8105c3ddb415459cd85fd84a75e715"
     ;;
   *)
     printf 'Unsupported bootstrap platform: %s:%s\n' "$(uname -s)" "$(uname -m)" >&2

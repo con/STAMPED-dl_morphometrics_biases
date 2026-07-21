@@ -1,0 +1,60 @@
+schema_version: 1
+image_id: simbids-0-0-3
+state: accepted-registered
+source_kind: external-oci
+architecture: x86_64
+interface:
+  kind: bids-app
+  name: SimBIDS
+  version: 0.1.dev27+g1a8efa3
+licenses:
+  - component: SimBIDS Python package
+    identifier: Apache-2.0
+    redistribution: permitted
+  - component: bundled OCI image dependencies
+    identifier: NOASSERTION
+    redistribution: unresolved
+retrieval_locations: []
+qualification:
+  interface:
+    status: pass
+    evidence: docs/reports/phase-3/simbids-image-qualification.md#interface
+  containment:
+    status: pass
+    evidence: docs/reports/phase-3/simbids-image-qualification.md#containment
+  fixture:
+    status: pass
+    evidence: docs/reports/phase-3/simbids-image-qualification.md#fixture
+  target_architecture:
+    status: pass
+    evidence: docs/reports/phase-3/simbids-image-qualification.md#target-architecture
+  persistent_retrieval:
+    status: pending
+    evidence: docs/reports/phase-3/simbids-image-qualification.md#persistent-retrieval
+hardening:
+  sbom:
+    decision: defer
+    rationale: This synthetic engineering fixture is not a scientific runtime; require an SBOM before adopting a claim-bearing image.
+  signature:
+    decision: defer
+    rationale: No project signing trust policy has been selected for this non-scientific fixture.
+  attestation:
+    decision: defer
+    rationale: The OCI-to-SIF conversion is recorded, but no signed build attestation exists.
+source_reference: docker://pennlinc/simbids:0.0.3
+source_digest: sha256:3646a27a974f006585201fb1f5237e9c61abc704903c6c282878be81e86687ee
+builder_version: datalad-container 1.2.5 with Apptainer 1.5.2
+build_command:
+  - datalad
+  - containers-add
+  - -d
+  - .
+  - -n
+  - simbids-0-0-3
+  - --url
+  - docker://pennlinc/simbids:0.0.3
+accepted_dataset_id: 8320f911-d110-4c82-b95b-285244cbae13
+accepted_dataset_commit: eef3a2edf20c2d3a6ad0cb350aab72fbb5a0725d
+accepted_image_path: .datalad/environments/simbids-0-0-3/image
+sif_annex_key: SHA256E-s344264704--244af4c6e1708dc10dd1f89f28951c9efa1c01571de778449ed4593ef8e9bbea
+sif_sha256: 244af4c6e1708dc10dd1f89f28951c9efa1c01571de778449ed4593ef8e9bbea

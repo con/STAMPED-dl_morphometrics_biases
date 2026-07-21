@@ -71,12 +71,24 @@ def verify(image_id: str) -> list[str]:
 
     accepted_id = dataset_id(ACCEPTED)
     accepted_commit = command(["git", "rev-parse", "HEAD"], cwd=ACCEPTED)
-    for field, actual in {
-        "accepted_dataset_id": accepted_id,
-        "accepted_dataset_commit": accepted_commit,
-    }.items():
-        if record.get(field) != actual:
-            errors.append(f"record {field} does not match accepted dataset")
+    if record.get("accepted_dataset_id") != accepted_id:
+        errors.append("record accepted_dataset_id does not match accepted dataset")
+    record_commit = record.get("accepted_dataset_commit")
+    if not isinstance(record_commit, str):
+        errors.append("record accepted_dataset_commit is absent")
+    else:
+        ancestor = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", record_commit, accepted_commit],
+            cwd=ACCEPTED,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if ancestor.returncode:
+            errors.append(
+                "record accepted_dataset_commit is not an ancestor of the current "
+                "accepted dataset"
+            )
     indexed_dataset = index.get("accepted_dataset")
     if indexed_dataset != {"id": accepted_id, "commit": accepted_commit}:
         errors.append("image index accepted_dataset does not match accepted dataset")
@@ -98,7 +110,11 @@ def verify(image_id: str) -> list[str]:
         errors.append("image index does not exactly mirror the authoritative record")
 
     relative = record.get("accepted_image_path")
-    if not isinstance(relative, str) or relative.startswith("/") or ".." in relative.split("/"):
+    if (
+        not isinstance(relative, str)
+        or relative.startswith("/")
+        or ".." in relative.split("/")
+    ):
         return [*errors, "record accepted_image_path must be a safe relative path"]
     image_path = ACCEPTED / relative
     if not image_path.exists():
@@ -112,6 +128,18 @@ def verify(image_id: str) -> list[str]:
     annex_key = command(["git", "annex", "lookupkey", relative], cwd=ACCEPTED)
     if record.get("sif_annex_key") != annex_key:
         errors.append("record sif_annex_key does not match git-annex")
+    if isinstance(record_commit, str):
+        try:
+            historical_target = command(
+                ["git", "show", f"{record_commit}:{relative}"], cwd=ACCEPTED
+            )
+        except RuntimeError as error:
+            errors.append(str(error))
+        else:
+            if Path(historical_target).name != record.get("sif_annex_key"):
+                errors.append(
+                    "recorded registry commit does not contain the recorded annex key"
+                )
     if record.get("sif_sha256") != sha256(image_path):
         errors.append("record sif_sha256 does not match SIF bytes")
 
@@ -119,7 +147,9 @@ def verify(image_id: str) -> list[str]:
     dataset_config.read(ACCEPTED / ".datalad" / "config")
     configured_path = dataset_config.get(f'datalad "containers.{image_id}"', "image")
     if configured_path != relative:
-        errors.append("DataLad Containers registration does not resolve to the recorded SIF")
+        errors.append(
+            "DataLad Containers registration does not resolve to the recorded SIF"
+        )
     return errors
 
 

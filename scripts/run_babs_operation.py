@@ -14,31 +14,32 @@ import datetime as dt
 import getpass
 import hashlib
 import json
+import os
 import subprocess
 import uuid
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 
 ROOT = Path(__file__).resolve().parents[1]
 OPERATIONS = {
-    "init": "babs-init",
-    "check-setup": "babs-check-setup",
-    "pilot": "babs-submit",
-    "submit": "babs-submit",
-    "status": "babs-status",
-    "merge": "babs-merge",
-    "unzip": "babs-unzip",
-    "finalize": "babs-unzip",
+    "init": "init",
+    "check-setup": "check-setup",
+    "sync-code": "sync-code",
+    "pilot": "submit",
+    "submit": "submit",
+    "status": "status",
+    "merge": "merge",
 }
 EVENT_TYPES = {
     "init": "initialize",
     "check-setup": "setup-check",
+    "sync-code": "sync",
     "pilot": "pilot",
     "submit": "submit",
     "status": "status",
     "merge": "merge",
-    "unzip": "finalize",
-    "finalize": "finalize",
 }
 
 
@@ -66,9 +67,15 @@ def append_event(
     rc: int,
 ) -> None:
     ledger = campaign / "commands.jsonl"
-    prior = [line for line in ledger.read_bytes().splitlines() if line.strip()] if ledger.exists() else []
+    prior = (
+        [line for line in ledger.read_bytes().splitlines() if line.strip()]
+        if ledger.exists()
+        else []
+    )
     evidence = sorted(
-        str(path.relative_to(campaign)) for path in (campaign / "logs").glob("*") if path.is_file()
+        str(path.relative_to(campaign))
+        for path in (campaign / "logs").glob("*")
+        if path.is_file()
     )
     event = {
         "schema_version": 1,
@@ -76,7 +83,9 @@ def append_event(
         "campaign_id": campaign_id,
         "attempt_id": attempt_id,
         "sequence": len(prior) + 1,
-        "timestamp": dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z"),
+        "timestamp": dt.datetime.now(dt.timezone.utc)
+        .isoformat()
+        .replace("+00:00", "Z"),
         "event_type": EVENT_TYPES[operation],
         "actor": getpass.getuser(),
         "argv": argv,
@@ -85,7 +94,9 @@ def append_event(
         "observed_state": f"command exited with status {rc}",
         "evidence": evidence,
         "access_class": "public",
-        "previous_event_sha256": hashlib.sha256(prior[-1]).hexdigest() if prior else None,
+        "previous_event_sha256": hashlib.sha256(prior[-1]).hexdigest()
+        if prior
+        else None,
     }
     with ledger.open("a", encoding="utf-8") as stream:
         stream.write(json.dumps(event, sort_keys=True, separators=(",", ":")) + "\n")
@@ -105,7 +116,12 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true")
     args, babs_args = parser.parse_known_args()
 
-    argv = [OPERATIONS[args.operation], *babs_args]
+    env_file = ROOT / ".env"
+    load_dotenv(env_file, override=False)
+    os.environ.setdefault("DUCT_CONFIG_PATHS", str(env_file))
+    if babs_args[:1] == ["--"]:
+        babs_args = babs_args[1:]
+    argv = ["babs", OPERATIONS[args.operation], *babs_args]
     if args.dry_run:
         print(" ".join(["con-duct", "run", "--mode", "current-session", *argv]))
         return 0

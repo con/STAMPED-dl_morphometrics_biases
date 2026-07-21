@@ -1,33 +1,45 @@
-# Phase 3 toy BABS proof
+# Phase 3 BABS qualification
 
-The accepted direct-layout derivative is
-`studies/toy/derivatives/toy-bids-app-synthetic-attempt-003/`, DataLad dataset
-`44bd0b3a-e03d-46bf-b0dc-a5e47bdb95c7`, commit
-`bef0f2f585e3dcb02ff9101b4eef2850592e1f89`. The separate operations dataset
-is `operations/toy-bids-app-synthetic/`, dataset
-`e329577a-ae6b-454c-8a76-50ab1530c0a3`.
+The current accepted engineering qualification is
+`studies/simbids/derivatives/simbids-fmriprep-three-subject-attempt-001/`,
+DataLad dataset `fcdddd73-613b-4ebd-b316-bcbce388099b`, commit
+`7f5ea5f8b9784a121c67bc508ecba89b344fe629`. Its separate operations dataset is
+`operations/simbids-fmriprep-three-subject/`, dataset
+`dbe5af58-7254-4f4e-a19a-fff32e1911a0`.
 
-Attempt 001 demonstrated that Unity rejects BABS's generic Slurm `--tmp`
-request. Attempt 002 reached the exact container but exposed a wrapper output
-directory mismatch. Attempt 003 used allocated workspace scratch and
-`all_results_in_one_zip: true`; Slurm job `61988356` completed, BABS status
-reported one done and zero failed, and merge succeeded. Every attempt has a
-separate immutable DataLad identity and its decision/evidence remains in the
-operations ledger.
+The campaign used a three-subject raw BIDS fixture generated with SimBIDS and
+the exact SimBIDS 0.0.3 SIF registered through `datalad containers-add` at
+`.datalad/environments/simbids-0-0-3/image`. Slurm array job `62027866` ran all
+three tasks concurrently; every task exited `0:0`, BABS reported three done and
+zero failed, and merge succeeded. The final archives and extracted payload use
+SHA256E annex keys and are available from the output RIA.
 
-The participant command used `--cleanenv`, `--containall`, `--no-home`, disabled
-default home/cwd mounts and container networking, and bound only the declared
-job worktree. Host-side DataLad used GitHub to obtain the public raw subdataset;
-the container itself had no network. Job-scoped scratch was removed by the
-generated cleanup trap.
+Operator commands use short, locked Pixi tasks. The noninteractive Bash startup
+path now exposes `pixi` before `.bashrc` returns, and the generated batch script
+activates the locked `babs` environment with `pixi shell-hook`. There is no
+absolute environment-bin `PATH`, host `HOME`, or cache override in the campaign.
+The repository-root `.env` contract is implemented with locked
+`python-dotenv`; it is intentionally not a credential store.
 
-The pinned BABS check-setup implementation still assumes legacy `inputs/data`
-and its `babs-unzip` entry point raises an import error. These failures are
-retained. Finalization therefore ran as a tracked `datalad run` in the same
-attempt dataset. The visible BABS `containers/` directory is covered by an
-explicit, reviewed `.bidsignore` exception; independent BIDS validation then
-passed with only the expected empty-toy subject/author warnings.
+BABS direct layout correctly installed raw data at `sourcedata/raw`. The pinned
+checker still has its upstream `inputs/data` assertion, so a temporary tracked
+alias was added only for the official `babs check-setup --job-test`, then
+removed and synchronized before submission. Checker job `62027613` passed. The
+accepted derivative has no `inputs/` compatibility tree.
 
-A clean recursive clone from the public Study sibling reproduced the accepted
-dataset ID and commit and retrieved both payload and archive. Their annex keys
-also have public GitHub release URLs, independent of the in-place output RIA.
+The stale `babs-unzip` entry point was not used. DataLad
+`add-archive-content` was functionally correct but inefficient for thousands of
+small synthetic files on Unity, so the selected policy was plain unzip followed
+by one DataLad save. Metadata finalization ran under `datalad run`; archives
+were retained. Deno BIDS Validator 3.0.0 then found 86 payload files, three
+subjects, no errors, and six reviewed synthetic `NIFTI_UNIT` warnings. BABS
+operational paths are excluded structurally from that payload view; the narrow
+`.bidsignore` names only non-standard fMRIPrep payload extensions.
+
+The earlier toy attempts remain historical evidence in
+`operations/toy-bids-app-synthetic/`. They discovered Unity's unsupported
+generic `--tmp` directive, the toy wrapper-directory contract, the stale unzip
+entry point, and the checker inconsistency. The new SimBIDS campaign is the
+active Phase 3 qualification, but remains non-scientific. The exact SimBIDS SIF
+still needs independent persistent publication before a fresh clone can be
+claimed to retrieve it without this local registry.
