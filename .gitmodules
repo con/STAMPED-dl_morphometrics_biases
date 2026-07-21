@@ -16,3 +16,7 @@
 	path = operations/toy-bids-app-synthetic
 	url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-toy-bids-app-synthetic.git
 	datalad-id = e329577a-ae6b-454c-8a76-50ab1530c0a3
+[submodule "studies/simbids"]
+	path = studies/simbids
+	url = ./studies/simbids
+	datalad-id = a1ee9cb7-5792-45ae-b0ad-6dffa6ccf114
