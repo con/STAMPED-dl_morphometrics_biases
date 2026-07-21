@@ -6,7 +6,7 @@ config-root-ignore	ro-root	configuration	.gitignore	git:containing-commit:.gitig
 policy-agents	ro-root	agent-policy	AGENTS.md	git:dc2b848876de31e42a895de53ef8185bb5bb24a1:AGENTS.md	public	UNDECLARED	active	Requires local skills and commit trailer
 doc-readme	ro-root	documentation	README.md	git:containing-commit:README.md	public	UNDECLARED	active	Describes the initialized root, Phase 0 records, tooling, and honest ideal gaps
 doc-conversion-plan	ro-root	plan	docs/conversion-plan.md	git:containing-commit:docs/conversion-plan.md	public	UNDECLARED	active	Records the completed in-place bootstrap before Phase 0 and adjusts later phase work
-skill-stamped	ro-root	skill	skills/stamped-neuroimaging-analysis/SKILL.md	git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/stamped-neuroimaging-analysis/SKILL.md	public	UNDECLARED	active	Complete repository-local STAMPED operating policy
+skill-stamped	ro-root	skill	skills/stamped-neuroimaging-analysis/	git:containing-commit:skills/stamped-neuroimaging-analysis/	public	UNDECLARED	active	Core STAMPED policy with conditional assessment and execution-transaction references
 skill-bids-builder	ro-root	skill	skills/bids-app-builder/SKILL.md	git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/bids-app-builder/SKILL.md	public	UNDECLARED	available	Required when a project BIDS App is created or adapted
 env-pixi-manifest	ro-root	environment-definition	envs/pixi.toml	git:containing-commit:envs/pixi.toml	public	UNDECLARED	active	Pins Pixi requirement and exact DataLad tooling constraints for osx-arm64 and linux-64
 env-pixi-lock	ro-root	environment-lock	envs/pixi.lock	git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/pixi.lock	public	UNDECLARED	active	Exact multi-platform solve; macOS git-annex is a declared host dependency

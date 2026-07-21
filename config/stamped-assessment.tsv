@@ -126,24 +126,24 @@ doc-conversion-plan	ro-root	plan	P.2	MUST	adopt	partial	docs/conversion-plan.md	
 doc-conversion-plan	ro-root	plan	P.3	MUST	adopt	partial	docs/conversion-plan.md	Version-control policy exists but producing environment definitions are incomplete
 doc-conversion-plan	ro-root	plan	E.1	SHOULD	adopt	unmet	docs/conversion-plan.md	Disposable scientific execution is required but unproved
 doc-conversion-plan	ro-root	plan	D.2	SHOULD	adopt	partial	docs/conversion-plan.md	Reproducible-build policy exists but scientific builds are unresolved
-skill-stamped	ro-root	skill	S.1	MUST	adopt	met	skills/stamped-neuroimaging-analysis/SKILL.md	Tracked path is directly reachable from the research-object root
+skill-stamped	ro-root	skill	S.1	MUST	adopt	met	skills/stamped-neuroimaging-analysis/	The complete tracked skill bundle is directly reachable from the research-object root
 skill-stamped	ro-root	skill	S.2	MUST	adopt	unmet	config/components.tsv#license_status	No governing project licence declaration is retrievable
-skill-stamped	ro-root	skill	T.1	MUST	adopt	met	git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/stamped-neuroimaging-analysis/SKILL.md	The containing Git commit or recorded earlier commit and path provide content identity
-skill-stamped	ro-root	skill	T.2	SHOULD	adopt	met	.gitattributes;skills/stamped-neuroimaging-analysis/SKILL.md	Stored directly in the root Git/DataLad dataset
-skill-stamped	ro-root	skill	T.3	MUST	adopt	met	git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/stamped-neuroimaging-analysis/SKILL.md	The containing Git commit or recorded earlier commit records this modification
-skill-stamped	ro-root	skill	M.1	SHOULD	adopt	partial	skills/stamped-neuroimaging-analysis/SKILL.md	A stable tracked boundary exists but is stored directly in the root dataset
+skill-stamped	ro-root	skill	T.1	MUST	adopt	met	git:containing-commit:skills/stamped-neuroimaging-analysis/	The containing Git commit and bundle path provide content identity
+skill-stamped	ro-root	skill	T.2	SHOULD	adopt	met	.gitattributes;skills/stamped-neuroimaging-analysis/	Stored directly in the root Git/DataLad dataset
+skill-stamped	ro-root	skill	T.3	MUST	adopt	met	git:containing-commit:skills/stamped-neuroimaging-analysis/	The containing Git commit records this policy revision
+skill-stamped	ro-root	skill	M.1	SHOULD	adopt	partial	skills/stamped-neuroimaging-analysis/	A stable skill boundary with conditional references exists but is stored directly in the root dataset
 skill-stamped	ro-root	skill	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-skill-stamped	ro-root	skill	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/stamped-neuroimaging-analysis/SKILL.md	The exact containing or earlier commit is published with the public root repository
+skill-stamped	ro-root	skill	D.1	MUST	adopt	partial	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:skills/stamped-neuroimaging-analysis/	The public sibling exists, but the current containing commit must be published before this revision is persistently retrievable
 skill-stamped	ro-root	skill	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
-skill-stamped	ro-root	skill	T.4-programmatic	SHOULD	decline	not-applicable	skills/stamped-neuroimaging-analysis/SKILL.md	The policy specifies future operations but does not itself perform a code-driven modification
-skill-stamped	ro-root	skill	T.4-versions	MUST	adopt	not-applicable	skills/stamped-neuroimaging-analysis/SKILL.md	The policy is not itself a code-driven execution
-skill-stamped	ro-root	skill	A.1	MUST	adopt	partial	skills/stamped-neuroimaging-analysis/SKILL.md	Procedure boundaries are described but result-specific commands and inputs remain unresolved
-skill-stamped	ro-root	skill	A.2	SHOULD	adopt	partial	skills/stamped-neuroimaging-analysis/SKILL.md	Some tasks and interfaces are prescribed but scientific leaf operations do not yet exist
-skill-stamped	ro-root	skill	P.1	MUST	adopt	partial	skills/stamped-neuroimaging-analysis/SKILL.md	Isolation policy is explicit but has not been proved in a scientific run
-skill-stamped	ro-root	skill	P.2	MUST	adopt	partial	skills/stamped-neuroimaging-analysis/SKILL.md	Environment policy is explicit but scientific runtimes remain unresolved
-skill-stamped	ro-root	skill	P.3	MUST	adopt	partial	skills/stamped-neuroimaging-analysis/SKILL.md	Version-control policy exists but producing environment definitions are incomplete
-skill-stamped	ro-root	skill	E.1	SHOULD	adopt	unmet	skills/stamped-neuroimaging-analysis/SKILL.md	Disposable scientific execution is required but unproved
-skill-stamped	ro-root	skill	D.2	SHOULD	adopt	partial	skills/stamped-neuroimaging-analysis/SKILL.md	Reproducible-build policy exists but scientific builds are unresolved
+skill-stamped	ro-root	skill	T.4-programmatic	SHOULD	decline	not-applicable	skills/stamped-neuroimaging-analysis/	The policy specifies future operations but does not itself perform a code-driven modification
+skill-stamped	ro-root	skill	T.4-versions	MUST	adopt	not-applicable	skills/stamped-neuroimaging-analysis/	The policy is not itself a code-driven execution
+skill-stamped	ro-root	skill	A.1	MUST	adopt	partial	skills/stamped-neuroimaging-analysis/	Procedure boundaries are described but result-specific commands and inputs remain unresolved
+skill-stamped	ro-root	skill	A.2	SHOULD	adopt	partial	skills/stamped-neuroimaging-analysis/	Some tasks and interfaces are prescribed but scientific leaf operations do not yet exist
+skill-stamped	ro-root	skill	P.1	MUST	adopt	partial	skills/stamped-neuroimaging-analysis/	Isolation policy is explicit but has not been proved in a scientific run
+skill-stamped	ro-root	skill	P.2	MUST	adopt	partial	skills/stamped-neuroimaging-analysis/	Environment policy is explicit but scientific runtimes remain unresolved
+skill-stamped	ro-root	skill	P.3	MUST	adopt	partial	skills/stamped-neuroimaging-analysis/	Version-control policy exists but producing environment definitions are incomplete
+skill-stamped	ro-root	skill	E.1	SHOULD	adopt	unmet	skills/stamped-neuroimaging-analysis/	Disposable scientific execution is required but unproved
+skill-stamped	ro-root	skill	D.2	SHOULD	adopt	partial	skills/stamped-neuroimaging-analysis/	Reproducible-build policy exists but scientific builds are unresolved
 skill-bids-builder	ro-root	skill	S.1	MUST	adopt	met	skills/bids-app-builder/SKILL.md	Tracked path is directly reachable from the research-object root
 skill-bids-builder	ro-root	skill	S.2	MUST	adopt	unmet	config/components.tsv#license_status	No governing project licence declaration is retrievable
 skill-bids-builder	ro-root	skill	T.1	MUST	adopt	met	git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/bids-app-builder/SKILL.md	The containing Git commit or recorded earlier commit and path provide content identity
