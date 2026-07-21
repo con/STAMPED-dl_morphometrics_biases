@@ -20,3 +20,7 @@
 	path = studies/simbids
 	url = ./studies/simbids
 	datalad-id = a1ee9cb7-5792-45ae-b0ad-6dffa6ccf114
+[submodule "operations/simbids-fmriprep-three-subject"]
+	path = operations/simbids-fmriprep-three-subject
+	url = ./operations/simbids-fmriprep-three-subject
+	datalad-id = dbe5af58-7254-4f4e-a19a-fff32e1911a0
