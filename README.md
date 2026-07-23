@@ -63,16 +63,39 @@ GitHub as `origin` preserves the repository's publication boundary; GitHub is
 Git-only for this dataset, while GIN provides the root annex content.
 
 ```bash
+# Apply this once per user account if recursive installs will include
+# GitHub-backed subdatasets. It prevents git-annex from probing GitHub's
+# Git-only `origin` remotes, including nested origins.
+git config --global remote.origin.annex-ignore true
+
 datalad clone \
   https://github.com/con/STAMPED-dl_morphometrics_biases.git \
   STAMPED-dl_morphometrics_biases
 cd STAMPED-dl_morphometrics_biases
 
-datalad siblings add --name gin \
-  --url https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases \
-  --as-common-datasrc gin-content --fetch
+# GitHub stores Git metadata only. Set this before any recursive DataLad
+# operation so git-annex does not probe GitHub for annex content.
 git config remote.origin.annex-ignore true
+
+GIN_URL=https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases
+
+# `configure` is safe when this setup has already been applied. The `add`
+# branch is needed only for clones that do not already have a GIN sibling.
+if datalad siblings -s gin query >/dev/null 2>&1; then
+  datalad siblings configure --name gin --url "$GIN_URL" --fetch
+else
+  datalad siblings add --name gin --url "$GIN_URL" --fetch
+fi
 git config remote.gin.annex-ignore false
+
+# Recent published clones already carry the `gin-content` common data source.
+# Enable it if it is present; do not try to create it a second time.
+if datalad siblings -s gin-content query >/dev/null 2>&1; then
+  datalad siblings enable --name gin-content --url "$GIN_URL"
+else
+  datalad siblings configure --name gin --url "$GIN_URL" \
+    --as-common-datasrc gin-content --fetch
+fi
 datalad siblings
 
 datalad get -n -r .
@@ -84,7 +107,41 @@ installs the tracked Study and container subdatasets without downloading annex
 content indiscriminately. Retrieve the exact SIF or input files needed by the
 current campaign with `datalad get` after resolving the campaign's identities.
 The GIN sibling is a public read source; do not configure cluster credentials
-or publish controlled campaign content there.
+or publish controlled campaign content there. The setup above is intentionally
+safe to rerun: it configures an existing sibling instead of trying to add it,
+and it reuses an existing `gin-content` annex source instead of trying to
+initialize a duplicate special remote.
+
+### Temporary BABS RIA storage
+
+BABS may use a local or cluster RIA store as temporary staging while jobs run
+and outputs are aggregated. That store is operational infrastructure, not a
+required public dependency. After merge and finalization, the accepted output
+must be present in the derivative dataset's committed tree (with its
+provenance and validation records); a fresh clone must not require access to
+the temporary RIA. Historical commits may retain the original RIA path as
+operational provenance, even when that path is no longer reachable.
+
+Before accepting or publishing an attempt, verify the final state in a fresh
+clone. Confirm that the merged payload is present, save the finalization and
+acceptance records, and remove only the temporary RIA siblings from the local
+configuration if they are no longer needed:
+
+```bash
+datalad siblings
+for sibling in output-storage output; do
+  if datalad siblings -s "$sibling" query >/dev/null 2>&1; then
+    datalad siblings remove --name "$sibling"
+  fi
+done
+datalad save -m "Finalize merged BABS output"
+```
+
+The sibling names depend on the BABS configuration. Removing a sibling here
+does not delete the RIA store or rewrite history; it only prevents a future
+clone of the finalized dataset from treating temporary storage as a required
+location. Do not commit absolute home-directory paths or credentials in
+`.babs/` or other tracked operational files.
 
 Read [AGENTS.md](AGENTS.md) before making changes. The complete operating policy is in the repository-local [STAMPED neuroimaging skill](skills/stamped-neuroimaging-analysis/SKILL.md); use the [BIDS App builder skill](skills/bids-app-builder/SKILL.md) whenever a project-authored BIDS App is created or adapted.
 

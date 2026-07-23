@@ -6,7 +6,7 @@ Create a new DataLad research object, `STAMPED-dl_morphometrics_biases`, that re
 
 This is an opinionated implementation intended to achieve the STAMPED ideals where practical. Enforce every STAMPED MUST, make and record an explicit decision for every applicable SHOULD, and support relevant MAY choices without treating them as required. Assess both the complete research object and every component; a component gap rolls up to the research object. Repository organization, data boundaries, environment policy, image identity, provenance capture, access controls, and campaign operations must exist and pass a toy proof before historical scientific code is imported. The old `dl_morphometrics_biases` repository remains read-only evidence; it is not cleaned up in place.
 
-Include the complete repository-local [STAMPED neuroimaging skill](../skills/stamped-neuroimaging-analysis/SKILL.md) and [BIDS App builder skill](../skills/bids-app-builder/SKILL.md) in the first commit. Make `AGENTS.md` require the STAMPED skill for research-object work and the BIDS App builder in addition whenever an authored BIDS App is created or adapted. Treat this plan and the copied skills as current project policy. Record every required SHOULD and hardening choice in `config/stamped-assessment.tsv` or linked implementation evidence; resolve any conflict by updating the affected policy artifact explicitly before implementation changes.
+Include the complete repository-local [STAMPED neuroimaging skill](../skills/stamped-neuroimaging-analysis/SKILL.md), [BIDS App builder skill](../skills/bids-app-builder/SKILL.md), and [Unity HPC operations skill](../skills/unity-hpc-operations/SKILL.md) in the first commit. Make `AGENTS.md` require the STAMPED skill for research-object work, the BIDS App builder in addition whenever an authored BIDS App is created or adapted, and the Unity skill for operations on Unity. Treat this plan and the copied skills as current project policy. Record every required SHOULD and hardening choice in `config/stamped-assessment.tsv` or linked implementation evidence; resolve any conflict by updating the affected policy artifact explicitly before implementation changes.
 
 ## Fixed decisions
 
@@ -73,7 +73,7 @@ Every intended poster panel has an ID, expected inputs and outputs, a reproducti
 ### Work
 
 1. Verify and extend the initialized top-level DataLad superdataset. It began with a text-friendly SHA256E configuration; preserve that historical fact and complete the fixed-decision MD5E migration as its own authoring transaction. It is the research-object root, not a BIDS dataset or “super-study,” and its commits compose exact component/subdataset commits.
-2. Verify and commit both complete repository-local skill bundles and the `AGENTS.md` pointer requiring them in the appropriate work.
+2. Verify and commit all three complete repository-local skill bundles and the `AGENTS.md` pointer requiring them in the appropriate work.
 3. Establish the complete directory pattern from the copied [STAMPED skill](../skills/stamped-neuroimaging-analysis/SKILL.md), including repository-local `skills/`, canonical `src/` and `apps/`, `envs/containers/{repronim,custom,accepted}/`, `config/`, `operations/`, `studies/`, multi-study `results/`, tests, documentation, licenses, root `result-manifest.tsv`, and access-control metadata.
 4. Record BIDS 1.11.1 as the pinned specification. Create an empty toy Study dataset immediately so the organization is executable rather than aspirational.
 5. Give every outer `studies/<study>/` dataset a `dataset_description.json` with `DatasetType: "study"` and a README. Install `sourcedata/raw/` as an independent raw BIDS/DataLad dataset. Do not create placeholder derivative datasets before their producing operation exists.
@@ -144,7 +144,7 @@ A clean macOS checkout can realize development environments, Linux can realize s
 1. Install a small redistributable raw BIDS/DataLad dataset at `studies/toy/sourcedata/raw/`.
 2. Register a small exact SIF with a BIDS App interface in the container dataset. Record its commit, annex key, SHA-256, and retrieval location.
 3. From a committed root composition, pin and qualify BABS at the direct-layout revision. Initialize the BABS project directly at `studies/toy/derivatives/<pipeline>-<variant>-attempt-001/` with `analysis_path: "."`, hidden `.babs/input_ria` and `.babs/output_ria` paths, and the raw child installed at `sourcedata/raw/` within the BABS project.
-4. Make that one root the BABS project, DataLad analysis dataset, and provisional BIDS derivative. Register and checkpoint it in the parent Study and root before setup checks, pilot submission, or other dependent execution; prove that a clean recursive clone preserves the dataset and required RIA retrieval paths.
+4. Make that one root the BABS project, DataLad analysis dataset, and provisional BIDS derivative. Register and checkpoint it in the parent Study and root before setup checks, pilot submission, or other dependent execution; prove that a clean recursive clone preserves the dataset and committed payload. Temporary RIA paths are operational provenance, not required retrieval dependencies after finalization.
 5. Create `operations/toy-<campaign>/` as a separate DataLad dataset. Add a schema-valid resolved `campaign.yaml`, desired/observed state, requested/realized inclusion, attempt identity, reviewed BABS configuration, literal command renderings, and append-only `commands.jsonl`.
 6. Use a Pixi task to make each BABS lifecycle operation actionable, but record actual expanded initialization, setup check, pilot, submission, status/retry, merge, finalization, validation, and acceptance argv plus tool versions and before/after state in the operations ledger.
 7. Run from a clean clone with no host-home mount, no persistent cache, fresh work/output/scratch, explicit read-only inputs/configuration, declared binds, and no network unless declared. Inspect the realized BABS participant script and mount table during the pilot.
@@ -354,7 +354,7 @@ Every poster target has a result-manifest row and regenerates from exact permitt
 - One clean Slurm participant replay per image family.
 - Empty host home/cache and no-prior-output replay with explicit bind and network inspection.
 - One downstream DataLad replay per scientific operation boundary.
-- Verification that every accepted BABS attempt retains one dataset identity and that parent registration plus clean cloning preserve required input/output RIA paths.
+- Verification that every accepted BABS attempt retains one dataset identity and that parent registration plus clean cloning preserve the finalized committed payload. Temporary input/output RIA paths are recorded as operational provenance only and are not a post-finalization dependency.
 - Independent BIDS validation, or reviewed exceptions, for every Study root, raw input, and claimed derivative.
 - Schema and checksum validation for every authoritative table and figure.
 - Cross-host pilot on a second Slurm system when available.

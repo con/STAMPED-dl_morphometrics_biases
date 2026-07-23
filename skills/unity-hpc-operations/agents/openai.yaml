@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unity HPC Operations"
+  short_description: "Operate safely and efficiently on Unity HPC"
+  default_prompt: "Use $unity-hpc-operations to plan and execute this work on Unity HPC."

@@ -6,6 +6,8 @@ For any work that creates, migrates, executes, debugs, audits, or releases the n
 
 When creating or adapting a project-authored BIDS App, also read and follow `skills/bids-app-builder/SKILL.md` and its referenced resources completely.
 
+For any operation on the Unity HPC cluster, including storage placement, software environments and caches, Slurm execution, monitoring, data staging, or cleanup, also read and follow `skills/unity-hpc-operations/SKILL.md` completely.
+
 Do not import historical scientific code until the repository, environment/image registry, and toy BABS campaign have passed the gates that precede Phase 4.
 
 ## Commit co-authorship

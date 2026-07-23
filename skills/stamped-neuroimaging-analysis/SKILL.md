@@ -195,3 +195,34 @@ BIDS validity, access separation, license compatibility, result-manifest
 resolution, and current component/root STAMPED assessments. Publish the
 principle-by-principle achievements and gaps; never scale a campaign to conceal
 an unresolved pilot failure.
+
+Create one operations dataset per dataset × pipeline/runtime × input-condition × cluster campaign. Resolve the exact dataset, pipeline, cluster, tool, and access identities into an immutable campaign snapshot.
+
+For every campaign:
+
+- Give each attempt a stable identity. Never overwrite it. Treat a scientific input, SIF, or pipeline change as a new variant or campaign rather than a retry.
+- Preserve requested inclusion separately from BABS-realized inclusion. Record runtime failures separately from eligibility and missing-input exclusions.
+- Keep desired and observed state distinct. Advance through small, recorded transitions based on BABS, RIA, log, and output evidence.
+- Record initialization, setup checks, submission, status inspection, retry decisions, merge, finalization, validation, and acceptance as operational meta-provenance.
+- Pilot one participant/session. Inspect the run record, SIF identity, input commits, expanded execution command, isolation controls, outputs, and resource request before scaling.
+- Use the campaign-axis, clean-pin, attempt, state-ledger, resumable-transition, and inclusion-accounting patterns credited to [mechababs](https://github.com/asmacdo/mechababs), without installing or invoking mechababs unless the skill is explicitly revised to adopt it.
+
+BABS's generated wrapper and zip/merge layer add provenance indirection. Preserve the generated execution material, inspect the expanded command, test representative historical replay, and do not reproduce this indirection in authored steps.
+
+## Validate, accept, and release
+
+Require evidence for these gates:
+
+- A clean recursive clone resolves every permitted component or gives exact authorized controlled-access instructions.
+- Every retained result-changing step resolves to code, configuration, input commits, exact SIF content, explicit command, and output through an intelligible DataLad/BABS record.
+- Each accepted BABS attempt retains one dataset identity from initialization through provenance-captured finalization.
+- Parent registration and a clean recursive clone preserve each accepted attempt and its committed payload; temporary input/output RIA paths are operational provenance, not required retrieval dependencies after finalization.
+- Representative historical replay and clean-room SIF execution reproduce fixture outputs and pass domain checks.
+- The Study, raw input, and each accepted derivative validate independently against BIDS 1.11.1 or carry a reviewed upstream exception.
+- Public release tests cannot retrieve controlled annex content or reveal credentials, prohibited metadata, or participant-level logs.
+- Code, documentation, data, models, containers, and distributed license files have compatible license/DUC records at every composition boundary.
+- Every result-manifest entry resolves to present files, exact provenance, exact inputs, the accepted SIF, and an executable reproduction entry point.
+- Every MUST row in the current component and root assessments is `met`, or remains visibly `restricted`/`unmet` with evidence. Never describe the latter as achieved.
+- Every SHOULD row has a recorded decision and rationale. Report adopted, deferred, and declined SHOULDs separately.
+
+Publish the seven-principle assessment with the release. State the intended scope, component roll-up, evidence, controlled-access limitations, and remaining gaps. Report failed gates with evidence, and never scale a campaign to compensate for an unresolved pilot failure.
