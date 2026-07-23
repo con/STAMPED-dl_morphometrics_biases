@@ -15,7 +15,7 @@ licenses:
     identifier: GPL-2.0-only;MIT;BSD-3-Clause
     redistribution: permitted
 retrieval_locations:
-  - https://github.com/con/STAMPED-dl_morphometrics_biases-accepted-containers/releases/download/phase-2-toy-v0.1.0/toy-bids-app-0.1.0.sif
+  - https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-accepted-containers/releases/download/phase-2-toy-v0.1.0/toy-bids-app-0.1.0.sif
 qualification:
   interface:
     status: pass

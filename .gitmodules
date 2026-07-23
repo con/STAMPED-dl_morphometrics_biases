@@ -1,29 +1,29 @@
 [submodule "studies/toy"]
 	path = studies/toy
-	url = https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy
+	url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-studies-toy
 	datalad-id = 2d982b94-44a2-49ba-bfcd-97966084b025
-	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy
+	datalad-url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-studies-toy
 [submodule "envs/containers/repronim"]
 	datalad-url = https://github.com/ReproNim/containers.git
 	path = envs/containers/repronim
 	url = https://github.com/ReproNim/containers.git
 [submodule "envs/containers/accepted"]
 	path = envs/containers/accepted
-	url = https://github.com/con/STAMPED-dl_morphometrics_biases-accepted-containers.git
+	url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-accepted-containers.git
 	datalad-id = 8320f911-d110-4c82-b95b-285244cbae13
-	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-accepted-containers.git
+	datalad-url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-accepted-containers.git
 [submodule "operations/toy-bids-app-synthetic"]
 	path = operations/toy-bids-app-synthetic
-	url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-toy-bids-app-synthetic.git
+	url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-operations-toy-bids-app-synthetic.git
 	datalad-id = e329577a-ae6b-454c-8a76-50ab1530c0a3
-	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-toy-bids-app-synthetic.git
+	datalad-url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-operations-toy-bids-app-synthetic.git
 [submodule "studies/simbids"]
 	path = studies/simbids
-	url = https://github.com/con/STAMPED-dl_morphometrics_biases-studies-simbids.git
+	url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-studies-simbids.git
 	datalad-id = a1ee9cb7-5792-45ae-b0ad-6dffa6ccf114
-	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-studies-simbids.git
+	datalad-url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-studies-simbids.git
 [submodule "operations/simbids-fmriprep-three-subject"]
 	path = operations/simbids-fmriprep-three-subject
-	url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-simbids-fmriprep-three-subject.git
+	url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-operations-simbids-fmriprep-three-subject.git
 	datalad-id = dbe5af58-7254-4f4e-a19a-fff32e1911a0
-	datalad-url = https://github.com/con/STAMPED-dl_morphometrics_biases-operations-simbids-fmriprep-three-subject.git
+	datalad-url = https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-operations-simbids-fmriprep-three-subject.git

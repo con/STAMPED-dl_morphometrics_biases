@@ -3,7 +3,7 @@ input_ria_path: .babs/input_ria
 output_ria_path: .babs/output_ria
 input_datasets:
   raw:
-    origin_url: https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy-sourcedata-raw
+    origin_url: https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-studies-toy-sourcedata-raw
     path_in_babs: sourcedata/raw
     is_zipped: false
     required_files:

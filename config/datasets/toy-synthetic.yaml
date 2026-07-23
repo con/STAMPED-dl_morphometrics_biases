@@ -8,7 +8,7 @@ study:
   commit: 278fdb7856803bded7e79cc88def2f739d22663c
 raw:
   path: studies/toy/sourcedata/raw/
-  origin_url: https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy-sourcedata-raw
+  origin_url: https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-studies-toy-sourcedata-raw
   datalad_id: 787b9dfe-8399-46a2-bdb9-5230a949e88a
   commit: 97ed4a843219fd8c30ec149b8c43fc13ec0c23da
 cohort_policy: Include the sole generated participant, sub-01.

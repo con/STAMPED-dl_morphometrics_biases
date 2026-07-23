@@ -123,8 +123,8 @@ def validate() -> list[str]:
         "gin": output(["git", "remote", "get-url", "gin"]),
     }
     if remotes["origin"] not in {
-        "git@github.com:con/STAMPED-dl_morphometrics_biases.git",
-        "https://github.com/con/STAMPED-dl_morphometrics_biases.git",
+        "git@github.com:STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases.git",
+        "https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases.git",
     }:
         errors.append("GitHub origin changed")
     if remotes["gin"] != "https://gin.g-node.org/leej3/STAMPED-dl_morphometrics_biases":

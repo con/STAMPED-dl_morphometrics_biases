@@ -25,7 +25,7 @@ dataset-root	ro-root	datalad-dataset	T.2	SHOULD	adopt	met	.gitattributes;.datala
 dataset-root	ro-root	datalad-dataset	T.3	MUST	adopt	met	datalad:baa2ec91-e618-4bac-b382-ac0daf9f779a;git:d5be2909a0c7ed0f4232d346e63f20b5ae249880	The containing Git commit or recorded earlier commit records this modification
 dataset-root	ro-root	datalad-dataset	M.1	SHOULD	adopt	met	.datalad/config	Independent DataLad dataset identity is established
 dataset-root	ro-root	datalad-dataset	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-dataset-root	ro-root	datalad-dataset	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;datalad:baa2ec91-e618-4bac-b382-ac0daf9f779a;git:d5be2909a0c7ed0f4232d346e63f20b5ae249880	The exact containing or earlier commit is published with the public root repository
+dataset-root	ro-root	datalad-dataset	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;datalad:baa2ec91-e618-4bac-b382-ac0daf9f779a;git:d5be2909a0c7ed0f4232d346e63f20b5ae249880	The exact containing or earlier commit is published with the public root repository
 dataset-root	ro-root	datalad-dataset	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 dataset-root	ro-root	datalad-dataset	T.4-programmatic	SHOULD	decline	not-applicable	.datalad/config	This static component does not perform code-driven modifications or emit provenance records
 dataset-root	ro-root	datalad-dataset	T.4-versions	MUST	adopt	not-applicable	.datalad/config	This component is not a code-driven execution whose involved versions must be reported
@@ -43,7 +43,7 @@ config-annex-policy	ro-root	configuration	T.2	SHOULD	adopt	met	.gitattributes;.g
 config-annex-policy	ro-root	configuration	T.3	MUST	adopt	met	git:containing-commit:.gitattributes	The containing Git commit or recorded earlier commit records this modification
 config-annex-policy	ro-root	configuration	M.1	SHOULD	adopt	partial	.gitattributes	A stable tracked boundary exists but is stored directly in the root dataset
 config-annex-policy	ro-root	configuration	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-config-annex-policy	ro-root	configuration	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:.gitattributes	The exact containing or earlier commit is published with the public root repository
+config-annex-policy	ro-root	configuration	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:.gitattributes	The exact containing or earlier commit is published with the public root repository
 config-annex-policy	ro-root	configuration	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 config-annex-policy	ro-root	configuration	T.4-programmatic	SHOULD	decline	not-applicable	.gitattributes	This static component does not perform code-driven modifications or emit provenance records
 config-annex-policy	ro-root	configuration	T.4-versions	MUST	adopt	not-applicable	.gitattributes	This component is not a code-driven execution whose involved versions must be reported
@@ -61,7 +61,7 @@ config-root-ignore	ro-root	configuration	T.2	SHOULD	adopt	met	.gitattributes;.gi
 config-root-ignore	ro-root	configuration	T.3	MUST	adopt	met	git:containing-commit:.gitignore	The containing Git commit or recorded earlier commit records this modification
 config-root-ignore	ro-root	configuration	M.1	SHOULD	adopt	partial	.gitignore	A stable tracked boundary exists but is stored directly in the root dataset
 config-root-ignore	ro-root	configuration	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-config-root-ignore	ro-root	configuration	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:.gitignore	The exact containing or earlier commit is published with the public root repository
+config-root-ignore	ro-root	configuration	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:.gitignore	The exact containing or earlier commit is published with the public root repository
 config-root-ignore	ro-root	configuration	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 config-root-ignore	ro-root	configuration	T.4-programmatic	SHOULD	decline	not-applicable	.gitignore	This static component does not perform code-driven modifications or emit provenance records
 config-root-ignore	ro-root	configuration	T.4-versions	MUST	adopt	not-applicable	.gitignore	This component is not a code-driven execution whose involved versions must be reported
@@ -79,7 +79,7 @@ policy-agents	ro-root	agent-policy	T.2	SHOULD	adopt	met	.gitattributes;AGENTS.md
 policy-agents	ro-root	agent-policy	T.3	MUST	adopt	met	git:dc2b848876de31e42a895de53ef8185bb5bb24a1:AGENTS.md	The containing Git commit or recorded earlier commit records this modification
 policy-agents	ro-root	agent-policy	M.1	SHOULD	adopt	partial	AGENTS.md	A stable tracked boundary exists but is stored directly in the root dataset
 policy-agents	ro-root	agent-policy	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-policy-agents	ro-root	agent-policy	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:dc2b848876de31e42a895de53ef8185bb5bb24a1:AGENTS.md	The exact containing or earlier commit is published with the public root repository
+policy-agents	ro-root	agent-policy	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:dc2b848876de31e42a895de53ef8185bb5bb24a1:AGENTS.md	The exact containing or earlier commit is published with the public root repository
 policy-agents	ro-root	agent-policy	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 policy-agents	ro-root	agent-policy	T.4-programmatic	SHOULD	decline	not-applicable	AGENTS.md	This static component does not perform code-driven modifications or emit provenance records
 policy-agents	ro-root	agent-policy	T.4-versions	MUST	adopt	not-applicable	AGENTS.md	This component is not a code-driven execution whose involved versions must be reported
@@ -97,7 +97,7 @@ doc-readme	ro-root	documentation	T.2	SHOULD	adopt	met	.gitattributes;README.md	S
 doc-readme	ro-root	documentation	T.3	MUST	adopt	met	git:containing-commit:README.md	The containing Git commit or recorded earlier commit records this modification
 doc-readme	ro-root	documentation	M.1	SHOULD	adopt	partial	README.md	A stable tracked boundary exists but is stored directly in the root dataset
 doc-readme	ro-root	documentation	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-doc-readme	ro-root	documentation	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:README.md	The exact containing or earlier commit is published with the public root repository
+doc-readme	ro-root	documentation	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:README.md	The exact containing or earlier commit is published with the public root repository
 doc-readme	ro-root	documentation	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 doc-readme	ro-root	documentation	T.4-programmatic	SHOULD	decline	not-applicable	README.md	This static component does not perform code-driven modifications or emit provenance records
 doc-readme	ro-root	documentation	T.4-versions	MUST	adopt	not-applicable	README.md	This component is not a code-driven execution whose involved versions must be reported
@@ -115,7 +115,7 @@ doc-conversion-plan	ro-root	plan	T.2	SHOULD	adopt	met	.gitattributes;docs/conver
 doc-conversion-plan	ro-root	plan	T.3	MUST	adopt	met	git:containing-commit:docs/conversion-plan.md	The containing Git commit or recorded earlier commit records this modification
 doc-conversion-plan	ro-root	plan	M.1	SHOULD	adopt	partial	docs/conversion-plan.md	A stable tracked boundary exists but is stored directly in the root dataset
 doc-conversion-plan	ro-root	plan	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-doc-conversion-plan	ro-root	plan	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:docs/conversion-plan.md	The exact containing or earlier commit is published with the public root repository
+doc-conversion-plan	ro-root	plan	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:docs/conversion-plan.md	The exact containing or earlier commit is published with the public root repository
 doc-conversion-plan	ro-root	plan	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 doc-conversion-plan	ro-root	plan	T.4-programmatic	SHOULD	decline	not-applicable	docs/conversion-plan.md	The policy specifies future operations but does not itself perform a code-driven modification
 doc-conversion-plan	ro-root	plan	T.4-versions	MUST	adopt	not-applicable	docs/conversion-plan.md	The policy is not itself a code-driven execution
@@ -133,7 +133,7 @@ skill-stamped	ro-root	skill	T.2	SHOULD	adopt	met	.gitattributes;skills/stamped-n
 skill-stamped	ro-root	skill	T.3	MUST	adopt	met	git:containing-commit:skills/stamped-neuroimaging-analysis/	The containing Git commit records this policy revision
 skill-stamped	ro-root	skill	M.1	SHOULD	adopt	partial	skills/stamped-neuroimaging-analysis/	A stable skill boundary with conditional references exists but is stored directly in the root dataset
 skill-stamped	ro-root	skill	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-skill-stamped	ro-root	skill	D.1	MUST	adopt	partial	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:skills/stamped-neuroimaging-analysis/	The public sibling exists, but the current containing commit must be published before this revision is persistently retrievable
+skill-stamped	ro-root	skill	D.1	MUST	adopt	partial	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:skills/stamped-neuroimaging-analysis/	The public sibling exists, but the current containing commit must be published before this revision is persistently retrievable
 skill-stamped	ro-root	skill	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 skill-stamped	ro-root	skill	T.4-programmatic	SHOULD	decline	not-applicable	skills/stamped-neuroimaging-analysis/	The policy specifies future operations but does not itself perform a code-driven modification
 skill-stamped	ro-root	skill	T.4-versions	MUST	adopt	not-applicable	skills/stamped-neuroimaging-analysis/	The policy is not itself a code-driven execution
@@ -151,7 +151,7 @@ skill-bids-builder	ro-root	skill	T.2	SHOULD	adopt	met	.gitattributes;skills/bids
 skill-bids-builder	ro-root	skill	T.3	MUST	adopt	met	git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/bids-app-builder/SKILL.md	The containing Git commit or recorded earlier commit records this modification
 skill-bids-builder	ro-root	skill	M.1	SHOULD	adopt	partial	skills/bids-app-builder/SKILL.md	A stable tracked boundary exists but is stored directly in the root dataset
 skill-bids-builder	ro-root	skill	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-skill-bids-builder	ro-root	skill	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/bids-app-builder/SKILL.md	The exact containing or earlier commit is published with the public root repository
+skill-bids-builder	ro-root	skill	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:dc2b848876de31e42a895de53ef8185bb5bb24a1:skills/bids-app-builder/SKILL.md	The exact containing or earlier commit is published with the public root repository
 skill-bids-builder	ro-root	skill	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 skill-bids-builder	ro-root	skill	T.4-programmatic	SHOULD	decline	not-applicable	skills/bids-app-builder/SKILL.md	The policy specifies future operations but does not itself perform a code-driven modification
 skill-bids-builder	ro-root	skill	T.4-versions	MUST	adopt	not-applicable	skills/bids-app-builder/SKILL.md	The policy is not itself a code-driven execution
@@ -169,7 +169,7 @@ env-pixi-manifest	ro-root	environment-definition	T.2	SHOULD	adopt	met	.gitattrib
 env-pixi-manifest	ro-root	environment-definition	T.3	MUST	adopt	met	git:containing-commit:envs/pixi.toml	The containing Git commit or recorded earlier commit records this modification
 env-pixi-manifest	ro-root	environment-definition	M.1	SHOULD	adopt	partial	envs/pixi.toml	A stable tracked boundary exists but is stored directly in the root dataset
 env-pixi-manifest	ro-root	environment-definition	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-env-pixi-manifest	ro-root	environment-definition	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:envs/pixi.toml	The exact containing or earlier commit is published with the public root repository
+env-pixi-manifest	ro-root	environment-definition	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:envs/pixi.toml	The exact containing or earlier commit is published with the public root repository
 env-pixi-manifest	ro-root	environment-definition	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 env-pixi-manifest	ro-root	environment-definition	T.4-programmatic	SHOULD	decline	not-applicable	envs/pixi.toml	This static component does not perform code-driven modifications or emit provenance records
 env-pixi-manifest	ro-root	environment-definition	T.4-versions	MUST	adopt	not-applicable	envs/pixi.toml	This component is not a code-driven execution whose involved versions must be reported
@@ -187,7 +187,7 @@ env-pixi-lock	ro-root	environment-lock	T.2	SHOULD	adopt	met	.gitattributes;envs/
 env-pixi-lock	ro-root	environment-lock	T.3	MUST	adopt	met	git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/pixi.lock	The containing Git commit or recorded earlier commit records this modification
 env-pixi-lock	ro-root	environment-lock	M.1	SHOULD	adopt	partial	envs/pixi.lock	A stable tracked boundary exists but is stored directly in the root dataset
 env-pixi-lock	ro-root	environment-lock	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-env-pixi-lock	ro-root	environment-lock	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/pixi.lock	The exact containing or earlier commit is published with the public root repository
+env-pixi-lock	ro-root	environment-lock	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/pixi.lock	The exact containing or earlier commit is published with the public root repository
 env-pixi-lock	ro-root	environment-lock	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 env-pixi-lock	ro-root	environment-lock	T.4-programmatic	SHOULD	decline	not-applicable	envs/pixi.lock	This static component does not perform code-driven modifications or emit provenance records
 env-pixi-lock	ro-root	environment-lock	T.4-versions	MUST	adopt	not-applicable	envs/pixi.lock	This component is not a code-driven execution whose involved versions must be reported
@@ -205,7 +205,7 @@ doc-env-bootstrap	ro-root	documentation	T.2	SHOULD	adopt	met	.gitattributes;envs
 doc-env-bootstrap	ro-root	documentation	T.3	MUST	adopt	met	git:containing-commit:envs/README.md	The containing Git commit or recorded earlier commit records this modification
 doc-env-bootstrap	ro-root	documentation	M.1	SHOULD	adopt	partial	envs/README.md	A stable tracked boundary exists but is stored directly in the root dataset
 doc-env-bootstrap	ro-root	documentation	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-doc-env-bootstrap	ro-root	documentation	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:envs/README.md	The exact containing or earlier commit is published with the public root repository
+doc-env-bootstrap	ro-root	documentation	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:envs/README.md	The exact containing or earlier commit is published with the public root repository
 doc-env-bootstrap	ro-root	documentation	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 doc-env-bootstrap	ro-root	documentation	T.4-programmatic	SHOULD	decline	not-applicable	envs/README.md	This static component does not perform code-driven modifications or emit provenance records
 doc-env-bootstrap	ro-root	documentation	T.4-versions	MUST	adopt	not-applicable	envs/README.md	This component is not a code-driven execution whose involved versions must be reported
@@ -223,7 +223,7 @@ link-pixi-prefix	ro-root	discovery-link	T.2	SHOULD	adopt	met	.gitattributes;.pix
 link-pixi-prefix	ro-root	discovery-link	T.3	MUST	adopt	met	git:55a061ebcaf614555fa73e9eea1e45e808199c18:.pixi	The containing Git commit or recorded earlier commit records this modification
 link-pixi-prefix	ro-root	discovery-link	M.1	SHOULD	adopt	partial	.pixi -> envs/.pixi	A stable tracked boundary exists but is stored directly in the root dataset
 link-pixi-prefix	ro-root	discovery-link	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-link-pixi-prefix	ro-root	discovery-link	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:.pixi	The exact containing or earlier commit is published with the public root repository
+link-pixi-prefix	ro-root	discovery-link	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:.pixi	The exact containing or earlier commit is published with the public root repository
 link-pixi-prefix	ro-root	discovery-link	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 link-pixi-prefix	ro-root	discovery-link	T.4-programmatic	SHOULD	decline	not-applicable	.pixi -> envs/.pixi	This static component does not perform code-driven modifications or emit provenance records
 link-pixi-prefix	ro-root	discovery-link	T.4-versions	MUST	adopt	not-applicable	.pixi -> envs/.pixi	This component is not a code-driven execution whose involved versions must be reported
@@ -241,7 +241,7 @@ link-pixi-manifest	ro-root	discovery-link	T.2	SHOULD	adopt	met	.gitattributes;pi
 link-pixi-manifest	ro-root	discovery-link	T.3	MUST	adopt	met	git:55a061ebcaf614555fa73e9eea1e45e808199c18:pixi.toml	The containing Git commit or recorded earlier commit records this modification
 link-pixi-manifest	ro-root	discovery-link	M.1	SHOULD	adopt	partial	pixi.toml -> envs/pixi.toml	A stable tracked boundary exists but is stored directly in the root dataset
 link-pixi-manifest	ro-root	discovery-link	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-link-pixi-manifest	ro-root	discovery-link	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:pixi.toml	The exact containing or earlier commit is published with the public root repository
+link-pixi-manifest	ro-root	discovery-link	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:pixi.toml	The exact containing or earlier commit is published with the public root repository
 link-pixi-manifest	ro-root	discovery-link	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 link-pixi-manifest	ro-root	discovery-link	T.4-programmatic	SHOULD	decline	not-applicable	pixi.toml -> envs/pixi.toml	This static component does not perform code-driven modifications or emit provenance records
 link-pixi-manifest	ro-root	discovery-link	T.4-versions	MUST	adopt	not-applicable	pixi.toml -> envs/pixi.toml	This component is not a code-driven execution whose involved versions must be reported
@@ -259,7 +259,7 @@ link-pixi-lock	ro-root	discovery-link	T.2	SHOULD	adopt	met	.gitattributes;pixi.l
 link-pixi-lock	ro-root	discovery-link	T.3	MUST	adopt	met	git:55a061ebcaf614555fa73e9eea1e45e808199c18:pixi.lock	The containing Git commit or recorded earlier commit records this modification
 link-pixi-lock	ro-root	discovery-link	M.1	SHOULD	adopt	partial	pixi.lock -> envs/pixi.lock	A stable tracked boundary exists but is stored directly in the root dataset
 link-pixi-lock	ro-root	discovery-link	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-link-pixi-lock	ro-root	discovery-link	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:pixi.lock	The exact containing or earlier commit is published with the public root repository
+link-pixi-lock	ro-root	discovery-link	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:pixi.lock	The exact containing or earlier commit is published with the public root repository
 link-pixi-lock	ro-root	discovery-link	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 link-pixi-lock	ro-root	discovery-link	T.4-programmatic	SHOULD	decline	not-applicable	pixi.lock -> envs/pixi.lock	This static component does not perform code-driven modifications or emit provenance records
 link-pixi-lock	ro-root	discovery-link	T.4-versions	MUST	adopt	not-applicable	pixi.lock -> envs/pixi.lock	This component is not a code-driven execution whose involved versions must be reported
@@ -277,7 +277,7 @@ config-pixi-prefix-ignore	ro-root	configuration	T.2	SHOULD	adopt	met	.gitattribu
 config-pixi-prefix-ignore	ro-root	configuration	T.3	MUST	adopt	met	git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/.pixi/.gitignore	The containing Git commit or recorded earlier commit records this modification
 config-pixi-prefix-ignore	ro-root	configuration	M.1	SHOULD	adopt	partial	envs/.pixi/.gitignore	A stable tracked boundary exists but is stored directly in the root dataset
 config-pixi-prefix-ignore	ro-root	configuration	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-config-pixi-prefix-ignore	ro-root	configuration	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/.pixi/.gitignore	The exact containing or earlier commit is published with the public root repository
+config-pixi-prefix-ignore	ro-root	configuration	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/.pixi/.gitignore	The exact containing or earlier commit is published with the public root repository
 config-pixi-prefix-ignore	ro-root	configuration	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 config-pixi-prefix-ignore	ro-root	configuration	T.4-programmatic	SHOULD	decline	not-applicable	envs/.pixi/.gitignore	This static component does not perform code-driven modifications or emit provenance records
 config-pixi-prefix-ignore	ro-root	configuration	T.4-versions	MUST	adopt	not-applicable	envs/.pixi/.gitignore	This component is not a code-driven execution whose involved versions must be reported
@@ -295,7 +295,7 @@ tool-pixi-bootstrap	ro-root	bootstrap-tool	T.2	SHOULD	adopt	met	.gitattributes;e
 tool-pixi-bootstrap	ro-root	bootstrap-tool	T.3	MUST	adopt	met	git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/bootstrap-pixi.sh	The containing Git commit or recorded earlier commit records this modification
 tool-pixi-bootstrap	ro-root	bootstrap-tool	M.1	SHOULD	adopt	partial	envs/bootstrap-pixi.sh	A stable tracked boundary exists but is stored directly in the root dataset
 tool-pixi-bootstrap	ro-root	bootstrap-tool	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-tool-pixi-bootstrap	ro-root	bootstrap-tool	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/bootstrap-pixi.sh	The exact containing or earlier commit is published with the public root repository
+tool-pixi-bootstrap	ro-root	bootstrap-tool	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:55a061ebcaf614555fa73e9eea1e45e808199c18:envs/bootstrap-pixi.sh	The exact containing or earlier commit is published with the public root repository
 tool-pixi-bootstrap	ro-root	bootstrap-tool	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 tool-pixi-bootstrap	ro-root	bootstrap-tool	T.4-programmatic	SHOULD	adopt	unmet	git history;envs/bootstrap-pixi.sh	The actual bootstrap invocation was not captured as a programmatic provenance record
 tool-pixi-bootstrap	ro-root	bootstrap-tool	T.4-versions	MUST	adopt	partial	envs/bootstrap-pixi.sh;envs/README.md	Pixi is exact but host bash, curl, TLS trust, checksum, and install utilities are not versioned
@@ -313,7 +313,7 @@ tool-stamped-validator	ro-root	validation-tool	T.2	SHOULD	adopt	met	.gitattribut
 tool-stamped-validator	ro-root	validation-tool	T.3	MUST	adopt	met	git:containing-commit:scripts/validate_stamped.py	The containing Git commit or recorded earlier commit records this modification
 tool-stamped-validator	ro-root	validation-tool	M.1	SHOULD	adopt	partial	scripts/validate_stamped.py	A stable tracked boundary exists but is stored directly in the root dataset
 tool-stamped-validator	ro-root	validation-tool	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-tool-stamped-validator	ro-root	validation-tool	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:scripts/validate_stamped.py	The exact containing or earlier commit is published with the public root repository
+tool-stamped-validator	ro-root	validation-tool	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:scripts/validate_stamped.py	The exact containing or earlier commit is published with the public root repository
 tool-stamped-validator	ro-root	validation-tool	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 tool-stamped-validator	ro-root	validation-tool	T.4-programmatic	SHOULD	decline	not-applicable	scripts/validate_stamped.py	This validator is read-only and does not create or modify authoritative scientific artifacts
 tool-stamped-validator	ro-root	validation-tool	T.4-versions	MUST	adopt	met	git:containing-commit:scripts/validate_stamped.py;envs/pixi.lock	Validator source and its Python 3.12.13 environment are identified
@@ -331,7 +331,7 @@ tool-phase0-validator	ro-root	validation-tool	T.2	SHOULD	adopt	met	.gitattribute
 tool-phase0-validator	ro-root	validation-tool	T.3	MUST	adopt	met	git:containing-commit:scripts/validate_phase0.py	The containing Git commit or recorded earlier commit records this modification
 tool-phase0-validator	ro-root	validation-tool	M.1	SHOULD	adopt	partial	scripts/validate_phase0.py	A stable tracked boundary exists but is stored directly in the root dataset
 tool-phase0-validator	ro-root	validation-tool	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-tool-phase0-validator	ro-root	validation-tool	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:scripts/validate_phase0.py	The exact containing or earlier commit is published with the public root repository
+tool-phase0-validator	ro-root	validation-tool	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:scripts/validate_phase0.py	The exact containing or earlier commit is published with the public root repository
 tool-phase0-validator	ro-root	validation-tool	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 tool-phase0-validator	ro-root	validation-tool	T.4-programmatic	SHOULD	decline	not-applicable	scripts/validate_phase0.py	This validator is read-only and does not create or modify authoritative scientific artifacts
 tool-phase0-validator	ro-root	validation-tool	T.4-versions	MUST	adopt	met	git:containing-commit:scripts/validate_phase0.py;envs/pixi.lock	Validator source and its Python 3.12.13 environment are identified
@@ -349,7 +349,7 @@ record-source-inventory	ro-root	inventory	T.2	SHOULD	adopt	met	.gitattributes;do
 record-source-inventory	ro-root	inventory	T.3	MUST	adopt	met	git:containing-commit:docs/source-inventory.tsv	The containing Git commit or recorded earlier commit records this modification
 record-source-inventory	ro-root	inventory	M.1	SHOULD	adopt	partial	docs/source-inventory.tsv	A stable tracked boundary exists but is stored directly in the root dataset
 record-source-inventory	ro-root	inventory	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-record-source-inventory	ro-root	inventory	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:docs/source-inventory.tsv	The exact containing or earlier commit is published with the public root repository
+record-source-inventory	ro-root	inventory	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:docs/source-inventory.tsv	The exact containing or earlier commit is published with the public root repository
 record-source-inventory	ro-root	inventory	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 record-source-inventory	ro-root	inventory	T.4-programmatic	SHOULD	decline	not-applicable	docs/source-inventory.tsv	This static component does not perform code-driven modifications or emit provenance records
 record-source-inventory	ro-root	inventory	T.4-versions	MUST	adopt	not-applicable	docs/source-inventory.tsv	This component is not a code-driven execution whose involved versions must be reported
@@ -367,7 +367,7 @@ record-evidence-manifest	ro-root	evidence-index	T.2	SHOULD	adopt	met	.gitattribu
 record-evidence-manifest	ro-root	evidence-index	T.3	MUST	adopt	met	git:containing-commit:docs/evidence-manifest.tsv	The containing Git commit or recorded earlier commit records this modification
 record-evidence-manifest	ro-root	evidence-index	M.1	SHOULD	adopt	partial	docs/evidence-manifest.tsv	A stable tracked boundary exists but is stored directly in the root dataset
 record-evidence-manifest	ro-root	evidence-index	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-record-evidence-manifest	ro-root	evidence-index	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:docs/evidence-manifest.tsv	The exact containing or earlier commit is published with the public root repository
+record-evidence-manifest	ro-root	evidence-index	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:docs/evidence-manifest.tsv	The exact containing or earlier commit is published with the public root repository
 record-evidence-manifest	ro-root	evidence-index	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 record-evidence-manifest	ro-root	evidence-index	T.4-programmatic	SHOULD	decline	not-applicable	docs/evidence-manifest.tsv	This static component does not perform code-driven modifications or emit provenance records
 record-evidence-manifest	ro-root	evidence-index	T.4-versions	MUST	adopt	not-applicable	docs/evidence-manifest.tsv	This component is not a code-driven execution whose involved versions must be reported
@@ -385,7 +385,7 @@ record-result-targets	ro-root	result-specification	T.2	SHOULD	adopt	met	.gitattr
 record-result-targets	ro-root	result-specification	T.3	MUST	adopt	met	git:containing-commit:docs/result-targets.md	The containing Git commit or recorded earlier commit records this modification
 record-result-targets	ro-root	result-specification	M.1	SHOULD	adopt	partial	docs/result-targets.md	A stable tracked boundary exists but is stored directly in the root dataset
 record-result-targets	ro-root	result-specification	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-record-result-targets	ro-root	result-specification	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:docs/result-targets.md	The exact containing or earlier commit is published with the public root repository
+record-result-targets	ro-root	result-specification	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:docs/result-targets.md	The exact containing or earlier commit is published with the public root repository
 record-result-targets	ro-root	result-specification	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 record-result-targets	ro-root	result-specification	T.4-programmatic	SHOULD	decline	not-applicable	docs/result-targets.md	The policy specifies future operations but does not itself perform a code-driven modification
 record-result-targets	ro-root	result-specification	T.4-versions	MUST	adopt	not-applicable	docs/result-targets.md	The policy is not itself a code-driven execution
@@ -403,7 +403,7 @@ record-runtime-candidates	ro-root	runtime-registry	T.2	SHOULD	adopt	met	.gitattr
 record-runtime-candidates	ro-root	runtime-registry	T.3	MUST	adopt	met	git:containing-commit:config/runtime-candidates.tsv	The containing Git commit or recorded earlier commit records this modification
 record-runtime-candidates	ro-root	runtime-registry	M.1	SHOULD	adopt	partial	config/runtime-candidates.tsv	A stable tracked boundary exists but is stored directly in the root dataset
 record-runtime-candidates	ro-root	runtime-registry	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-record-runtime-candidates	ro-root	runtime-registry	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:config/runtime-candidates.tsv	The exact containing or earlier commit is published with the public root repository
+record-runtime-candidates	ro-root	runtime-registry	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:config/runtime-candidates.tsv	The exact containing or earlier commit is published with the public root repository
 record-runtime-candidates	ro-root	runtime-registry	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 record-runtime-candidates	ro-root	runtime-registry	T.4-programmatic	SHOULD	adopt	unmet	config/runtime-candidates.tsv	No runtime retrieval, build, qualification, or registration run exists
 record-runtime-candidates	ro-root	runtime-registry	T.4-versions	MUST	adopt	unmet	config/runtime-candidates.tsv	Several runtime, wrapper, model, and dependency versions are unresolved
@@ -421,7 +421,7 @@ record-result-manifest	ro-root	result-index	T.2	SHOULD	adopt	met	.gitattributes;
 record-result-manifest	ro-root	result-index	T.3	MUST	adopt	met	git:containing-commit:result-manifest.tsv	The containing Git commit or recorded earlier commit records this modification
 record-result-manifest	ro-root	result-index	M.1	SHOULD	adopt	partial	result-manifest.tsv	A stable tracked boundary exists but is stored directly in the root dataset
 record-result-manifest	ro-root	result-index	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-record-result-manifest	ro-root	result-index	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:result-manifest.tsv	The exact containing or earlier commit is published with the public root repository
+record-result-manifest	ro-root	result-index	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:result-manifest.tsv	The exact containing or earlier commit is published with the public root repository
 record-result-manifest	ro-root	result-index	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 record-result-manifest	ro-root	result-index	T.4-programmatic	SHOULD	adopt	unmet	result-manifest.tsv	Every run_record remains a placeholder
 record-result-manifest	ro-root	result-index	T.4-versions	MUST	adopt	unmet	result-manifest.tsv	Producing versions remain placeholders
@@ -439,7 +439,7 @@ record-components	ro-root	component-inventory	T.2	SHOULD	adopt	met	.gitattribute
 record-components	ro-root	component-inventory	T.3	MUST	adopt	met	git:containing-commit:config/components.tsv	The containing Git commit or recorded earlier commit records this modification
 record-components	ro-root	component-inventory	M.1	SHOULD	adopt	partial	config/components.tsv	A stable tracked boundary exists but is stored directly in the root dataset
 record-components	ro-root	component-inventory	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-record-components	ro-root	component-inventory	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:config/components.tsv	The exact containing or earlier commit is published with the public root repository
+record-components	ro-root	component-inventory	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:config/components.tsv	The exact containing or earlier commit is published with the public root repository
 record-components	ro-root	component-inventory	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 record-components	ro-root	component-inventory	T.4-programmatic	SHOULD	decline	not-applicable	config/components.tsv	This static component does not perform code-driven modifications or emit provenance records
 record-components	ro-root	component-inventory	T.4-versions	MUST	adopt	not-applicable	config/components.tsv	This component is not a code-driven execution whose involved versions must be reported
@@ -457,7 +457,7 @@ record-stamped-assessment	ro-root	assessment	T.2	SHOULD	adopt	met	.gitattributes
 record-stamped-assessment	ro-root	assessment	T.3	MUST	adopt	met	git:containing-commit:config/stamped-assessment.tsv	The containing Git commit or recorded earlier commit records this modification
 record-stamped-assessment	ro-root	assessment	M.1	SHOULD	adopt	partial	config/stamped-assessment.tsv	A stable tracked boundary exists but is stored directly in the root dataset
 record-stamped-assessment	ro-root	assessment	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-record-stamped-assessment	ro-root	assessment	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:config/stamped-assessment.tsv	The exact containing or earlier commit is published with the public root repository
+record-stamped-assessment	ro-root	assessment	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:config/stamped-assessment.tsv	The exact containing or earlier commit is published with the public root repository
 record-stamped-assessment	ro-root	assessment	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 record-stamped-assessment	ro-root	assessment	T.4-programmatic	SHOULD	decline	not-applicable	config/stamped-assessment.tsv	This static component does not perform code-driven modifications or emit provenance records
 record-stamped-assessment	ro-root	assessment	T.4-versions	MUST	adopt	not-applicable	config/stamped-assessment.tsv	This component is not a code-driven execution whose involved versions must be reported
@@ -475,7 +475,7 @@ record-hardening	ro-root	decision-record	T.2	SHOULD	adopt	met	.gitattributes;con
 record-hardening	ro-root	decision-record	T.3	MUST	adopt	met	git:containing-commit:config/hardening-decisions.tsv	The containing Git commit or recorded earlier commit records this modification
 record-hardening	ro-root	decision-record	M.1	SHOULD	adopt	partial	config/hardening-decisions.tsv	A stable tracked boundary exists but is stored directly in the root dataset
 record-hardening	ro-root	decision-record	M.3	SHOULD	adopt	unmet	config/components.tsv#license_status	Independent licence declaration and compatibility decision are missing
-record-hardening	ro-root	decision-record	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases;git:containing-commit:config/hardening-decisions.tsv	The exact containing or earlier commit is published with the public root repository
+record-hardening	ro-root	decision-record	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases;git:containing-commit:config/hardening-decisions.tsv	The exact containing or earlier commit is published with the public root repository
 record-hardening	ro-root	decision-record	D.3	SHOULD	adopt	unmet	config/components.tsv#license_status	No resolvable project licence identifier is recorded
 record-hardening	ro-root	decision-record	T.4-programmatic	SHOULD	decline	not-applicable	config/hardening-decisions.tsv	This static component does not perform code-driven modifications or emit provenance records
 record-hardening	ro-root	decision-record	T.4-versions	MUST	adopt	not-applicable	config/hardening-decisions.tsv	This component is not a code-driven execution whose involved versions must be reported
@@ -2806,7 +2806,7 @@ study-toy	ro-root	bids-study-dataset	P.1	MUST	adopt	not-applicable	studies/toy/d
 study-toy	ro-root	bids-study-dataset	P.2	MUST	adopt	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
 study-toy	ro-root	bids-study-dataset	P.3	MUST	adopt	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
 study-toy	ro-root	bids-study-dataset	E.1	SHOULD	decline	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
-study-toy	ro-root	bids-study-dataset	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy;studies/toy/dataset_description.json;studies/toy/.datalad/config	Public sibling preserves the exact DataLad dataset identity and Phase 1 commit.
+study-toy	ro-root	bids-study-dataset	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-studies-toy;studies/toy/dataset_description.json;studies/toy/.datalad/config	Public sibling preserves the exact DataLad dataset identity and Phase 1 commit.
 study-toy	ro-root	bids-study-dataset	D.2	SHOULD	decline	not-applicable	studies/toy/dataset_description.json;studies/toy/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
 study-toy	ro-root	bids-study-dataset	D.3	SHOULD	adopt	met	studies/toy/dataset_description.json;studies/toy/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
 input-toy-raw	study-toy	bids-raw-dataset	S.1	MUST	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
@@ -2824,7 +2824,7 @@ input-toy-raw	study-toy	bids-raw-dataset	P.1	MUST	adopt	not-applicable	studies/t
 input-toy-raw	study-toy	bids-raw-dataset	P.2	MUST	adopt	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
 input-toy-raw	study-toy	bids-raw-dataset	P.3	MUST	adopt	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
 input-toy-raw	study-toy	bids-raw-dataset	E.1	SHOULD	decline	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
-input-toy-raw	study-toy	bids-raw-dataset	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases-studies-toy-sourcedata-raw;studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Public sibling preserves the exact DataLad dataset identity and Phase 1 commit.
+input-toy-raw	study-toy	bids-raw-dataset	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-studies-toy-sourcedata-raw;studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Public sibling preserves the exact DataLad dataset identity and Phase 1 commit.
 input-toy-raw	study-toy	bids-raw-dataset	D.2	SHOULD	decline	not-applicable	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	This static component neither executes a computational procedure nor defines an execution environment.
 input-toy-raw	study-toy	bids-raw-dataset	D.3	SHOULD	adopt	met	studies/toy/sourcedata/raw/dataset_description.json;studies/toy/sourcedata/raw/.datalad/config	Stable tracked boundary and concrete evidence are recorded.
 phase1-reports	ro-root	validation-evidence	S.1	MUST	adopt	met	docs/reports/phase-1/README.md	Stable tracked boundary and concrete evidence are recorded.
@@ -2914,7 +2914,7 @@ image-toy-bids-app	container-accepted-registry	container-image	P.1	MUST	adopt	me
 image-toy-bids-app	container-accepted-registry	container-image	P.2	MUST	adopt	met	SHA256E-s3559424--04dd9db59be1363229f1f26f4088065fc2c0d208ef3c21cbe7d46c0148ce0d59.0.sif	Exact SIF bytes are an explicit runtime environment.
 image-toy-bids-app	container-accepted-registry	container-image	P.3	MUST	adopt	met	envs/containers/custom/toy-bids-app/toy-bids-app.def;envs/pixi.lock	Definition and locked build inputs are version-controlled.
 image-toy-bids-app	container-accepted-registry	container-image	E.1	SHOULD	adopt	met	docs/reports/phase-2/toy-bids-app-qualification.txt#fixture	The qualified toy invocation created fresh disposable output state.
-image-toy-bids-app	container-accepted-registry	container-image	D.1	MUST	adopt	met	https://github.com/con/STAMPED-dl_morphometrics_biases-accepted-containers/releases/tag/phase-2-toy-v0.1.0	Exact SIF bytes were dropped and successfully retrieved from the public release.
+image-toy-bids-app	container-accepted-registry	container-image	D.1	MUST	adopt	met	https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases-accepted-containers/releases/tag/phase-2-toy-v0.1.0	Exact SIF bytes were dropped and successfully retrieved from the public release.
 image-toy-bids-app	container-accepted-registry	container-image	D.2	SHOULD	adopt	met	envs/images/toy-bids-app.yaml;envs/pixi.lock	Pinned base, definition hash, builder identity, and lock support reproducible builds.
 image-toy-bids-app	container-accepted-registry	container-image	D.3	SHOULD	adopt	met	envs/images/toy-bids-app.yaml#licenses	Resolvable image licensing is tracked with the exact SIF record.
 image-simbids-0-0-3	container-accepted-registry	container-image	S.1	MUST	adopt	met	envs/images/simbids-0-0-3.yaml;envs/containers/accepted/.datalad/environments/simbids-0-0-3/image	The exact SIF registration and root record are reachable through the registry.

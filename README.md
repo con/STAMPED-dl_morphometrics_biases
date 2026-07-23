@@ -2,6 +2,41 @@
 
 Ideal-oriented STAMPED reconstruction of the `dl_morphometrics_biases` analyses summarized in the OHBM 2025 poster.
 
+## Effort overview
+
+This effort is rebuilding the poster analysis as an inspectable, portable
+research object rather than attempting to preserve the original notebooks and
+institutional execution environment in place. The root DataLad dataset composes
+independently versioned Study, raw-data, derivative, operations, and container
+datasets. Git histories are hosted in the
+[project GitHub organization](https://github.com/STAMPED-dl-morphometrics-biases);
+public annex content is stored separately where declared.
+
+The work proceeds through gated phases: preserve the historical evidence,
+establish data and provenance boundaries, prove the execution pattern with
+synthetic data, import scientific operations as tested BIDS Apps, qualify exact
+runtime images, run an open-data pilot, and only then reconstruct the
+claim-bearing ABCD analysis. Synthetic outputs are engineering evidence, not
+scientific results.
+
+### Progress
+
+| Phase | Scope | Status |
+|---|---|---|
+| 0 | Preserve source evidence and declare poster-derived result targets | Complete |
+| 1 | Establish the DataLad/BIDS organization, access controls, licensing, and validation guardrails | Complete |
+| 2 | Establish locked Pixi environments and the accepted-container registry foundation | Complete |
+| 3 | Prove BABS/Slurm execution, merge, finalization, and validation with synthetic data | In progress: the SimBIDS campaign is accepted; independent SIF publication, clean-clone retrieval, and the direct-layout checker debt remain |
+| 4–5 | Import scientific operations as tested BIDS Apps and qualify exact scientific SIFs | Not started |
+| 6 | Run the open `ds007116` engineering and scientific pilot | Not started |
+| 7–8 | Prepare controlled ABCD inputs and reconstruct the poster analyses | Not started |
+| 9 | Verify, assess, and release the complete research object | Not started |
+
+See the [conversion plan](docs/conversion-plan.md) for phase gates,
+[Phase 3 notes](docs/phase-3-notes.md) for the current engineering
+qualification, and the [STAMPED assessment](config/stamped-assessment.tsv) for
+principle-by-principle achievements and gaps.
+
 This repository is now the top-level DataLad research object (dataset ID `baa2ec91-e618-4bac-b382-ac0daf9f779a`). It is not a BIDS dataset or “super-study.” Phase 0 preserves and evaluates evidence without importing historical scientific code:
 
 - [source inventory](docs/source-inventory.tsv) at old-repository main commit `448bf1a311c1ab8310cbab613a8123bb4a4f4a00`, with the later non-main branch recorded separately;
@@ -69,7 +104,7 @@ Git-only for this dataset, while GIN provides the root annex content.
 git config --global remote.origin.annex-ignore true
 
 datalad clone \
-  https://github.com/con/STAMPED-dl_morphometrics_biases.git \
+  https://github.com/STAMPED-dl-morphometrics-biases/STAMPED-dl_morphometrics_biases.git \
   STAMPED-dl_morphometrics_biases
 cd STAMPED-dl_morphometrics_biases
 
